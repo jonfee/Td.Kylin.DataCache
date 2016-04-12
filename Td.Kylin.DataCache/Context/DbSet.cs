@@ -39,5 +39,15 @@ namespace Td.Kylin.DataCache.Context
         public DbSet<Circle_Forum> Circle_Forum { get { return Set<Circle_Forum>(); } }
 
         public DbSet<Circle_AreaForum> Circle_AreaForum { get { return Set<Circle_AreaForum>(); } }
+
+        /// <summary>
+        /// 商品分类
+        /// </summary>
+        public DbSet<Mall_Category> Mall_Category { get { return Set<Mall_Category>(); } }
+
+        /// <summary>
+        /// 商品分类标签
+        /// </summary>
+        public DbSet<Mall_CategoryTag> Mall_CategoryTag { get { return Set<Mall_CategoryTag>(); } }
     }
 }

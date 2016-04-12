@@ -7,31 +7,32 @@ using Td.Kylin.Redis;
 namespace Td.Kylin.DataCache.Provider
 {
     /// <summary>
-    /// 系统区域缓存
+    /// 开通区域数据缓存
     /// </summary>
-    internal sealed class SystemAreaCache : CacheItem<List<SystemAreaCacheModel>>
+    internal sealed class OpenAreaCache : CacheItem<List<OpenAreaCacheModel>>
     {
-        public SystemAreaCache() : base(CacheItemType.SystemArea) { }
+        public OpenAreaCache() : base(CacheItemType.OpenArea) { }
 
-        protected override List<SystemAreaCacheModel> GetCache()
+        protected override List<OpenAreaCacheModel> GetCache()
         {
-            List<SystemAreaCacheModel> data = null;
+            List<OpenAreaCacheModel> data = null;
 
             if (null != RedisDB)
             {
-                data = RedisDB.HashGetAll<SystemAreaCacheModel>(CacheKey).Select(p => p.Value).ToList();
+                data = RedisDB.HashGetAll<OpenAreaCacheModel>(CacheKey).Select(p => p.Value).ToList();
             }
 
             return data;
         }
 
-        protected override List<SystemAreaCacheModel> ReadDataFromDB()
+        protected override List<OpenAreaCacheModel> ReadDataFromDB()
         {
-            return ServicesProvider.Items.SystemAreaService.GetAll();
+            return ServicesProvider.Items.OpenAreaService.GetAll();
         }
 
-        protected override void SetCache(List<SystemAreaCacheModel> data)
+        protected override void SetCache(List<OpenAreaCacheModel> data)
         {
+
             if (null != RedisDB)
             {
                 //清除数据缓存

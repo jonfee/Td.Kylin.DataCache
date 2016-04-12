@@ -35,15 +35,17 @@ namespace Td.Kylin.DataCache.RedisConfig
         /// <param name="itemType"></param>
         /// <param name="redisDbIndex"></param>
         /// <param name="saveType"></param>
+        /// <param name="level"></param>
         /// <returns></returns>
-        public void Add(CacheItemType itemType, int redisDbIndex, RedisSaveType saveType)
+        public void Add(CacheItemType itemType, int redisDbIndex, RedisSaveType saveType, CacheLevel level)
         {
             var config = new CacheConfig
             {
                 ItemType = itemType,
                 RedisDbIndex = redisDbIndex,
                 RedisKey = itemType.ToString(),
-                SaveType = saveType
+                SaveType = saveType,
+                Level = level
             };
 
             lock (mylock)
@@ -72,15 +74,17 @@ namespace Td.Kylin.DataCache.RedisConfig
         /// <param name="redisKey"></param>
         /// <param name="redisDbIndex"></param>
         /// <param name="saveType"></param>
+        /// <param name="level"></param>
         /// <returns></returns>
-        public void Add(CacheItemType itemType, string redisKey, int redisDbIndex, RedisSaveType saveType)
+        public void Add(CacheItemType itemType, string redisKey, int redisDbIndex, RedisSaveType saveType, CacheLevel level)
         {
             var config = new CacheConfig
             {
                 ItemType = itemType,
                 RedisDbIndex = redisDbIndex,
                 RedisKey = redisKey,
-                SaveType = saveType
+                SaveType = saveType,
+                Level = level
             };
 
             lock (mylock)

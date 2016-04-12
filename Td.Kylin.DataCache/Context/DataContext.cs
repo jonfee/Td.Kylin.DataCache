@@ -125,6 +125,18 @@ namespace Td.Kylin.DataCache.Context
                 entity.Property(p => p.AreaForumID).ValueGeneratedNever();
                 entity.HasKey(p => p.AreaForumID);
             });
+            
+            modelBuilder.Entity<Mall_Category>(entity =>
+            {
+                entity.Property(p => p.CategoryID).ValueGeneratedNever();
+                entity.HasKey(p => p.CategoryID);
+            });
+
+            modelBuilder.Entity<Mall_CategoryTag>(entity =>
+            {
+                entity.Property(p => p.TagID).ValueGeneratedNever();
+                entity.HasKey(p => p.TagID);
+            });
         }
 
         #endregion

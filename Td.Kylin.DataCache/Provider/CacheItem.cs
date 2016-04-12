@@ -4,7 +4,7 @@ using Td.Kylin.Redis;
 
 namespace Td.Kylin.DataCache.Provider
 {
-    internal abstract class CacheItem<T>
+    internal abstract class CacheItem<T> : ICache
     {
         /// <summary>
         /// Redis缓存配置信息
@@ -18,6 +18,8 @@ namespace Td.Kylin.DataCache.Provider
         public CacheItem(CacheItemType itemType)
         {
             _config = CacheStartup.RedisConfiguration[itemType];
+
+            Update();
         }
 
         /// <summary>
@@ -73,7 +75,20 @@ namespace Td.Kylin.DataCache.Provider
             }
         }
 
-        private T _data;
+        /// <summary>
+        /// 更新锁
+        /// </summary>
+        private readonly static object _updateLock = new object();
+
+        /// <summary>
+        /// 是否正在更新
+        /// </summary>
+        private volatile bool _updating;
+
+        /// <summary>
+        /// 一般在更新时使用
+        /// </summary>
+        private T _tempData;
 
         /// <summary>
         /// 缓存数据
@@ -82,22 +97,45 @@ namespace Td.Kylin.DataCache.Provider
         {
             get
             {
-                if (Level == CacheLevel.Hight && LastUpdateTime.AddDays(1) < DateTime.Now)  //缓存级别高，一般24小时更新一次
-                {
-                    Update();
-                }
-                else if (Level == CacheLevel.Middel && LastUpdateTime.AddHours(6) < DateTime.Now)   //缓存级别中，一般6小时更新一次
-                {
-                    Update();
-                }
-                else if (Level == CacheLevel.Lower && LastUpdateTime.AddMinutes(30) < DateTime.Now) //缓存级别低，一般30分钟更新一次
-                {
-                    Update();
-                }
+                T _data = default(T);
 
-                if (null == _data)
+                try
                 {
-                    _data = GetCache();
+                    //如果正在更新，则使用更新前的临时数据
+                    if (_updating)
+                    {
+                        _data = this._tempData;
+                    }
+                    else
+                    {
+                        //根据缓存级别，更新缓存数据
+                        if (Level == CacheLevel.Hight && LastUpdateTime.AddDays(1) < DateTime.Now)  //缓存级别高，一般24小时更新一次
+                        {
+                            Update();
+                        }
+                        else if (Level == CacheLevel.Middel && LastUpdateTime.AddHours(6) < DateTime.Now)   //缓存级别中，一般6小时更新一次
+                        {
+                            Update();
+                        }
+                        else if (Level == CacheLevel.Lower && LastUpdateTime.AddMinutes(30) < DateTime.Now) //缓存级别低，一般30分钟更新一次
+                        {
+                            Update();
+                        }
+
+                        //从缓存中读取
+                        _data = GetCache();
+
+                        //若缓存中无数据，则从数据库中读取，并缓存
+                        if (null == _data)
+                        {
+                            Update();
+                        }
+                    }
+                }
+                catch
+                {
+                    //Exception
+                    _data = ReadDataFromDB();
                 }
 
                 return _data;
@@ -114,11 +152,22 @@ namespace Td.Kylin.DataCache.Provider
         /// </summary>
         public void Update()
         {
-            this._data = ReadDataFromDB();
+            lock (_updateLock)
+            {
+                _updating = true;
 
-            this.LastUpdateTime = DateTime.Now;
+                var data = ReadDataFromDB();
 
-            SetCache(this._data);
+                this._tempData = data;
+
+                this.LastUpdateTime = DateTime.Now;
+
+                SetCache(data);
+
+                _updating = false;
+
+                this._tempData = default(T);
+            }
         }
 
         /// <summary>

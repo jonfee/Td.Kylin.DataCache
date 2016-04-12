@@ -9,7 +9,7 @@ namespace Td.Kylin.DataCache.IServices
     /// <summary>
     /// 区域数据服务接口
     /// </summary>
-    public interface ISystemAreaService
+    internal interface ISystemAreaService
     {
         /// <summary>
         /// 获取所有区域
