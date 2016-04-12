@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using StackExchange.Redis;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Td.Kylin.DataCache.CacheModel;
@@ -94,7 +95,7 @@ namespace Td.Kylin.DataCache
         /// </summary>
         /// <param name="itemType"></param>
         /// <returns></returns>
-        private ICache this[CacheItemType itemType]
+        private dynamic this[CacheItemType itemType]
         {
             get
             {
@@ -106,7 +107,7 @@ namespace Td.Kylin.DataCache
                 {
                     if (Keys.Contains(cacheKey))
                     {
-                        return (ICache)htCache[cacheKey];
+                        return htCache[cacheKey];
                     }
 
                     return null;
@@ -119,7 +120,7 @@ namespace Td.Kylin.DataCache
         /// </summary>
         /// <param name="cacheKey"></param>
         /// <returns></returns>
-        private ICache this[string cacheKey]
+        private dynamic this[string cacheKey]
         {
             get
             {
@@ -127,7 +128,7 @@ namespace Td.Kylin.DataCache
                 {
                     if (Keys.Contains(cacheKey))
                     {
-                        return (ICache)htCache[cacheKey];
+                        return htCache[cacheKey];
                     }
 
                     return null;
@@ -138,6 +139,40 @@ namespace Td.Kylin.DataCache
         #endregion
 
         #region 更新缓存
+
+        /// <summary>
+        /// 更新缓存
+        /// </summary>
+        /// <typeparam name="itemType"></typeparam>
+        /// <typeparam name="Entity"></typeparam>
+        /// <param name="entity"></param>
+        public void Update<Entity>(Entity entity, CacheItemType itemType) where Entity : class, new()
+        {
+            if (null == entity) return;
+
+            var config = CacheStartup.RedisConfiguration[itemType];
+
+            if (null == config) return;
+
+            //需要写入Redis的数据对象（此时未序列化）
+            dynamic data = null;
+            //需要写入Redis的Field字段名称
+            object field = null;
+
+            //区域圈子
+            if (itemType == CacheItemType.AreaForum && entity is AreaForumCacheModel)
+            {
+                data = entity as AreaForumCacheModel;
+                field = data.AreaForumID;
+            }
+
+
+            //Redis数据库
+            IDatabase redisDB = this[itemType].RedisDB;
+            
+
+
+        }
 
         /// <summary>
         /// 更新缓存
@@ -154,7 +189,7 @@ namespace Td.Kylin.DataCache
         /// 更新缓存
         /// </summary>
         /// <param name="cacheKey"></param>
-        public void Update(string  cacheKey)
+        public void Update(string cacheKey)
         {
             var cache = this[cacheKey];
 
@@ -165,7 +200,7 @@ namespace Td.Kylin.DataCache
         /// 更新缓存
         /// </summary>
         /// <param name="cache"></param>
-        private void Update(ICache cache)
+        private void Update(dynamic cache)
         {
             if (null != cache)
             {
@@ -259,17 +294,15 @@ namespace Td.Kylin.DataCache
         /// <typeparam name="CacheProvider"></typeparam>
         /// <param name="cache"></param>
         /// <returns></returns>
-        CacheResult GetCacheValue<CacheResult, CacheProvider, ProviderResult>(ICache cache) where CacheProvider : CacheItem<ProviderResult>
+        CacheResult GetCacheValue<CacheResult, CacheProvider, ProviderResult>(CacheProvider cache) where CacheProvider : CacheItem<ProviderResult>
         {
             var data = default(CacheResult);
 
             try
             {
-                var provider = cache as CacheProvider;
-
-                if (null != provider && typeof(CacheResult).Equals(typeof(ProviderResult)))
+                if (null != cache && typeof(CacheResult).Equals(typeof(ProviderResult)))
                 {
-                    object temp = provider.Data;
+                    object temp = cache.Data;
 
                     data = (CacheResult)temp;
                 }
@@ -277,11 +310,12 @@ namespace Td.Kylin.DataCache
             catch
             {
                 //Exception
+
             }
 
             return data;
         }
-
+        
         #endregion
 
         #region  缓存项实例操作
@@ -291,7 +325,7 @@ namespace Td.Kylin.DataCache
         /// </summary>
         /// <param name="cacheKey"></param>
         /// <param name="cacheItem"></param>
-        void AddOrUpdate(string cacheKey, ICache cacheItem)
+        void AddOrUpdate(string cacheKey, dynamic cacheItem)
         {
             if (string.IsNullOrWhiteSpace(cacheKey) || null == cacheItem) return;
 
@@ -313,9 +347,9 @@ namespace Td.Kylin.DataCache
         /// </summary>
         /// <param name="itemType"></param>
         /// <returns></returns>
-        ICache CacheItemFactory(CacheItemType itemType)
+        dynamic CacheItemFactory(CacheItemType itemType)
         {
-            ICache cacheItem = null;
+            dynamic cacheItem = null;
 
             switch (itemType)
             {

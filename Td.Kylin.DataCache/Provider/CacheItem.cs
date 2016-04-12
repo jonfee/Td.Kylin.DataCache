@@ -1,10 +1,12 @@
 ﻿using StackExchange.Redis;
 using System;
+using System.Collections.Generic;
+using Td.Kylin.DataCache.CacheModel;
 using Td.Kylin.Redis;
 
 namespace Td.Kylin.DataCache.Provider
 {
-    internal abstract class CacheItem<T> : ICache
+    internal abstract class CacheItem<T>
     {
         /// <summary>
         /// Redis缓存配置信息
@@ -67,7 +69,7 @@ namespace Td.Kylin.DataCache.Provider
         /// <summary>
         /// 当前缓存操作的Redis数据库
         /// </summary>
-        protected IDatabase RedisDB
+        public IDatabase RedisDB
         {
             get
             {
@@ -186,5 +188,10 @@ namespace Td.Kylin.DataCache.Provider
         /// </summary>
         /// <returns></returns>
         protected abstract T ReadDataFromDB();
+
+        #region 隐式转换
+
+
+        #endregion
     }
 }
