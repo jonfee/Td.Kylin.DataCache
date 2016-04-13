@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Td.Kylin.DataCache.CacheModel;
 using Td.Kylin.DataCache.Provider;
+using Td.Kylin.Redis;
 
 namespace Td.Kylin.DataCache
 {
@@ -139,41 +140,7 @@ namespace Td.Kylin.DataCache
         #endregion
 
         #region 更新缓存
-
-        /// <summary>
-        /// 更新缓存
-        /// </summary>
-        /// <typeparam name="itemType"></typeparam>
-        /// <typeparam name="Entity"></typeparam>
-        /// <param name="entity"></param>
-        public void Update<Entity>(Entity entity, CacheItemType itemType) where Entity : class, new()
-        {
-            if (null == entity) return;
-
-            var config = CacheStartup.RedisConfiguration[itemType];
-
-            if (null == config) return;
-
-            //需要写入Redis的数据对象（此时未序列化）
-            dynamic data = null;
-            //需要写入Redis的Field字段名称
-            object field = null;
-
-            //区域圈子
-            if (itemType == CacheItemType.AreaForum && entity is AreaForumCacheModel)
-            {
-                data = entity as AreaForumCacheModel;
-                field = data.AreaForumID;
-            }
-
-
-            //Redis数据库
-            IDatabase redisDB = this[itemType].RedisDB;
-            
-
-
-        }
-
+        
         /// <summary>
         /// 更新缓存
         /// </summary>
@@ -315,7 +282,7 @@ namespace Td.Kylin.DataCache
 
             return data;
         }
-        
+
         #endregion
 
         #region  缓存项实例操作
