@@ -2,6 +2,17 @@
 {
     public class AreaForumCacheModel
     {
+        /// <summary>
+        /// HashField（AreaForumID）
+        /// </summary>
+        public string HashField
+        {
+            get
+            {
+                return AreaForumID.ToString();
+            }
+        }
+
         ///<summary>
 		/// 区域圈子ID
 		///</summary>

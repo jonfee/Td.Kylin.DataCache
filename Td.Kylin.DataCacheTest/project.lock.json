@@ -1720,7 +1720,7 @@
           "lib/net45/_._": {}
         }
       },
-      "Td.Kylin.DataCache/1.0.0": {
+      "Td.Kylin.DataCache/1.0.1-rc1": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -1732,11 +1732,11 @@
           "StackExchange.Redis": "1.1.553-alpha",
           "System.Runtime": "4.0.21-beta-23516",
           "System.Runtime.InteropServices": "4.0.21-beta-23516",
-          "Td.Kylin.Entity": "1.0.0-rc1-18",
-          "Td.Kylin.Redis": "1.0.3-alpha"
+          "Td.Kylin.Entity": "1.0.0-rc1-19",
+          "Td.Kylin.Redis": "1.0.5-alpha"
         }
       },
-      "Td.Kylin.Entity/1.0.0-rc1-18": {
+      "Td.Kylin.Entity/1.0.0-rc1-19": {
         "type": "package",
         "compile": {
           "lib/dnx451/Td.Kylin.Entity.dll": {}
@@ -1745,8 +1745,19 @@
           "lib/dnx451/Td.Kylin.Entity.dll": {}
         }
       },
-      "Td.Kylin.Redis/1.0.3-alpha": {
+      "Td.Kylin.Redis/1.0.5-alpha": {
         "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
+          "Newtonsoft.Json": "7.0.1",
+          "StackExchange.Redis": "1.1.553-alpha"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
         "compile": {
           "lib/dnx451/Td.Kylin.Redis.dll": {}
         },
@@ -4222,7 +4233,7 @@
           "lib/dotnet5.4/System.Xml.XDocument.dll": {}
         }
       },
-      "Td.Kylin.DataCache/1.0.0": {
+      "Td.Kylin.DataCache/1.0.1-rc1": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -4234,11 +4245,11 @@
           "StackExchange.Redis": "1.1.553-alpha",
           "System.Runtime": "4.0.21-beta-23516",
           "System.Runtime.InteropServices": "4.0.21-beta-23516",
-          "Td.Kylin.Entity": "1.0.0-rc1-18",
-          "Td.Kylin.Redis": "1.0.3-alpha"
+          "Td.Kylin.Entity": "1.0.0-rc1-19",
+          "Td.Kylin.Redis": "1.0.5-alpha"
         }
       },
-      "Td.Kylin.Entity/1.0.0-rc1-18": {
+      "Td.Kylin.Entity/1.0.0-rc1-19": {
         "type": "package",
         "compile": {
           "lib/dnxcore50/Td.Kylin.Entity.dll": {}
@@ -4247,8 +4258,13 @@
           "lib/dnxcore50/Td.Kylin.Entity.dll": {}
         }
       },
-      "Td.Kylin.Redis/1.0.3-alpha": {
+      "Td.Kylin.Redis/1.0.5-alpha": {
         "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
+          "Newtonsoft.Json": "7.0.1",
+          "StackExchange.Redis": "1.1.553-alpha"
+        },
         "compile": {
           "lib/dnxcore50/Td.Kylin.Redis.dll": {}
         },
@@ -5978,7 +5994,7 @@
           "lib/net45/_._": {}
         }
       },
-      "Td.Kylin.DataCache/1.0.0": {
+      "Td.Kylin.DataCache/1.0.1-rc1": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -5990,11 +6006,11 @@
           "StackExchange.Redis": "1.1.553-alpha",
           "System.Runtime": "4.0.21-beta-23516",
           "System.Runtime.InteropServices": "4.0.21-beta-23516",
-          "Td.Kylin.Entity": "1.0.0-rc1-18",
-          "Td.Kylin.Redis": "1.0.3-alpha"
+          "Td.Kylin.Entity": "1.0.0-rc1-19",
+          "Td.Kylin.Redis": "1.0.5-alpha"
         }
       },
-      "Td.Kylin.Entity/1.0.0-rc1-18": {
+      "Td.Kylin.Entity/1.0.0-rc1-19": {
         "type": "package",
         "compile": {
           "lib/dnx451/Td.Kylin.Entity.dll": {}
@@ -6003,8 +6019,19 @@
           "lib/dnx451/Td.Kylin.Entity.dll": {}
         }
       },
-      "Td.Kylin.Redis/1.0.3-alpha": {
+      "Td.Kylin.Redis/1.0.5-alpha": {
         "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
+          "Newtonsoft.Json": "7.0.1",
+          "StackExchange.Redis": "1.1.553-alpha"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
         "compile": {
           "lib/dnx451/Td.Kylin.Redis.dll": {}
         },
@@ -7734,7 +7761,7 @@
           "lib/net45/_._": {}
         }
       },
-      "Td.Kylin.DataCache/1.0.0": {
+      "Td.Kylin.DataCache/1.0.1-rc1": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -7746,11 +7773,11 @@
           "StackExchange.Redis": "1.1.553-alpha",
           "System.Runtime": "4.0.21-beta-23516",
           "System.Runtime.InteropServices": "4.0.21-beta-23516",
-          "Td.Kylin.Entity": "1.0.0-rc1-18",
-          "Td.Kylin.Redis": "1.0.3-alpha"
+          "Td.Kylin.Entity": "1.0.0-rc1-19",
+          "Td.Kylin.Redis": "1.0.5-alpha"
         }
       },
-      "Td.Kylin.Entity/1.0.0-rc1-18": {
+      "Td.Kylin.Entity/1.0.0-rc1-19": {
         "type": "package",
         "compile": {
           "lib/dnx451/Td.Kylin.Entity.dll": {}
@@ -7759,8 +7786,19 @@
           "lib/dnx451/Td.Kylin.Entity.dll": {}
         }
       },
-      "Td.Kylin.Redis/1.0.3-alpha": {
+      "Td.Kylin.Redis/1.0.5-alpha": {
         "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
+          "Newtonsoft.Json": "7.0.1",
+          "StackExchange.Redis": "1.1.553-alpha"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
         "compile": {
           "lib/dnx451/Td.Kylin.Redis.dll": {}
         },
@@ -10747,7 +10785,7 @@
           "lib/dotnet5.4/System.Xml.XDocument.dll": {}
         }
       },
-      "Td.Kylin.DataCache/1.0.0": {
+      "Td.Kylin.DataCache/1.0.1-rc1": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -10759,11 +10797,11 @@
           "StackExchange.Redis": "1.1.553-alpha",
           "System.Runtime": "4.0.21-beta-23516",
           "System.Runtime.InteropServices": "4.0.21-beta-23516",
-          "Td.Kylin.Entity": "1.0.0-rc1-18",
-          "Td.Kylin.Redis": "1.0.3-alpha"
+          "Td.Kylin.Entity": "1.0.0-rc1-19",
+          "Td.Kylin.Redis": "1.0.5-alpha"
         }
       },
-      "Td.Kylin.Entity/1.0.0-rc1-18": {
+      "Td.Kylin.Entity/1.0.0-rc1-19": {
         "type": "package",
         "compile": {
           "lib/dnxcore50/Td.Kylin.Entity.dll": {}
@@ -10772,8 +10810,13 @@
           "lib/dnxcore50/Td.Kylin.Entity.dll": {}
         }
       },
-      "Td.Kylin.Redis/1.0.3-alpha": {
+      "Td.Kylin.Redis/1.0.5-alpha": {
         "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
+          "Newtonsoft.Json": "7.0.1",
+          "StackExchange.Redis": "1.1.553-alpha"
+        },
         "compile": {
           "lib/dnxcore50/Td.Kylin.Redis.dll": {}
         },
@@ -13760,7 +13803,7 @@
           "lib/dotnet5.4/System.Xml.XDocument.dll": {}
         }
       },
-      "Td.Kylin.DataCache/1.0.0": {
+      "Td.Kylin.DataCache/1.0.1-rc1": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -13772,11 +13815,11 @@
           "StackExchange.Redis": "1.1.553-alpha",
           "System.Runtime": "4.0.21-beta-23516",
           "System.Runtime.InteropServices": "4.0.21-beta-23516",
-          "Td.Kylin.Entity": "1.0.0-rc1-18",
-          "Td.Kylin.Redis": "1.0.3-alpha"
+          "Td.Kylin.Entity": "1.0.0-rc1-19",
+          "Td.Kylin.Redis": "1.0.5-alpha"
         }
       },
-      "Td.Kylin.Entity/1.0.0-rc1-18": {
+      "Td.Kylin.Entity/1.0.0-rc1-19": {
         "type": "package",
         "compile": {
           "lib/dnxcore50/Td.Kylin.Entity.dll": {}
@@ -13785,8 +13828,13 @@
           "lib/dnxcore50/Td.Kylin.Entity.dll": {}
         }
       },
-      "Td.Kylin.Redis/1.0.3-alpha": {
+      "Td.Kylin.Redis/1.0.5-alpha": {
         "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
+          "Newtonsoft.Json": "7.0.1",
+          "StackExchange.Redis": "1.1.553-alpha"
+        },
         "compile": {
           "lib/dnxcore50/Td.Kylin.Redis.dll": {}
         },
@@ -13797,7 +13845,7 @@
     }
   },
   "libraries": {
-    "Td.Kylin.DataCache/1.0.0": {
+    "Td.Kylin.DataCache/1.0.1-rc1": {
       "type": "project",
       "path": "../Td.Kylin.DataCache/project.json"
     },
@@ -19293,29 +19341,29 @@
         "System.Xml.XDocument.nuspec"
       ]
     },
-    "Td.Kylin.Entity/1.0.0-rc1-18": {
+    "Td.Kylin.Entity/1.0.0-rc1-19": {
       "type": "package",
-      "sha512": "ZLRwxaKIuXypw9sRx5dhNmFvgjYUA5IRZ2s34tQ8LwzE0WvU6sOhFKQwH0VyS7qLJYIeK6WmCEvPoZtAbWzKfg==",
+      "sha512": "SGOpPB6v64tSsT5CNcQ/wIzOCYwe3k3Ffh1zdr9Q7dVmAtcCqExRSltBQv3lLYg5pP1anTUFKqe2cIPNDSBGiQ==",
       "files": [
         "lib/dnx451/Td.Kylin.Entity.dll",
         "lib/dnx451/Td.Kylin.Entity.xml",
         "lib/dnxcore50/Td.Kylin.Entity.dll",
         "lib/dnxcore50/Td.Kylin.Entity.xml",
-        "Td.Kylin.Entity.1.0.0-rc1-18.nupkg",
-        "Td.Kylin.Entity.1.0.0-rc1-18.nupkg.sha512",
+        "Td.Kylin.Entity.1.0.0-rc1-19.nupkg",
+        "Td.Kylin.Entity.1.0.0-rc1-19.nupkg.sha512",
         "Td.Kylin.Entity.nuspec"
       ]
     },
-    "Td.Kylin.Redis/1.0.3-alpha": {
+    "Td.Kylin.Redis/1.0.5-alpha": {
       "type": "package",
-      "sha512": "tVcT7myoaon5TCGfqVVDgjsHiTfTWFyBzYqY5LUjcKJqzj1jw7UEPSIWi1uDCgNkwLvU3DxBFrwwqOX0GQNEyA==",
+      "sha512": "eB/hxImngoyjxEsYOvyYkZ4mcQDBYR+x0/407Zn4WLzHxQi38qP1Y8jIDiTjtfzjCJDoASzOXcJZVz+VtXI/hQ==",
       "files": [
         "lib/dnx451/Td.Kylin.Redis.dll",
         "lib/dnx451/Td.Kylin.Redis.xml",
         "lib/dnxcore50/Td.Kylin.Redis.dll",
         "lib/dnxcore50/Td.Kylin.Redis.xml",
-        "Td.Kylin.Redis.1.0.3-alpha.nupkg",
-        "Td.Kylin.Redis.1.0.3-alpha.nupkg.sha512",
+        "Td.Kylin.Redis.1.0.5-alpha.nupkg",
+        "Td.Kylin.Redis.1.0.5-alpha.nupkg.sha512",
         "Td.Kylin.Redis.nuspec"
       ]
     }
@@ -19331,7 +19379,8 @@
       "Microsoft.Extensions.Logging >= 1.0.0-rc1-final",
       "Microsoft.Extensions.Logging.Console >= 1.0.0-rc1-final",
       "Microsoft.Extensions.Logging.Debug >= 1.0.0-rc1-final",
-      "Td.Kylin.DataCache >= 1.0.0-*"
+      "Td.Kylin.DataCache >= 1.0.0-*",
+      "Td.Kylin.Redis >= 1.0.5-alpha"
     ],
     "DNX,Version=v4.5.1": [],
     "DNXCore,Version=v5.0": []

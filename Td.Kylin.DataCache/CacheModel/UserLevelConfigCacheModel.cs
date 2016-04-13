@@ -2,6 +2,17 @@
 {
     public class UserLevelConfigCacheModel
     {
+        /// <summary>
+        /// HashField（LevelID）
+        /// </summary>
+        public string HashField
+        {
+            get
+            {
+                return LevelID.ToString();
+            }
+        }
+
         ///<summary>
         ///数据ID
         ///</summary>

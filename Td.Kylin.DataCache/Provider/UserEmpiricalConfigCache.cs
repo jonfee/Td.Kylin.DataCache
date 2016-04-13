@@ -6,7 +6,10 @@ using Td.Kylin.Redis;
 
 namespace Td.Kylin.DataCache.Provider
 {
-    internal sealed class UserEmpiricalConfigCache : CacheItem<List<UserEmpiricalConfigCacheModel>>
+    /// <summary>
+    /// 用户经验值规则配置缓存
+    /// </summary>
+    public sealed class UserEmpiricalConfigCache : CacheItem<UserEmpiricalConfigCacheModel>
     {
         public UserEmpiricalConfigCache() : base(CacheItemType.UserEmpiricalConfig) { }
 
@@ -39,11 +42,66 @@ namespace Td.Kylin.DataCache.Provider
                 if (null != data && data.Count > 0)
                 {
 
-                    var dic = data.ToDictionary(k => (RedisValue)k.ActivityType, v => v);
+                    var dic = data.ToDictionary(k => (RedisValue)k.HashField, v => v);
 
                     RedisDB.HashSet(CacheKey, dic);
                 }
             }
+        }
+
+        /// <summary>
+        /// 添加到缓存
+        /// </summary>
+        /// <param name="entity"></param>
+        public override void Add(UserEmpiricalConfigCacheModel entity)
+        {
+            if (null == entity) return;
+
+            RedisDB.HashSetAsync(CacheKey, entity.HashField, entity);
+        }
+
+        /// <summary>
+        /// 从缓存中移除
+        /// </summary>
+        /// <param name="entity"></param>
+        public override void Delete(UserEmpiricalConfigCacheModel entity)
+        {
+            if (null == entity) return;
+
+            RedisDB.HashDelete(CacheKey, entity.HashField);
+        }
+
+        /// <summary>
+        /// 更新缓存
+        /// </summary>
+        /// <param name="entity"></param>
+        public override void Update(UserEmpiricalConfigCacheModel entity)
+        {
+            if (null == entity) return;
+
+            RedisDB.HashSetAsync(CacheKey, entity.HashField, entity);
+        }
+
+        /// <summary>
+        /// 获取缓存
+        /// </summary>
+        /// <param name="hashField">缓存中的HashField</param>
+        /// <returns></returns>
+        public override UserEmpiricalConfigCacheModel Get(string hashField)
+        {
+            return RedisDB.HashGet<UserEmpiricalConfigCacheModel>(CacheKey, hashField);
+        }
+
+        /// <summary>
+        /// 获取缓存
+        /// </summary>
+        /// <param name="activityType">用户业务活动类型</param>
+        /// <returns></returns>
+        public UserEmpiricalConfigCacheModel Get(int activityType)
+        {
+            var item = new UserEmpiricalConfigCacheModel { ActivityType = activityType };
+
+            return Get(item.HashField);
         }
     }
 }

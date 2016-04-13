@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Td.Kylin.DataCache.CacheModel
+﻿namespace Td.Kylin.DataCache.CacheModel
 {
     public class SystemGolbalConfigCacheModel
     {
-        public string ConfigID
+        /// <summary>
+        /// HashField（由“ResourceType_ResourceKey”组成）
+        /// </summary>
+        public string HashField
         {
             get
             {

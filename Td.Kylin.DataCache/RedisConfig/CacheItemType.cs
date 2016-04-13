@@ -64,6 +64,10 @@
         /// <summary>
         /// 区域圈子
         /// </summary>
-        AreaForum
+        AreaForum,
+        /// <summary>
+        /// 职位类别
+        /// </summary>
+        JobCategory
     }
 }

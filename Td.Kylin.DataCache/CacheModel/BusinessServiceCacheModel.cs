@@ -8,6 +8,17 @@ namespace Td.Kylin.DataCache.CacheModel
     public class BusinessServiceCacheModel
     {
         /// <summary>
+        /// HashField（BusinessID）
+        /// </summary>
+        public string HashField
+        {
+            get
+            {
+                return BusinessID.ToString();
+            }
+        }
+
+        /// <summary>
         /// 业务ID
         /// </summary>
         public long BusinessID { get; set; }

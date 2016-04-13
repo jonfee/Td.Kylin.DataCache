@@ -3,6 +3,17 @@
     public class UserEmpiricalConfigCacheModel
     {
         /// <summary>
+        /// HashField（ActivityType）
+        /// </summary>
+        public string HashField
+        {
+            get
+            {
+                return ActivityType.ToString();
+            }
+        }
+
+        /// <summary>
         /// 业务活动类型（枚举：UserActivityType） 
         /// </summary>
         public int ActivityType { get; set; }

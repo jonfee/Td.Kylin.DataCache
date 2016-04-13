@@ -6,9 +6,9 @@
     public class AreaRecommendIndustryCacheModel
     {
         /// <summary>
-        /// 区域行业推荐ID（由“AreaID_IndustryID”组成）
+        /// HashField（由“AreaID_IndustryID”组成）
         /// </summary>
-        public string AreaIndustryID
+        public string HashField
         {
             get
             {

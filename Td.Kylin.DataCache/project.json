@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-rc1",
+  "version": "1.0.1-rc1",
   "description": "Td.Kylin.DataCache Class Library",
   "authors": [ "jonfee" ],
   "tags": [ "" ],
@@ -18,7 +18,7 @@
     "StackExchange.Redis": "1.1.553-alpha",
     "System.Runtime": "4.0.21-beta-23516",
     "System.Runtime.InteropServices": "4.0.21-beta-23516",
-    "Td.Kylin.Entity": "1.0.0-rc1-18",
-    "Td.Kylin.Redis": "1.0.3-alpha"
+    "Td.Kylin.Entity": "1.0.0-rc1-19",
+    "Td.Kylin.Redis": "1.0.5-alpha"
   }
 }

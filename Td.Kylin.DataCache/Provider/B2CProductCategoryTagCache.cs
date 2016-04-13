@@ -9,7 +9,7 @@ namespace Td.Kylin.DataCache.Provider
     /// <summary>
     /// B2C商品分类标签缓存
     /// </summary>
-    internal sealed class B2CProductCategoryTagCache : CacheItem<List<B2CProductCategoryTagCacheModel>>
+    public sealed class B2CProductCategoryTagCache : CacheItem<B2CProductCategoryTagCacheModel>
     {
         public B2CProductCategoryTagCache() : base(CacheItemType.B2CProductCategoryTags) { }
 
@@ -42,11 +42,66 @@ namespace Td.Kylin.DataCache.Provider
                 if (null != data && data.Count > 0)
                 {
 
-                    var dic = data.ToDictionary(k => (RedisValue)k.TagID, v => v);
+                    var dic = data.ToDictionary(k => (RedisValue)k.HashField, v => v);
 
                     RedisDB.HashSet(CacheKey, dic);
                 }
             }
+        }
+
+        /// <summary>
+        /// 添加到缓存
+        /// </summary>
+        /// <param name="entity"></param>
+        public override void Add(B2CProductCategoryTagCacheModel entity)
+        {
+            if (null == entity) return;
+
+            RedisDB.HashSetAsync(CacheKey, entity.HashField, entity);
+        }
+
+        /// <summary>
+        /// 从缓存中移除
+        /// </summary>
+        /// <param name="entity"></param>
+        public override void Delete(B2CProductCategoryTagCacheModel entity)
+        {
+            if (null == entity) return;
+
+            RedisDB.HashDelete(CacheKey, entity.HashField);
+        }
+
+        /// <summary>
+        /// 更新缓存
+        /// </summary>
+        /// <param name="entity"></param>
+        public override void Update(B2CProductCategoryTagCacheModel entity)
+        {
+            if (null == entity) return;
+
+            RedisDB.HashSetAsync(CacheKey, entity.HashField, entity);
+        }
+
+        /// <summary>
+        /// 获取缓存
+        /// </summary>
+        /// <param name="hashField">缓存中的HashField</param>
+        /// <returns></returns>
+        public override B2CProductCategoryTagCacheModel Get(string hashField)
+        {
+            return RedisDB.HashGet<B2CProductCategoryTagCacheModel>(CacheKey, hashField);
+        }
+
+        /// <summary>
+        /// 获取缓存
+        /// </summary>
+        /// <param name="tagID">标签ID</param>
+        /// <returns></returns>
+        public B2CProductCategoryTagCacheModel Get(long tagID)
+        {
+            var item = new B2CProductCategoryTagCacheModel { TagID = tagID };
+
+            return Get(item.HashField);
         }
     }
 }

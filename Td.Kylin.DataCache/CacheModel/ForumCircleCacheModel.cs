@@ -2,6 +2,17 @@
 {
     public class ForumCircleCacheModel
     {
+        /// <summary>
+        /// HashField（ForumID）
+        /// </summary>
+        public string HashField
+        {
+            get
+            {
+                return ForumID.ToString();
+            }
+        }
+
         ///<summary>
         ///版面圈子ID
         ///</summary>

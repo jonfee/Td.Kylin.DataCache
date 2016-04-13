@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
-using Td.Kylin.DataCache;
-using System.Threading;
+﻿using Microsoft.AspNet.Mvc;
 using System.Diagnostics;
+using Td.Kylin.DataCache;
 
 namespace Td.Kylin.DataCacheTest.Controllers
 {
@@ -19,7 +14,7 @@ namespace Td.Kylin.DataCacheTest.Controllers
 
             watch.Start();
 
-            var data = CacheCollection.Items.SystemArea;
+            var data = CacheCollection.SystemAreaCache.Value();
 
             watch.Stop();
 
@@ -37,7 +32,7 @@ namespace Td.Kylin.DataCacheTest.Controllers
 
             watch.Start();
 
-            var data = CacheCollection.Items.OpenArea;
+            var data = CacheCollection.OpenAreaCache.Value();
 
             watch.Stop();
 
@@ -55,7 +50,7 @@ namespace Td.Kylin.DataCacheTest.Controllers
 
             watch.Start();
 
-            var data = CacheCollection.Items.AreaForum;
+            var data = CacheCollection.AreaForumCache.Value();
 
             watch.Stop();
 
@@ -73,7 +68,7 @@ namespace Td.Kylin.DataCacheTest.Controllers
 
             watch.Start();
 
-            var data = CacheCollection.Items.AreaRecommendIndustry;
+            var data = CacheCollection.AreaRecommendIndustryCache.Value();
 
             watch.Stop();
 
@@ -91,7 +86,7 @@ namespace Td.Kylin.DataCacheTest.Controllers
 
             watch.Start();
 
-            var data = CacheCollection.Items.B2CProductCategory;
+            var data = CacheCollection.B2CProductCategoryCache.Value();
 
             watch.Stop();
 
@@ -109,7 +104,7 @@ namespace Td.Kylin.DataCacheTest.Controllers
 
             watch.Start();
 
-            var data = CacheCollection.Items.B2CProductCategoryTag;
+            var data = CacheCollection.B2CProductCategoryTagCache.Value();
 
             watch.Stop();
 
@@ -127,7 +122,7 @@ namespace Td.Kylin.DataCacheTest.Controllers
 
             watch.Start();
 
-            var data = CacheCollection.Items.BusinessService;
+            var data = CacheCollection.BusinessServiceCache.Value();
 
             watch.Stop();
 
@@ -145,7 +140,7 @@ namespace Td.Kylin.DataCacheTest.Controllers
 
             watch.Start();
 
-            var data = CacheCollection.Items.ForumCategory;
+            var data = CacheCollection.ForumCategoryCache.Value();
 
             watch.Stop();
 
@@ -163,7 +158,7 @@ namespace Td.Kylin.DataCacheTest.Controllers
 
             watch.Start();
 
-            var data = CacheCollection.Items.ForumCircle;
+            var data = CacheCollection.ForumCircleCache.Value();
 
             watch.Stop();
 
@@ -181,7 +176,7 @@ namespace Td.Kylin.DataCacheTest.Controllers
 
             watch.Start();
 
-            var data = CacheCollection.Items.MerchantIndustry;
+            var data = CacheCollection.MerchantIndustryCache.Value();
 
             watch.Stop();
 
@@ -199,7 +194,7 @@ namespace Td.Kylin.DataCacheTest.Controllers
 
             watch.Start();
 
-            var data = CacheCollection.Items.SystemGolbalConfig;
+            var data = CacheCollection.SystemGolbalConfigCache.Value();
 
             watch.Stop();
 
@@ -217,7 +212,7 @@ namespace Td.Kylin.DataCacheTest.Controllers
 
             watch.Start();
 
-            var data = CacheCollection.Items.UserEmpiricalConfig;
+            var data = CacheCollection.UserEmpiricalConfigCache.Value();
 
             watch.Stop();
 
@@ -235,7 +230,7 @@ namespace Td.Kylin.DataCacheTest.Controllers
 
             watch.Start();
 
-            var data = CacheCollection.Items.UserLevelConfig;
+            var data = CacheCollection.UserLevelConfigCache.Value();
 
             watch.Stop();
 
@@ -253,7 +248,43 @@ namespace Td.Kylin.DataCacheTest.Controllers
 
             watch.Start();
 
-            var data = CacheCollection.Items.UserPointsConfig;
+            var data = CacheCollection.UserPointsConfigCache.Value();
+
+            watch.Stop();
+
+            return Ok(new
+            {
+                Time = string.Format("总运行时：{0}毫秒", watch.Elapsed.TotalMilliseconds),
+                Data = data
+            });
+        }
+
+        [HttpGet("merchantproductsystemcategory")]
+        public IActionResult GetMerchantProductSystemCategory()
+        {
+            Stopwatch watch = new Stopwatch();
+
+            watch.Start();
+
+            var data = CacheCollection.MerchantProductSystemCategoryCache.Value();
+
+            watch.Stop();
+
+            return Ok(new
+            {
+                Time = string.Format("总运行时：{0}毫秒", watch.Elapsed.TotalMilliseconds),
+                Data = data
+            });
+        }
+
+        [HttpGet("jobcategory")]
+        public IActionResult GetJobCategory()
+        {
+            Stopwatch watch = new Stopwatch();
+
+            watch.Start();
+
+            var data = CacheCollection.JobCategoryCache.Value();
 
             watch.Stop();
 
@@ -267,11 +298,19 @@ namespace Td.Kylin.DataCacheTest.Controllers
         [HttpGet("test")]
         public IActionResult Test()
         {
-            CacheCollection.Items.Update(CacheItemType.SystemArea);
+            CacheCollection.SystemAreaCache.Update(new DataCache.CacheModel.SystemAreaCacheModel { AreaID = 110000, AreaName = "北京" });
 
-            var data = CacheCollection.Items.SystemArea;
+            var data = CacheCollection.SystemAreaCache.Value();
 
             return Ok(data);
+        }
+
+        [HttpGet("getarea/{areaID}")]
+        public IActionResult GetArea(int areaID)
+        {
+            var area = CacheCollection.SystemAreaCache.Get(areaID);
+
+            return Ok(area);
         }
     }
 }

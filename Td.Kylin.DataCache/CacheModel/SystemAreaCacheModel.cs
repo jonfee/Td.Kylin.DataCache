@@ -6,6 +6,17 @@
     public class SystemAreaCacheModel
     {
         /// <summary>
+        /// HashField（AreaID）
+        /// </summary>
+        public string HashField
+        {
+            get
+            {
+                return AreaID.ToString();
+            }
+        }
+
+        /// <summary>
         /// 区域ID
         /// </summary>
         public int AreaID { get; set; }

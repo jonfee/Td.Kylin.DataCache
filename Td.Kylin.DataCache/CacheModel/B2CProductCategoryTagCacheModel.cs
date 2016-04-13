@@ -2,6 +2,17 @@
 {
     public class B2CProductCategoryTagCacheModel
     {
+        /// <summary>
+        /// HashField（TagID）
+        /// </summary>
+        public string HashField
+        {
+            get
+            {
+                return TagID.ToString();
+            }
+        }
+
         ///<summary>
         ///标签ID
         ///</summary>

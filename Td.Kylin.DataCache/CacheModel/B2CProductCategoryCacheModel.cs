@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Td.Kylin.DataCache.CacheModel
+﻿namespace Td.Kylin.DataCache.CacheModel
 {
     public class B2CProductCategoryCacheModel
     {
+        /// <summary>
+        /// HashField（CategoryID）
+        /// </summary>
+        public string HashField
+        {
+            get
+            {
+                return CategoryID.ToString();
+            }
+        }
+
         ///<summary>
 		///商品类目ID
 		///</summary>

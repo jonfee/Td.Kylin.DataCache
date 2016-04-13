@@ -120,6 +120,16 @@ namespace Td.Kylin.DataCache
         /// </summary>
         public IAreaForumService AreaForumService { get; private set; }
 
+        /// <summary>
+        /// 商家商品系统分类
+        /// </summary>
+        public IMerchantProductSystemCategoryService MerchantProductSystemCategoryService { get; private set; }
+
+        /// <summary>
+        /// 职位类别
+        /// </summary>
+        public IJobCategoryService JobCategoryService { get; private set; }
+
         #endregion
 
         /// <summary>
@@ -157,6 +167,10 @@ namespace Td.Kylin.DataCache
             ForumCircleService = new ForumCircleService<T>();
             //区域圈子
             AreaForumService = new AreaForumService<T>();
+            //商家商品系统分类
+            MerchantProductSystemCategoryService = new MerchantProductSystemCategoryService<T>();
+            //职位类别
+            JobCategoryService = new JobCategoryService<T>();
         }
     }
 }

@@ -1,12 +1,15 @@
 ﻿using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
-using Td.Kylin.DataCache.CacheModel;
 using Td.Kylin.Redis;
 
 namespace Td.Kylin.DataCache.Provider
 {
-    internal abstract class CacheItem<T>
+    /// <summary>
+    /// 缓存抽象类
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public abstract class CacheItem<T> where T : class, new()
     {
         /// <summary>
         /// Redis缓存配置信息
@@ -17,7 +20,7 @@ namespace Td.Kylin.DataCache.Provider
         /// 实例化
         /// </summary>
         /// <param name="itemType"></param>
-        public CacheItem(CacheItemType itemType)
+        protected CacheItem(CacheItemType itemType)
         {
             _config = CacheStartup.RedisConfiguration[itemType];
 
@@ -28,7 +31,7 @@ namespace Td.Kylin.DataCache.Provider
         /// 实例化
         /// </summary>
         /// <param name="cacheKey"></param>
-        public CacheItem(string cacheKey)
+        protected CacheItem(string cacheKey)
         {
             _config = CacheStartup.RedisConfiguration[cacheKey];
         }
@@ -47,7 +50,7 @@ namespace Td.Kylin.DataCache.Provider
         /// <summary>
         /// 缓存Key
         /// </summary>
-        public string CacheKey
+        protected string CacheKey
         {
             get
             {
@@ -69,7 +72,7 @@ namespace Td.Kylin.DataCache.Provider
         /// <summary>
         /// 当前缓存操作的Redis数据库
         /// </summary>
-        public IDatabase RedisDB
+        protected IDatabase RedisDB
         {
             get
             {
@@ -90,64 +93,72 @@ namespace Td.Kylin.DataCache.Provider
         /// <summary>
         /// 一般在更新时使用
         /// </summary>
-        private T _tempData;
+        private List<T> _tempData;
 
         /// <summary>
-        /// 缓存数据
+        /// 获取缓存数据
         /// </summary>
-        public T Data
+        public List<T> Value()
         {
-            get
+            List<T> _data = null;
+
+            try
             {
-                T _data = default(T);
-
-                try
+                //如果正在更新，则使用更新前的临时数据
+                if (_updating)
                 {
-                    //如果正在更新，则使用更新前的临时数据
-                    if (_updating)
+                    _data = this._tempData;
+                }
+                else
+                {
+                    //根据缓存级别，更新缓存数据
+                    if (Level == CacheLevel.Hight && LastUpdateTime.AddDays(1) < DateTime.Now)  //缓存级别高，一般24小时更新一次
                     {
-                        _data = this._tempData;
+                        Update();
                     }
-                    else
+                    else if (Level == CacheLevel.Middel && LastUpdateTime.AddHours(6) < DateTime.Now)   //缓存级别中，一般6小时更新一次
                     {
-                        //根据缓存级别，更新缓存数据
-                        if (Level == CacheLevel.Hight && LastUpdateTime.AddDays(1) < DateTime.Now)  //缓存级别高，一般24小时更新一次
-                        {
-                            Update();
-                        }
-                        else if (Level == CacheLevel.Middel && LastUpdateTime.AddHours(6) < DateTime.Now)   //缓存级别中，一般6小时更新一次
-                        {
-                            Update();
-                        }
-                        else if (Level == CacheLevel.Lower && LastUpdateTime.AddMinutes(30) < DateTime.Now) //缓存级别低，一般30分钟更新一次
-                        {
-                            Update();
-                        }
+                        Update();
+                    }
+                    else if (Level == CacheLevel.Lower && LastUpdateTime.AddMinutes(30) < DateTime.Now) //缓存级别低，一般30分钟更新一次
+                    {
+                        Update();
+                    }
 
-                        //从缓存中读取
-                        _data = GetCache();
+                    //从缓存中读取
+                    _data = GetCache();
 
-                        //若缓存中无数据，则从数据库中读取，并缓存
-                        if (null == _data)
-                        {
-                            Update();
-                        }
+                    //若缓存中无数据，则从数据库中读取，并缓存
+                    if (null == _data)
+                    {
+                        Update();
                     }
                 }
-                catch
-                {
-                    //Exception
-                    _data = ReadDataFromDB();
-                }
-
-                return _data;
             }
+            catch
+            {
+                //Exception
+                _data = ReadDataFromDB();
+            }
+
+            return _data;
         }
 
         /// <summary>
         /// 最后一次更新缓存时间
         /// </summary>
         public DateTime LastUpdateTime { get; private set; }
+
+        /// <summary>
+        /// 获取缓存
+        /// </summary>
+        /// <returns></returns>
+        protected abstract List<T> GetCache();
+
+        /// <summary>
+        /// 设置缓存
+        /// </summary>
+        protected abstract void SetCache(List<T> data);
 
         /// <summary>
         /// 更新缓存（从数据库中读取缓存元数据，并记录最后更新缓存的时间）
@@ -168,30 +179,39 @@ namespace Td.Kylin.DataCache.Provider
 
                 _updating = false;
 
-                this._tempData = default(T);
+                this._tempData = null;
             }
         }
-
-        /// <summary>
-        /// 获取缓存
-        /// </summary>
-        /// <returns></returns>
-        protected abstract T GetCache();
-
-        /// <summary>
-        /// 设置缓存
-        /// </summary>
-        protected abstract void SetCache(T data);
 
         /// <summary>
         /// 从数据库中读取元数据
         /// </summary>
         /// <returns></returns>
-        protected abstract T ReadDataFromDB();
+        protected abstract List<T> ReadDataFromDB();
 
-        #region 隐式转换
+        /// <summary>
+        /// 更新缓存
+        /// </summary>
+        /// <param name="entity"></param>
+        public abstract void Update(T entity);
 
+        /// <summary>
+        /// 添加缓存 
+        /// </summary>
+        /// <param name="entity"></param>
+        public abstract void Add(T entity);
 
-        #endregion
+        /// <summary>
+        /// 删除缓存
+        /// </summary>
+        /// <param name="entity"></param>
+        public abstract void Delete(T entity);
+
+        /// <summary>
+        /// 获取指定字段的数据项
+        /// </summary>
+        /// <param name="hashField"></param>
+        /// <returns></returns>
+        public abstract T Get(string hashField);
     }
 }

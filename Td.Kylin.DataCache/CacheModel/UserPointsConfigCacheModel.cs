@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Td.Kylin.DataCache.CacheModel
+﻿namespace Td.Kylin.DataCache.CacheModel
 {
     public class UserPointsConfigCacheModel
     {
+        /// <summary>
+        /// HashField（ActivityType）
+        /// </summary>
+        public string HashField
+        {
+            get
+            {
+                return ActivityType.ToString();
+            }
+        }
+
         /// <summary>
         /// 业务活动类型（枚举：UserActivityType） 
         /// </summary>

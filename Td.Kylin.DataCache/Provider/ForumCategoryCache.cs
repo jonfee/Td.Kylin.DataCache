@@ -6,7 +6,10 @@ using Td.Kylin.Redis;
 
 namespace Td.Kylin.DataCache.Provider
 {
-    internal sealed class ForumCategoryCache : CacheItem<List<ForumCategoryCacheModel>>
+    /// <summary>
+    /// 圈子分类缓存
+    /// </summary>
+    public sealed class ForumCategoryCache : CacheItem<ForumCategoryCacheModel>
     {
         public ForumCategoryCache() : base(CacheItemType.ForumCategory) { }
 
@@ -39,11 +42,66 @@ namespace Td.Kylin.DataCache.Provider
                 if (null != data && data.Count > 0)
                 {
 
-                    var dic = data.ToDictionary(k => (RedisValue)k.CategoryID, v => v);
+                    var dic = data.ToDictionary(k => (RedisValue)k.HashField, v => v);
 
                     RedisDB.HashSet(CacheKey, dic);
                 }
             }
+        }
+
+        /// <summary>
+        /// 添加到缓存
+        /// </summary>
+        /// <param name="entity"></param>
+        public override void Add(ForumCategoryCacheModel entity)
+        {
+            if (null == entity) return;
+
+            RedisDB.HashSetAsync(CacheKey, entity.HashField, entity);
+        }
+
+        /// <summary>
+        /// 删除缓存
+        /// </summary>
+        /// <param name="entity"></param>
+        public override void Delete(ForumCategoryCacheModel entity)
+        {
+            if (null == entity) return;
+
+            RedisDB.HashDelete(CacheKey, entity.HashField);
+        }
+
+        /// <summary>
+        /// 更新缓存
+        /// </summary>
+        /// <param name="entity"></param>
+        public override void Update(ForumCategoryCacheModel entity)
+        {
+            if (null == entity) return;
+
+            RedisDB.HashSetAsync(CacheKey, entity.HashField, entity);
+        }
+
+        /// <summary>
+        /// 获取缓存
+        /// </summary>
+        /// <param name="hashField"></param>
+        /// <returns></returns>
+        public override ForumCategoryCacheModel Get(string hashField)
+        {
+            return RedisDB.HashGet<ForumCategoryCacheModel>(CacheKey, hashField);
+        }
+
+        /// <summary>
+        /// 获取缓存
+        /// </summary>
+        /// <param name="categoryID">圈子分类ID</param>
+        /// <returns></returns>
+        public ForumCategoryCacheModel Get(long categoryID)
+        {
+            var item = new ForumCategoryCacheModel { CategoryID = categoryID };
+
+            return Get(item.HashField);
         }
     }
 }

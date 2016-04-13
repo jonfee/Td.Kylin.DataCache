@@ -2,6 +2,17 @@
 {
     public class ForumCategoryCacheModel
     {
+        /// <summary>
+        /// HashField（CategoryID）
+        /// </summary>
+        public string HashField
+        {
+            get
+            {
+                return CategoryID.ToString();
+            }
+        }
+
         ///<summary>
 		///论坛分类ID
 		///</summary>

@@ -5,6 +5,17 @@
     /// </summary>
     public class MerchantIndustryCacheModel
     {
+        /// <summary>
+        /// HashField（IndustryID）
+        /// </summary>
+        public string HashField
+        {
+            get
+            {
+                return IndustryID.ToString();
+            }
+        }
+
         ///<summary>
         ///行业ID
         ///</summary>

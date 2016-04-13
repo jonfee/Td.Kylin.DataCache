@@ -64,6 +64,8 @@ namespace Td.Kylin.DataCache
             config.Add(CacheItemType.UserLevelConfig, 0, RedisSaveType.HashSet, CacheLevel.Hight);
             //用户积分规则配置
             config.Add(CacheItemType.UserPointsConfig, 0, RedisSaveType.HashSet, CacheLevel.Hight);
+            //职位类别
+            config.Add(CacheItemType.JobCategory, 0, RedisSaveType.HashSet, CacheLevel.Hight);
 
             return config;
         }

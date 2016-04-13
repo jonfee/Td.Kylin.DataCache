@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Td.Kylin.DataCache.CacheModel
 {
@@ -10,6 +7,16 @@ namespace Td.Kylin.DataCache.CacheModel
     /// </summary>
     public class OpenAreaCacheModel
     {
+        /// <summary>
+        /// HashField（AreaID）
+        /// </summary>
+        public string HashField
+        {
+            get
+            {
+                return AreaID.ToString();
+            }
+        }
 
         /// <summary>
         /// 区域ID

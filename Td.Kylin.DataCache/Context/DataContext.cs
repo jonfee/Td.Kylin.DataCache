@@ -137,6 +137,12 @@ namespace Td.Kylin.DataCache.Context
                 entity.Property(p => p.TagID).ValueGeneratedNever();
                 entity.HasKey(p => p.TagID);
             });
+
+            modelBuilder.Entity<MerchantGoods_SystemCategory>(entity =>
+            {
+                entity.Property(p => p.CategoryID).ValueGeneratedNever();
+                entity.HasKey(p => p.CategoryID);
+            });
         }
 
         #endregion

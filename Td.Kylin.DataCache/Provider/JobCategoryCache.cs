@@ -7,17 +7,17 @@ using Td.Kylin.Redis;
 namespace Td.Kylin.DataCache.Provider
 {
     /// <summary>
-    /// 区域圈子缓存
+    /// 职位类别缓存
     /// </summary>
-    public sealed class AreaForumCache : CacheItem<AreaForumCacheModel>
+    public sealed class JobCategoryCache : CacheItem<JobCategoryCacheModel>
     {
-        public AreaForumCache() : base(CacheItemType.AreaForum) { }
+        public JobCategoryCache() : base(CacheItemType.JobCategory) { }
 
         /// <summary>
         /// 添加到缓存
         /// </summary>
         /// <param name="entity"></param>
-        public override void Add(AreaForumCacheModel entity)
+        public override void Add(JobCategoryCacheModel entity)
         {
             if (null == entity) return;
 
@@ -25,10 +25,10 @@ namespace Td.Kylin.DataCache.Provider
         }
 
         /// <summary>
-        /// 从缓存中移除
+        /// 删除缓存
         /// </summary>
         /// <param name="entity"></param>
-        public override void Delete(AreaForumCacheModel entity)
+        public override void Delete(JobCategoryCacheModel entity)
         {
             if (null == entity) return;
 
@@ -40,19 +40,19 @@ namespace Td.Kylin.DataCache.Provider
         /// </summary>
         /// <param name="hashField">缓存中的HashField</param>
         /// <returns></returns>
-        public override AreaForumCacheModel Get(string hashField)
+        public override JobCategoryCacheModel Get(string hashField)
         {
-            return RedisDB.HashGet<AreaForumCacheModel>(CacheKey, hashField);
+            return RedisDB.HashGet<JobCategoryCacheModel>(CacheKey, hashField);
         }
 
         /// <summary>
         /// 获取缓存
         /// </summary>
-        /// <param name="areaForumID">区域圈子ID</param>
+        /// <param name="categoryID">分类ID</param>
         /// <returns></returns>
-        public AreaForumCacheModel Get(long areaForumID)
+        public JobCategoryCacheModel Get(long categoryID)
         {
-            var item = new AreaForumCacheModel { AreaForumID = areaForumID };
+            var item = new JobCategoryCacheModel { CategoryID = categoryID };
 
             return Get(item.HashField);
         }
@@ -61,31 +61,31 @@ namespace Td.Kylin.DataCache.Provider
         /// 更新缓存
         /// </summary>
         /// <param name="entity"></param>
-        public override void Update(AreaForumCacheModel entity)
+        public override void Update(JobCategoryCacheModel entity)
         {
             if (null == entity) return;
 
             RedisDB.HashSetAsync(CacheKey, entity.HashField, entity);
         }
 
-        protected override List<AreaForumCacheModel> GetCache()
+        protected override List<JobCategoryCacheModel> GetCache()
         {
-            List<AreaForumCacheModel> data = null;
+            List<JobCategoryCacheModel> data = null;
 
             if (null != RedisDB)
             {
-                data = RedisDB.HashGetAll<AreaForumCacheModel>(CacheKey).Select(p => p.Value).ToList();
+                data = RedisDB.HashGetAll<JobCategoryCacheModel>(CacheKey).Select(p => p.Value).ToList();
             }
 
             return data;
         }
 
-        protected override List<AreaForumCacheModel> ReadDataFromDB()
+        protected override List<JobCategoryCacheModel> ReadDataFromDB()
         {
-            return ServicesProvider.Items.AreaForumService.GetEnabledAll();
+            return ServicesProvider.Items.JobCategoryService.GetAll();
         }
 
-        protected override void SetCache(List<AreaForumCacheModel> data)
+        protected override void SetCache(List<JobCategoryCacheModel> data)
         {
             if (null != RedisDB)
             {

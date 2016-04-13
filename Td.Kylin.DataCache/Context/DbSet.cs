@@ -49,5 +49,10 @@ namespace Td.Kylin.DataCache.Context
         /// 商品分类标签
         /// </summary>
         public DbSet<Mall_CategoryTag> Mall_CategoryTag { get { return Set<Mall_CategoryTag>(); } }
+
+        /// <summary>
+        /// 商家商品系统分类
+        /// </summary>
+        public DbSet<MerchantGoods_SystemCategory> MerchantGoods_SystemCategory { get { return Set<MerchantGoods_SystemCategory>(); } }
     }
 }
