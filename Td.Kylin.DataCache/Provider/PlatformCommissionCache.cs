@@ -10,9 +10,15 @@ namespace Td.Kylin.DataCache.Provider
     {
         public PlatformCommissionCache() : base(CacheItemType.PlatformCommission) { }
 
-        public PlatformCommissionCacheModel Get(int areaID)
+        /// <summary>
+        /// 获取缓存
+        /// </summary>
+        /// <param name="areaID">区域ID</param>
+        /// <param name="commissionItem">抽成项（如：B2C订单金额抽成|商家订单交易佣金抽成）</param>
+        /// <returns></returns>
+        public PlatformCommissionCacheModel Get(int areaID, int commissionItem)
         {
-            var item = new PlatformCommissionCacheModel { AreaID = areaID };
+            var item = new PlatformCommissionCacheModel { AreaID = areaID, CommissionItem = commissionItem };
 
             return Get(item.HashField);
         }
