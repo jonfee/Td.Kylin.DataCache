@@ -1,11 +1,11 @@
 ﻿namespace Td.Kylin.DataCache.CacheModel
 {
-    public class AreaForumCacheModel
+    public class AreaForumCacheModel:BaseCacheModel
     {
         /// <summary>
         /// HashField（AreaForumID）
         /// </summary>
-        public string HashField
+        public override string HashField
         {
             get
             {

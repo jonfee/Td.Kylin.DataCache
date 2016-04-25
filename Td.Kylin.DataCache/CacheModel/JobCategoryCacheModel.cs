@@ -3,12 +3,12 @@
     /// <summary>
     /// 职位类别缓存模型
     /// </summary>
-    public class JobCategoryCacheModel
+    public class JobCategoryCacheModel:BaseCacheModel
     {
         /// <summary>
         /// HashField（CategoryID）
         /// </summary>
-        public string HashField
+        public override string HashField
         {
             get
             {

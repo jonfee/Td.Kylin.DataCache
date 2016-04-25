@@ -296,6 +296,78 @@ namespace Td.Kylin.DataCacheTest.Controllers
             });
         }
 
+        [HttpGet("platformcommission")]
+        public IActionResult GetPlatformCommission()
+        {
+            Stopwatch watch = new Stopwatch();
+
+            watch.Start();
+
+            var data = CacheCollection.PlatformCommissionCache.Value();
+
+            watch.Stop();
+
+            return Ok(new
+            {
+                Time = string.Format("总运行时：{0}毫秒", watch.Elapsed.TotalMilliseconds),
+                Data = data
+            });
+        }
+
+        [HttpGet("areadefaultcommission")]
+        public IActionResult GetAreaDefaultCommission()
+        {
+            Stopwatch watch = new Stopwatch();
+
+            watch.Start();
+
+            var data = CacheCollection.AreaDefaultCommissionCache.Value();
+
+            watch.Stop();
+
+            return Ok(new
+            {
+                Time = string.Format("总运行时：{0}毫秒", watch.Elapsed.TotalMilliseconds),
+                Data = data
+            });
+        }
+
+        [HttpGet("areaformerchantcommission")]
+        public IActionResult GetAreaForMerchantCommission()
+        {
+            Stopwatch watch = new Stopwatch();
+
+            watch.Start();
+
+            var data = CacheCollection.AreaForMerchantCommissionCache.Value();
+
+            watch.Stop();
+
+            return Ok(new
+            {
+                Time = string.Format("总运行时：{0}毫秒", watch.Elapsed.TotalMilliseconds),
+                Data = data
+            });
+        }
+
+        [HttpGet("areaforpersonalworkercommission")]
+        public IActionResult GetAreaForPersonalWorkerCommission()
+        {
+            Stopwatch watch = new Stopwatch();
+
+            watch.Start();
+
+            var data = CacheCollection.AreaForPersonalWorkerCommissionCache.Value();
+
+            watch.Stop();
+
+            return Ok(new
+            {
+                Time = string.Format("总运行时：{0}毫秒", watch.Elapsed.TotalMilliseconds),
+                Data = data
+            });
+        }
+
         [HttpGet("test")]
         public IActionResult Test()
         {

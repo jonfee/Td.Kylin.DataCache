@@ -143,6 +143,30 @@ namespace Td.Kylin.DataCache.Context
                 entity.Property(p => p.CategoryID).ValueGeneratedNever();
                 entity.HasKey(p => p.CategoryID);
             });
+
+            //平台对区域抽成配置
+            modelBuilder.Entity<Commission_Platform>(entity =>
+            {
+                entity.HasKey(p => new { p.AreaID, p.CommissionItem });
+            });
+
+            //区域运营商对区域下交易默认抽成配置
+            modelBuilder.Entity<Commission_OperatorDefault>(entity =>
+            {
+                entity.HasKey(p => new { p.AreaID, p.CommissionItem });
+            });
+
+            //区域运营商对商家的抽成配置
+            modelBuilder.Entity<Commission_OperatorFromMerchant>(entity =>
+            {
+                entity.HasKey(p => new { p.AreaID, p.MerchantID, p.CommissionItem });
+            });
+
+            //区域运营商对个人服务者的抽成配置
+            modelBuilder.Entity<Commission_OperatorFromWorker>(entity =>
+            {
+                entity.HasKey(p => new { p.AreaID, p.UserID, p.CommissionItem });
+            });
         }
 
         #endregion

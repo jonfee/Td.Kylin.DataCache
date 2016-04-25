@@ -1,11 +1,11 @@
 ﻿namespace Td.Kylin.DataCache.CacheModel
 {
-    public class B2CProductCategoryTagCacheModel
+    public class B2CProductCategoryTagCacheModel:BaseCacheModel
     {
         /// <summary>
         /// HashField（TagID）
         /// </summary>
-        public string HashField
+        public override string HashField
         {
             get
             {

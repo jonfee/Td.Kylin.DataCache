@@ -6,6 +6,10 @@ using Td.Kylin.DataCache.IServices;
 
 namespace Td.Kylin.DataCache.Services
 {
+    /// <summary>
+    /// 用户积分规则配置数据服务
+    /// </summary>
+    /// <typeparam name="DbContext"></typeparam>
     internal sealed class UserPointsConfigService<DbContext> : IUserPointsConfigService where DbContext : DataContext, new()
     {
         public List<UserPointsConfigCacheModel> GetAll()

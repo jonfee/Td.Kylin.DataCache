@@ -24,5 +24,11 @@
         /// 更新缓存
         /// </summary>
          void Update();
+
+        /// <summary>
+        /// 重置缓存级别
+        /// </summary>
+        /// <param name="level"></param>
+        void ResetLevel(CacheLevel level);
     }
 }

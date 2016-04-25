@@ -66,6 +66,14 @@ namespace Td.Kylin.DataCache
             config.Add(CacheItemType.UserPointsConfig, 0, RedisSaveType.HashSet, CacheLevel.Hight);
             //职位类别
             config.Add(CacheItemType.JobCategory, 0, RedisSaveType.HashSet, CacheLevel.Hight);
+            //平台针对区域抽成
+            config.Add(CacheItemType.PlatformCommission, 0, RedisSaveType.HashSet, CacheLevel.Hight);
+            //区域针对商家抽成
+            config.Add(CacheItemType.AreaForMerchantCommission, 0, RedisSaveType.HashSet, CacheLevel.Hight);
+            //区域针对个人服务人员抽成
+            config.Add(CacheItemType.AreaForPersonalWorkerCommission, 0, RedisSaveType.HashSet, CacheLevel.Hight);
+            //区域默认抽成
+            config.Add(CacheItemType.AreaDefaultCommission, 0, RedisSaveType.HashSet, CacheLevel.Middel);
 
             return config;
         }

@@ -6,6 +6,10 @@ using Td.Kylin.DataCache.IServices;
 
 namespace Td.Kylin.DataCache.Services
 {
+    /// <summary>
+    /// 区域圈子数据服务
+    /// </summary>
+    /// <typeparam name="DbContext"></typeparam>
     internal sealed class AreaForumService<DbContext> : IAreaForumService where DbContext : DataContext, new()
     {
         public List<AreaForumCacheModel> GetEnabledAll()

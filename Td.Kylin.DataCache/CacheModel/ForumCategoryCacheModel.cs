@@ -1,11 +1,11 @@
 ﻿namespace Td.Kylin.DataCache.CacheModel
 {
-    public class ForumCategoryCacheModel
+    public class ForumCategoryCacheModel:BaseCacheModel
     {
         /// <summary>
         /// HashField（CategoryID）
         /// </summary>
-        public string HashField
+        public override string HashField
         {
             get
             {

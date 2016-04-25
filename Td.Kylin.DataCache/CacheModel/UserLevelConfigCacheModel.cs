@@ -1,11 +1,11 @@
 ﻿namespace Td.Kylin.DataCache.CacheModel
 {
-    public class UserLevelConfigCacheModel
+    public class UserLevelConfigCacheModel:BaseCacheModel
     {
         /// <summary>
         /// HashField（LevelID）
         /// </summary>
-        public string HashField
+        public override string HashField
         {
             get
             {

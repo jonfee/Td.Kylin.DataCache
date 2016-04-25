@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Td.Kylin.DataCache.CacheModel;
 using Td.Kylin.DataCache.Context;
 using Td.Kylin.DataCache.IServices;

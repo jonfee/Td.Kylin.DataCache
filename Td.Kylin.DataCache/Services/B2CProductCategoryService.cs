@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Td.Kylin.DataCache.CacheModel;
 using Td.Kylin.DataCache.Context;
 using Td.Kylin.DataCache.IServices;
 
 namespace Td.Kylin.DataCache.Services
 {
+    /// <summary>
+    /// 精品汇商品分类数据服务
+    /// </summary>
+    /// <typeparam name="DbContext"></typeparam>
     internal sealed class B2CProductCategoryService<DbContext> : IB2CProductCategoryService where DbContext : DataContext, new()
     {
         public List<B2CProductCategoryCacheModel> GetEnabledAll()

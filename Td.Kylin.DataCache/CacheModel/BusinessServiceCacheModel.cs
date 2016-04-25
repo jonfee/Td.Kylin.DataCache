@@ -5,12 +5,12 @@ namespace Td.Kylin.DataCache.CacheModel
     /// <summary>
     /// 上门预约服务业务缓存模型
     /// </summary>
-    public class BusinessServiceCacheModel
+    public class BusinessServiceCacheModel:BaseCacheModel
     {
         /// <summary>
         /// HashField（BusinessID）
         /// </summary>
-        public string HashField
+        public override string HashField
         {
             get
             {

@@ -68,6 +68,22 @@
         /// <summary>
         /// 职位类别
         /// </summary>
-        JobCategory
+        JobCategory,
+        /// <summary>
+        /// 平台针对区域抽成配置
+        /// </summary>
+        PlatformCommission,
+        /// <summary>
+        /// 区域针对商家抽成配置
+        /// </summary>
+        AreaForMerchantCommission,
+        /// <summary>
+        /// 区域针对个人服务人员抽成配置
+        /// </summary>
+        AreaForPersonalWorkerCommission,
+        /// <summary>
+        /// 区域默认抽成配置
+        /// </summary>
+        AreaDefaultCommission
     }
 }

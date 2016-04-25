@@ -6,6 +6,10 @@ using Td.Kylin.DataCache.IServices;
 
 namespace Td.Kylin.DataCache.Services
 {
+    /// <summary>
+    /// 用户等级规则配置数据服务
+    /// </summary>
+    /// <typeparam name="DbContext"></typeparam>
     internal sealed class UserLevelConfigService<DbContext> : IUserLevelConfigService where DbContext : DataContext, new()
     {
         /// <summary>

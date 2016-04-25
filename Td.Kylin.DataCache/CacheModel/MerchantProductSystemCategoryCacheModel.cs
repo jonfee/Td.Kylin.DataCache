@@ -3,12 +3,12 @@
     /// <summary>
     /// 商家商品系统分类缓存模型
     /// </summary>
-    public class MerchantProductSystemCategoryCacheModel
+    public class MerchantProductSystemCategoryCacheModel:BaseCacheModel
     {
         /// <summary>
         /// HashField（CategoryID）
         /// </summary>
-        public string HashField
+        public override string HashField
         {
             get
             {

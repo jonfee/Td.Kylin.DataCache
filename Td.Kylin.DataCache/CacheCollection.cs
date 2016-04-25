@@ -153,75 +153,28 @@ namespace Td.Kylin.DataCache
                 case CacheItemType.JobCategory:
                     cacheItem = new JobCategoryCache();
                     break;
+                //区域默认抽成
+                case CacheItemType.AreaDefaultCommission:
+                    cacheItem = new AreaDefaultCommissionCache();
+                    break;
+                //区域针对商家抽成
+                case CacheItemType.AreaForMerchantCommission:
+                    cacheItem = new AreaForMerchantCommissionCache();
+                    break;
+                //区域针对个人服务人员抽成
+                case CacheItemType.AreaForPersonalWorkerCommission:
+                    cacheItem = new AreaForPersonalWorkerCommissionCache();
+                    break;
+                //平台针对区域抽成
+                case CacheItemType.PlatformCommission:
+                    cacheItem = new PlatformCommissionCache();
+                    break;
             }
 
             return cacheItem;
         }
 
         #region 缓存实例及值
-
-        /// <summary>
-        /// 获取所有缓存项
-        /// </summary>
-        /// <returns></returns>
-        public static List<ICache> GetAllCache()
-        {
-            try
-            {
-                var vals=htCache.Values;
-
-                List<ICache> list = null;
-
-                if (null != vals)
-                {
-                    list = new List<ICache>();
-                    foreach (var item in vals)
-                    {
-                        list.Add((ICache)item);
-                    }
-                }
-
-                return list;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// 获取指定缓存级别的缓存集合列表
-        /// </summary>
-        /// <param name="level"></param>
-        /// <returns></returns>
-        public static List<ICache> GetCacheList(CacheLevel level)
-        {
-            var list = GetAllCache();
-
-            if (null != list)
-            {
-                return list.Where(p => p.Level == level).ToList();
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// 更新指定级别的缓存
-        /// </summary>
-        /// <param name="level"></param>
-        public static void Update(CacheLevel level)
-        {
-            var list = GetCacheList(level);
-
-            if (null != list)
-            {
-                foreach (var cache in list)
-                {
-                    cache.Update();
-                }
-            }
-        }
 
         /// <summary>
         /// 获取缓存对象
@@ -326,6 +279,143 @@ namespace Td.Kylin.DataCache
         /// 职位类别缓存
         /// </summary>
         public static JobCategoryCache JobCategoryCache { get { return GetCacheObject<JobCategoryCache>(CacheItemType.JobCategory); } }
+
+        /// <summary>
+        /// 平台针对区域抽成缓存
+        /// </summary>
+        public static PlatformCommissionCache PlatformCommissionCache { get { return GetCacheObject<PlatformCommissionCache>(CacheItemType.PlatformCommission); } }
+
+        /// <summary>
+        /// 区域默认抽成缓存
+        /// </summary>
+        public static AreaDefaultCommissionCache AreaDefaultCommissionCache { get { return GetCacheObject<AreaDefaultCommissionCache>(CacheItemType.AreaDefaultCommission); } }
+
+        /// <summary>
+        /// 区域针对商家抽成缓存
+        /// </summary>
+        public static AreaForMerchantCommissionCache AreaForMerchantCommissionCache { get { return GetCacheObject<AreaForMerchantCommissionCache>(CacheItemType.AreaForMerchantCommission); } }
+
+        /// <summary>
+        /// 区域针对个人服务人员抽成缓存
+        /// </summary>
+        public static AreaForPersonalWorkerCommissionCache AreaForPersonalWorkerCommissionCache { get { return GetCacheObject<AreaForPersonalWorkerCommissionCache>(CacheItemType.AreaForPersonalWorkerCommission); } }
+
+        #endregion
+
+        #region 公共方法
+
+        /// <summary>
+        /// 获取缓存项
+        /// </summary>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        public static ICache GetCache(CacheItemType itemType)
+        {
+            ICache cache = null;
+
+            try
+            {
+                var vals = htCache.Values;
+
+                if (null != vals)
+                {
+                    foreach (var item in vals)
+                    {
+                        var temp = (ICache)item;
+
+                        if (temp.ItemType == itemType)
+                        {
+                            cache = temp;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                //TODO 
+                cache = null;
+            }
+
+            return cache;
+        }
+
+        /// <summary>
+        /// 获取所有缓存项
+        /// </summary>
+        /// <returns></returns>
+        public static List<ICache> GetAllCache()
+        {
+            try
+            {
+                var vals = htCache.Values;
+
+                List<ICache> list = null;
+
+                if (null != vals)
+                {
+                    list = new List<ICache>();
+                    foreach (var item in vals)
+                    {
+                        list.Add((ICache)item);
+                    }
+                }
+
+                return list;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 获取指定缓存级别的缓存集合列表
+        /// </summary>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        public static List<ICache> GetCacheList(CacheLevel level)
+        {
+            var list = GetAllCache();
+
+            if (null != list)
+            {
+                return list.Where(p => p.Level == level).ToList();
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// 更新指定级别的缓存
+        /// </summary>
+        /// <param name="level"></param>
+        public static void Update(CacheLevel level)
+        {
+            var list = GetCacheList(level);
+
+            if (null != list)
+            {
+                foreach (var cache in list)
+                {
+                    cache.Update();
+                }
+            }
+        }
+
+        /// <summary>
+        /// 更新缓存级别
+        /// </summary>
+        /// <param name="itemType"></param>
+        /// <param name="level"></param>
+        public static void ResetLevel(CacheItemType itemType, CacheLevel level)
+        {
+            var cache = GetCache(itemType);
+
+            if (null != cache)
+            {
+                cache.ResetLevel(level);
+            }
+        }
 
         #endregion
     }

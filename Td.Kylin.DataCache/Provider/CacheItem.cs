@@ -1,6 +1,8 @@
 ﻿using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Td.Kylin.DataCache.CacheModel;
 using Td.Kylin.Redis;
 
 namespace Td.Kylin.DataCache.Provider
@@ -9,7 +11,7 @@ namespace Td.Kylin.DataCache.Provider
     /// 缓存抽象类
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class CacheItem<T> : ICache where T : class, new()
+    public abstract class CacheItem<T> : ICache where T : BaseCacheModel, new()
     {
         /// <summary>
         /// Redis缓存配置信息
@@ -22,7 +24,27 @@ namespace Td.Kylin.DataCache.Provider
         /// <param name="itemType"></param>
         protected CacheItem(CacheItemType itemType)
         {
-            _config = CacheStartup.RedisConfiguration[itemType];
+            var config = CacheStartup.RedisConfiguration[itemType];
+
+            Init(config);
+        }
+
+        /// <summary>
+        /// 实例化
+        /// </summary>
+        /// <param name="cacheKey"></param>
+        protected CacheItem(string cacheKey)
+        {
+            var config = CacheStartup.RedisConfiguration[cacheKey];
+
+            Init(config);
+        }
+
+        void Init(CacheConfig config)
+        {
+            _config = config;
+
+            _level = _config != null ? _config.Level : CacheLevel.Permanent;
 
             #region 检测是否存在缓存，不存在则初始化更新
             List<T> temp = null;
@@ -39,15 +61,6 @@ namespace Td.Kylin.DataCache.Provider
                 if (temp == null) Update();
             }
             #endregion
-        }
-
-        /// <summary>
-        /// 实例化
-        /// </summary>
-        /// <param name="cacheKey"></param>
-        protected CacheItem(string cacheKey)
-        {
-            _config = CacheStartup.RedisConfiguration[cacheKey];
         }
 
         /// <summary>
@@ -72,6 +85,8 @@ namespace Td.Kylin.DataCache.Provider
             }
         }
 
+
+        private CacheLevel _level;
         /// <summary>
         /// 缓存级别
         /// </summary>
@@ -79,7 +94,11 @@ namespace Td.Kylin.DataCache.Provider
         {
             get
             {
-                return _config != null ? _config.Level : CacheLevel.Permanent;
+                return _level;
+            }
+            set
+            {
+                _level = value;
             }
         }
 
@@ -148,17 +167,44 @@ namespace Td.Kylin.DataCache.Provider
         /// 获取缓存
         /// </summary>
         /// <returns></returns>
-        protected abstract List<T> GetCache();
+        protected virtual List<T> GetCache()
+        {
+            List<T> data = null;
+
+            if (null != RedisDB)
+            {
+                data = RedisDB.HashGetAll<T>(CacheKey).Select(p => p.Value).ToList();
+            }
+
+            return data;
+        }
 
         /// <summary>
         /// 设置缓存
         /// </summary>
-        protected abstract void SetCache(List<T> data);
+        protected virtual void SetCache(List<T> data)
+        {
+            if (null != RedisDB)
+            {
+                //清除数据缓存
+                RedisDB.KeyDelete(CacheKey);
+
+                if (data == null) data = ReadDataFromDB();
+
+                if (null != data && data.Count > 0)
+                {
+
+                    var dic = data.ToDictionary(k => (RedisValue)k.HashField, v => v);
+
+                    RedisDB.HashSet(CacheKey, dic);
+                }
+            }
+        }
 
         /// <summary>
         /// 更新缓存（从数据库中读取缓存元数据，并记录最后更新缓存的时间）
         /// </summary>
-        public void Update()
+        public virtual void Update()
         {
             var data = ReadDataFromDB();
 
@@ -183,25 +229,52 @@ namespace Td.Kylin.DataCache.Provider
         /// 更新缓存
         /// </summary>
         /// <param name="entity"></param>
-        public abstract void Update(T entity);
+        public virtual void Update(T entity)
+        {
+            if (null == entity) return;
+
+            RedisDB.HashSetAsync(CacheKey, entity.HashField, entity);
+        }
 
         /// <summary>
         /// 添加缓存 
         /// </summary>
         /// <param name="entity"></param>
-        public abstract void Add(T entity);
+        public virtual void Add(T entity)
+        {
+            if (null == entity) return;
+
+            RedisDB.HashSetAsync(CacheKey, entity.HashField, entity);
+        }
 
         /// <summary>
         /// 删除缓存
         /// </summary>
         /// <param name="entity"></param>
-        public abstract void Delete(T entity);
+        public virtual void Delete(T entity)
+        {
+            if (null == entity) return;
+
+            RedisDB.HashDelete(CacheKey, entity.HashField);
+        }
 
         /// <summary>
         /// 获取指定字段的数据项
         /// </summary>
         /// <param name="hashField"></param>
         /// <returns></returns>
-        public abstract T Get(string hashField);
+        public virtual T Get(string hashField)
+        {
+            return RedisDB.HashGet<T>(CacheKey, hashField);
+        }
+
+        /// <summary>
+        /// 重置缓存级别
+        /// </summary>
+        /// <param name="level"></param>
+        public void ResetLevel(CacheLevel level)
+        {
+            this._level = level;
+        }
     }
 }

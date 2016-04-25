@@ -6,6 +6,10 @@ using Td.Kylin.DataCache.IServices;
 
 namespace Td.Kylin.DataCache.Services
 {
+    /// <summary>
+    /// 精品汇商品分类标签数据服务
+    /// </summary>
+    /// <typeparam name="DbContext"></typeparam>
     internal sealed class B2CProductCategoryTagService<DbContext> : IB2CProductCategoryTagService where DbContext : DataContext, new()
     {
         public List<B2CProductCategoryTagCacheModel> GetAll()

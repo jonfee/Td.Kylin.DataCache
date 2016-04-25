@@ -1,11 +1,11 @@
 ﻿namespace Td.Kylin.DataCache.CacheModel
 {
-    public class SystemGolbalConfigCacheModel
+    public class SystemGolbalConfigCacheModel:BaseCacheModel
     {
         /// <summary>
         /// HashField（由“ResourceType_ResourceKey”组成）
         /// </summary>
-        public string HashField
+        public override string HashField
         {
             get
             {

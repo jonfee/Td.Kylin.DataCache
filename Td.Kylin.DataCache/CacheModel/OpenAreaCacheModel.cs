@@ -5,12 +5,12 @@ namespace Td.Kylin.DataCache.CacheModel
     /// <summary>
     /// 已开通区域缓存模型
     /// </summary>
-    public class OpenAreaCacheModel
+    public class OpenAreaCacheModel:BaseCacheModel
     {
         /// <summary>
         /// HashField（AreaID）
         /// </summary>
-        public string HashField
+        public override string HashField
         {
             get
             {

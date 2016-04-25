@@ -6,6 +6,10 @@ using Td.Kylin.DataCache.IServices;
 
 namespace Td.Kylin.DataCache.Services
 {
+    /// <summary>
+    /// 用户经验值规则配置数据服务
+    /// </summary>
+    /// <typeparam name="DbContext"></typeparam>
     internal sealed class UserEmpiricalConfigService<DbContext> : IUserEmpiricalConfigService where DbContext : DataContext, new()
     {
         public List<UserEmpiricalConfigCacheModel> GetAll()

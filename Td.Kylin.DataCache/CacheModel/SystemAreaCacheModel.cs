@@ -3,12 +3,12 @@
     /// <summary>
     /// 全国区域缓存模型
     /// </summary>
-    public class SystemAreaCacheModel
+    public class SystemAreaCacheModel:BaseCacheModel
     {
         /// <summary>
         /// HashField（AreaID）
         /// </summary>
-        public string HashField
+        public override string HashField
         {
             get
             {

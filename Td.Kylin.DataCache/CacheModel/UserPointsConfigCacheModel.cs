@@ -1,11 +1,11 @@
 ﻿namespace Td.Kylin.DataCache.CacheModel
 {
-    public class UserPointsConfigCacheModel
+    public class UserPointsConfigCacheModel:BaseCacheModel
     {
         /// <summary>
         /// HashField（ActivityType）
         /// </summary>
-        public string HashField
+        public override string HashField
         {
             get
             {

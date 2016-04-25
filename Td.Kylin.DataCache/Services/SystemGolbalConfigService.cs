@@ -6,6 +6,10 @@ using Td.Kylin.DataCache.IServices;
 
 namespace Td.Kylin.DataCache.Services
 {
+    /// <summary>
+    /// 系统全局配置数据服务
+    /// </summary>
+    /// <typeparam name="DbContext"></typeparam>
     internal sealed class SystemGolbalConfigService<DbContext> : ISystemGolbalConfigService where DbContext : DataContext, new()
     {
         public List<SystemGolbalConfigCacheModel> GetAll()

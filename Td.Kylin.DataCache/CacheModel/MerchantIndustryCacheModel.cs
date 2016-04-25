@@ -3,12 +3,12 @@
     /// <summary>
     /// 商家行业缓存模型
     /// </summary>
-    public class MerchantIndustryCacheModel
+    public class MerchantIndustryCacheModel:BaseCacheModel
     {
         /// <summary>
         /// HashField（IndustryID）
         /// </summary>
-        public string HashField
+        public override string HashField
         {
             get
             {

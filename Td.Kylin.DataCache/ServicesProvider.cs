@@ -130,6 +130,26 @@ namespace Td.Kylin.DataCache
         /// </summary>
         public IJobCategoryService JobCategoryService { get; private set; }
 
+        /// <summary>
+        /// 平台针对区域抽成
+        /// </summary>
+        public IPlatformCommissionService PlatformCommissionService { get; private set; }
+
+        /// <summary>
+        /// 区域针对商家抽成
+        /// </summary>
+        public IAreaForMerchantCommissionService AreaForMerchantCommissionService { get; private set; }
+
+        /// <summary>
+        /// 区域针对个人服务人员抽成
+        /// </summary>
+        public IAreaForPersonalWorkerCommissionService AreaForPersonalWorkerCommissionService { get; private set; }
+
+        /// <summary>
+        /// 区域默认抽成配置
+        /// </summary>
+        public IAreaDefaultCommissionService AreaDefaultCommissionService { get; private set; }
+
         #endregion
 
         /// <summary>
@@ -171,6 +191,14 @@ namespace Td.Kylin.DataCache
             MerchantProductSystemCategoryService = new MerchantProductSystemCategoryService<T>();
             //职位类别
             JobCategoryService = new JobCategoryService<T>();
+            //平台针对区域抽成
+            PlatformCommissionService = new PlatformCommissionService<T>();
+            //区域针对商家抽成
+            AreaForMerchantCommissionService = new AreaForMerchantCommissionService<T>();
+            //区域针对个人服务人员抽成
+            AreaForPersonalWorkerCommissionService = new AreaForPersonalWorkerCommissionService<T>();
+            //区域默认抽成配置
+            AreaDefaultCommissionService = new AreaDefaultCommissionService<T>();
         }
     }
 }

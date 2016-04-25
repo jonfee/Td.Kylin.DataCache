@@ -3,12 +3,12 @@
     /// <summary>
     /// 区域行业推荐缓存模型
     /// </summary>
-    public class AreaRecommendIndustryCacheModel
+    public class AreaRecommendIndustryCacheModel:BaseCacheModel
     {
         /// <summary>
         /// HashField（由“AreaID_IndustryID”组成）
         /// </summary>
-        public string HashField
+        public override string HashField
         {
             get
             {

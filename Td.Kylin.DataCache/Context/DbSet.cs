@@ -54,5 +54,25 @@ namespace Td.Kylin.DataCache.Context
         /// 商家商品系统分类
         /// </summary>
         public DbSet<MerchantGoods_SystemCategory> MerchantGoods_SystemCategory { get { return Set<MerchantGoods_SystemCategory>(); } }
+
+        /// <summary>
+        /// 平台对区域抽成配置
+        /// </summary>
+        public DbSet<Commission_Platform> Area_PlatformCommission { get { return Set<Commission_Platform>(); } }
+
+        /// <summary>
+        /// 区域运营商默认抽成配置
+        /// </summary>
+        public DbSet<Commission_OperatorDefault> Commission_OperatorDefault { get { return Set<Commission_OperatorDefault>(); } }
+
+        /// <summary>
+        /// 区域运营商对商家抽成配置
+        /// </summary>
+        public DbSet<Commission_OperatorFromMerchant> Commission_OperatorFromMerchant { get { return Set<Commission_OperatorFromMerchant>(); } }
+
+        /// <summary>
+        /// 区域运营商对个人服务人员抽成配置
+        /// </summary>
+        public DbSet<Commission_OperatorFromWorker> Commission_OperatorFromWorker { get { return Set<Commission_OperatorFromWorker>(); } }
     }
 }
