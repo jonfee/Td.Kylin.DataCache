@@ -24,7 +24,21 @@ namespace Td.Kylin.DataCache.Provider
         {
             _config = CacheStartup.RedisConfiguration[itemType];
 
-            Update();
+            #region 检测是否存在缓存，不存在则初始化更新
+            List<T> temp = null;
+            try
+            {
+                temp = GetCache();
+            }
+            catch
+            {
+                temp = null;
+            }
+            finally
+            {
+                if (temp == null) Update();
+            }
+            #endregion
         }
 
         /// <summary>
@@ -111,43 +125,24 @@ namespace Td.Kylin.DataCache.Provider
                 }
                 else
                 {
-                    //根据缓存级别，更新缓存数据
-                    if (Level == CacheLevel.Hight && LastUpdateTime.AddDays(1) < DateTime.Now)  //缓存级别高，一般24小时更新一次
-                    {
-                        Update();
-                    }
-                    else if (Level == CacheLevel.Middel && LastUpdateTime.AddHours(6) < DateTime.Now)   //缓存级别中，一般6小时更新一次
-                    {
-                        Update();
-                    }
-                    else if (Level == CacheLevel.Lower && LastUpdateTime.AddMinutes(30) < DateTime.Now) //缓存级别低，一般30分钟更新一次
-                    {
-                        Update();
-                    }
-
                     //从缓存中读取
                     _data = GetCache();
-
-                    //若缓存中无数据，则从数据库中读取，并缓存
-                    if (null == _data)
-                    {
-                        Update();
-                    }
                 }
             }
             catch
+            { 
+                //TODO 异常时处理
+            }
+            finally
             {
-                //Exception
-                _data = ReadDataFromDB();
+                if (null == _data)
+                {
+                    _data = ReadDataFromDB();
+                }
             }
 
             return _data;
         }
-
-        /// <summary>
-        /// 最后一次更新缓存时间
-        /// </summary>
-        public DateTime LastUpdateTime { get; private set; }
 
         /// <summary>
         /// 获取缓存
@@ -165,22 +160,17 @@ namespace Td.Kylin.DataCache.Provider
         /// </summary>
         public void Update()
         {
-            lock (_updateLock)
-            {
-                _updating = true;
+            var data = ReadDataFromDB();
 
-                var data = ReadDataFromDB();
+            this._tempData = data;
 
-                this._tempData = data;
+            _updating = true;
 
-                this.LastUpdateTime = DateTime.Now;
+            SetCache(data);
 
-                SetCache(data);
+            _updating = false;
 
-                _updating = false;
-
-                this._tempData = null;
-            }
+            this._tempData = null;
         }
 
         /// <summary>

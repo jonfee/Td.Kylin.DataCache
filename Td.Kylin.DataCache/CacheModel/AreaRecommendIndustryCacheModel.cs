@@ -12,7 +12,7 @@
         {
             get
             {
-                return string.Format("{0}_{1}", AreaID, IndustryID);
+                return string.Format("{0}{1}", AreaID, IndustryID);
             }
         }
 

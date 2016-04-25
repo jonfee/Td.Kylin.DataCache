@@ -9,7 +9,7 @@
         {
             get
             {
-                return string.Format("{0}_{1}", ResourceType, ResourceKey);
+                return string.Format("{0}{1}", ResourceType, ResourceKey);
             }
         }
 
