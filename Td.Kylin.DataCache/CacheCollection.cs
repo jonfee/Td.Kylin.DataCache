@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Td.Kylin.DataCache.Provider;
 
 namespace Td.Kylin.DataCache
@@ -159,11 +161,74 @@ namespace Td.Kylin.DataCache
         #region 缓存实例及值
 
         /// <summary>
+        /// 获取所有缓存项
+        /// </summary>
+        /// <returns></returns>
+        public static List<ICache> GetAllCache()
+        {
+            try
+            {
+                var vals=htCache.Values;
+
+                List<ICache> list = null;
+
+                if (null != vals)
+                {
+                    list = new List<ICache>();
+                    foreach (var item in vals)
+                    {
+                        list.Add((ICache)item);
+                    }
+                }
+
+                return list;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 获取指定缓存级别的缓存集合列表
+        /// </summary>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        public static List<ICache> GetCacheList(CacheLevel level)
+        {
+            var list = GetAllCache();
+
+            if (null != list)
+            {
+                return list.Where(p => p.Level == level).ToList();
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// 更新指定级别的缓存
+        /// </summary>
+        /// <param name="level"></param>
+        public static void Update(CacheLevel level)
+        {
+            var list = GetCacheList(level);
+
+            if (null != list)
+            {
+                foreach (var cache in list)
+                {
+                    cache.Update();
+                }
+            }
+        }
+
+        /// <summary>
         /// 获取缓存对象
         /// </summary>
         /// <param name="itemType"></param>
         /// <returns></returns>
-        private static T GetCacheObject<T>(CacheItemType itemType)
+        private static T GetCacheObject<T>(CacheItemType itemType) where T : ICache
         {
             CacheConfig config = CacheStartup.RedisConfiguration[itemType];
 

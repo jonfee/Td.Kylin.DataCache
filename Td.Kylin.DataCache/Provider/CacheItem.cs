@@ -9,7 +9,7 @@ namespace Td.Kylin.DataCache.Provider
     /// 缓存抽象类
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class CacheItem<T> where T : class, new()
+    public abstract class CacheItem<T> : ICache where T : class, new()
     {
         /// <summary>
         /// Redis缓存配置信息
@@ -64,7 +64,7 @@ namespace Td.Kylin.DataCache.Provider
         /// <summary>
         /// 缓存Key
         /// </summary>
-        protected string CacheKey
+        public string CacheKey
         {
             get
             {
@@ -130,7 +130,7 @@ namespace Td.Kylin.DataCache.Provider
                 }
             }
             catch
-            { 
+            {
                 //TODO 异常时处理
             }
             finally

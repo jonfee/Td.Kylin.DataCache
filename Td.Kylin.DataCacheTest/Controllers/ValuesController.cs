@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Mvc;
+using System;
 using System.Diagnostics;
 using Td.Kylin.DataCache;
 
@@ -311,6 +312,17 @@ namespace Td.Kylin.DataCacheTest.Controllers
             var area = CacheCollection.SystemAreaCache.Get(areaID);
 
             return Ok(area);
+        }
+
+        [HttpGet("update/{level:int}")]
+        public IActionResult GetUpdateLevel(int level)
+        {
+            var cacheLevel = (CacheLevel)Enum.Parse(typeof(CacheLevel), level.ToString());
+            CacheCollection.Update(cacheLevel);
+
+            var config = CacheCollection.SystemGolbalConfigCache.Value();
+
+            return Ok(config);
         }
     }
 }
