@@ -300,6 +300,11 @@ namespace Td.Kylin.DataCache
         /// </summary>
         public static AreaForPersonalWorkerCommissionCache AreaForPersonalWorkerCommissionCache { get { return GetCacheObject<AreaForPersonalWorkerCommissionCache>(CacheItemType.AreaForPersonalWorkerCommission); } }
 
+        /// <summary>
+        /// 接口对模块授权缓存
+        /// </summary>
+        public static ApiModuleAuthorizeCache ApiModuleAuthorizeCache { get { return GetCacheObject<ApiModuleAuthorizeCache>(CacheItemType.ApiModuleAuthorize); } }
+
         #endregion
 
         #region 公共方法

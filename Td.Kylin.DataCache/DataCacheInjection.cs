@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Builder;
 using StackExchange.Redis;
 using System;
+using Td.Kylin.EnumLibrary;
 
 namespace Td.Kylin.DataCache
 {

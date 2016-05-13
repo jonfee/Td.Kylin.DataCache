@@ -40,7 +40,7 @@ namespace Td.Kylin.DataCacheTest
             string redisConn = Configuration["Redis:ConnectString"];//Redis缓存服务器信息
             string sqlConn = Configuration["Data:DefaultConnection:ConnectionString"];//元数据库连接字符串
 
-            app.UseDataCache(redisConn, SqlProviderType.PostgreSQL, sqlConn);
+            app.UseDataCache(redisConn,EnumLibrary.SqlProviderType.SqlServer, sqlConn);
 
             app.UseIISPlatformHandler();
 

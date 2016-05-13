@@ -1,6 +1,7 @@
 ﻿using Td.Kylin.DataCache.Context;
 using Td.Kylin.DataCache.IServices;
 using Td.Kylin.DataCache.Services;
+using Td.Kylin.EnumLibrary;
 
 namespace Td.Kylin.DataCache
 {
@@ -39,7 +40,7 @@ namespace Td.Kylin.DataCache
         {
             switch (CacheStartup.SqlType)
             {
-                case SqlProviderType.PostgreSQL:
+                case SqlProviderType.NpgSQL:
                     InitServices<PostgreSqlDataContext>();
                     break;
                 case SqlProviderType.SqlServer:
@@ -150,6 +151,11 @@ namespace Td.Kylin.DataCache
         /// </summary>
         public IAreaDefaultCommissionService AreaDefaultCommissionService { get; private set; }
 
+        /// <summary>
+        /// 模块授权
+        /// </summary>
+        public IModuleAuthorizeService ModuleAuthorizeService { get; private set; }
+
         #endregion
 
         /// <summary>
@@ -199,6 +205,8 @@ namespace Td.Kylin.DataCache
             AreaForPersonalWorkerCommissionService = new AreaForPersonalWorkerCommissionService<T>();
             //区域默认抽成配置
             AreaDefaultCommissionService = new AreaDefaultCommissionService<T>();
+            //模块授权
+            ModuleAuthorizeService = new ModuleAuthorizeService<T>();
         }
     }
 }

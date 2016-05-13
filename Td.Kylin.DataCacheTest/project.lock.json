@@ -1720,7 +1720,28 @@
           "lib/net45/_._": {}
         }
       },
-      "Td.Kylin.DataCache/1.0.1-rc1": {
+      "Td.CoreLibrary/1.1.3-beta": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Linq",
+          "System.Linq.Expressions",
+          "System.Runtime",
+          "System.Runtime.Caching",
+          "System.Xml",
+          "System.Xml.ReaderWriter"
+        ],
+        "compile": {
+          "lib/dnx451/Td.CoreLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/Td.CoreLibrary.dll": {}
+        }
+      },
+      "Td.Kylin.DataCache/1.0.7-rc1": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -1732,7 +1753,9 @@
           "StackExchange.Redis": "1.1.553-alpha",
           "System.Runtime": "4.0.21-beta-23516",
           "System.Runtime.InteropServices": "4.0.21-beta-23516",
+          "Td.CoreLibrary": "1.1.3-beta",
           "Td.Kylin.Entity": "1.0.0-rc1-19",
+          "Td.Kylin.EnumLibrary": "1.0.33.1-beta",
           "Td.Kylin.Redis": "1.0.5-alpha"
         }
       },
@@ -1743,6 +1766,26 @@
         },
         "runtime": {
           "lib/dnx451/Td.Kylin.Entity.dll": {}
+        }
+      },
+      "Td.Kylin.EnumLibrary/1.0.33.1-beta": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.0.21-beta-23516",
+          "System.Runtime.InteropServices": "4.0.21-beta-23516",
+          "Td.CoreLibrary": "1.0.6-beta"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/Td.Kylin.EnumLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/Td.Kylin.EnumLibrary.dll": {}
         }
       },
       "Td.Kylin.Redis/1.0.5-alpha": {
@@ -3183,13 +3226,13 @@
           "lib/dnxcore50/StackExchange.Redis.dll": {}
         }
       },
-      "System.AppContext/4.0.0": {
+      "System.AppContext/4.0.1-beta-23516": {
         "type": "package",
         "dependencies": {
           "System.Runtime": "4.0.0"
         },
         "compile": {
-          "ref/dotnet/System.AppContext.dll": {}
+          "ref/dotnet5.1/System.AppContext.dll": {}
         },
         "runtime": {
           "lib/DNXCore50/System.AppContext.dll": {}
@@ -3495,6 +3538,19 @@
           "lib/DNXCore50/System.Globalization.dll": {}
         }
       },
+      "System.Globalization.Calendars/4.0.1-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.Globalization": "4.0.0",
+          "System.Runtime": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet5.1/System.Globalization.Calendars.dll": {}
+        },
+        "runtime": {
+          "lib/DNXCore50/System.Globalization.Calendars.dll": {}
+        }
+      },
       "System.Globalization.Extensions/4.0.1-beta-23516": {
         "type": "package",
         "dependencies": {
@@ -3544,6 +3600,17 @@
         },
         "compile": {
           "ref/dotnet5.4/System.IO.FileSystem.dll": {}
+        }
+      },
+      "System.IO.FileSystem.DriveInfo/4.0.0-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.IO": "4.0.0",
+          "System.IO.FileSystem": "4.0.0",
+          "System.Runtime": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.IO.FileSystem.DriveInfo.dll": {}
         }
       },
       "System.IO.FileSystem.Primitives/4.0.1-beta-23516": {
@@ -3922,6 +3989,15 @@
           "lib/DNXCore50/System.Runtime.InteropServices.dll": {}
         }
       },
+      "System.Runtime.InteropServices.RuntimeInformation/4.0.0-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet5.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
+        }
+      },
       "System.Runtime.Loader/4.0.0-beta-23516": {
         "type": "package",
         "dependencies": {
@@ -3949,6 +4025,19 @@
         },
         "runtime": {
           "lib/dotnet5.4/System.Runtime.Numerics.dll": {}
+        }
+      },
+      "System.Runtime.Serialization.Primitives/4.1.0-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Runtime.Serialization.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet5.4/System.Runtime.Serialization.Primitives.dll": {}
         }
       },
       "System.Security.Claims/4.0.1-beta-23516": {
@@ -4185,7 +4274,7 @@
           "lib/DNXCore50/System.Threading.Timer.dll": {}
         }
       },
-      "System.Xml.ReaderWriter/4.0.10": {
+      "System.Xml.ReaderWriter/4.0.11-beta-23516": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -4200,14 +4289,14 @@
           "System.Runtime.InteropServices": "4.0.20",
           "System.Text.Encoding": "4.0.10",
           "System.Text.Encoding.Extensions": "4.0.10",
-          "System.Text.RegularExpressions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.0",
           "System.Threading.Tasks": "4.0.10"
         },
         "compile": {
-          "ref/dotnet/System.Xml.ReaderWriter.dll": {}
+          "ref/dotnet5.4/System.Xml.ReaderWriter.dll": {}
         },
         "runtime": {
-          "lib/dotnet/System.Xml.ReaderWriter.dll": {}
+          "lib/dotnet5.4/System.Xml.ReaderWriter.dll": {}
         }
       },
       "System.Xml.XDocument/4.0.11-beta-23516": {
@@ -4233,7 +4322,44 @@
           "lib/dotnet5.4/System.Xml.XDocument.dll": {}
         }
       },
-      "Td.Kylin.DataCache/1.0.1-rc1": {
+      "Td.CoreLibrary/1.1.3-beta": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Dnx.Compilation.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Primitives": "1.0.0-rc1-final",
+          "System.AppContext": "4.0.1-beta-23516",
+          "System.Collections.Concurrent": "4.0.11-beta-23516",
+          "System.ComponentModel.TypeConverter": "4.0.1-beta-23516",
+          "System.Console": "4.0.0-beta-23516",
+          "System.Data.Common": "4.0.1-beta-23516",
+          "System.Diagnostics.StackTrace": "4.0.1-beta-23516",
+          "System.Dynamic.Runtime": "4.0.11-beta-23516",
+          "System.Globalization.Calendars": "4.0.1-beta-23516",
+          "System.IO.FileSystem.DriveInfo": "4.0.0-beta-23516",
+          "System.Linq": "4.0.1-beta-23516",
+          "System.Net.Primitives": "4.0.11-beta-23516",
+          "System.Reflection.TypeExtensions": "4.0.1-beta-23409",
+          "System.Runtime": "4.0.21-beta-23516",
+          "System.Runtime.InteropServices": "4.0.21-beta-23516",
+          "System.Runtime.InteropServices.RuntimeInformation": "4.0.0-beta-23516",
+          "System.Runtime.Serialization.Primitives": "4.1.0-beta-23516",
+          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23516",
+          "System.Security.Principal": "4.0.1-beta-23516",
+          "System.Text.Encoding": "4.0.11-beta-23516",
+          "System.Text.RegularExpressions": "4.0.11-beta-23516",
+          "System.Threading.Tasks.Parallel": "4.0.1-beta-23516",
+          "System.Threading.ThreadPool": "4.0.10-beta-23516",
+          "System.Xml.ReaderWriter": "4.0.11-beta-23516"
+        },
+        "compile": {
+          "lib/dnxcore50/Td.CoreLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/Td.CoreLibrary.dll": {}
+        }
+      },
+      "Td.Kylin.DataCache/1.0.7-rc1": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -4245,7 +4371,9 @@
           "StackExchange.Redis": "1.1.553-alpha",
           "System.Runtime": "4.0.21-beta-23516",
           "System.Runtime.InteropServices": "4.0.21-beta-23516",
+          "Td.CoreLibrary": "1.1.3-beta",
           "Td.Kylin.Entity": "1.0.0-rc1-19",
+          "Td.Kylin.EnumLibrary": "1.0.33.1-beta",
           "Td.Kylin.Redis": "1.0.5-alpha"
         }
       },
@@ -4256,6 +4384,20 @@
         },
         "runtime": {
           "lib/dnxcore50/Td.Kylin.Entity.dll": {}
+        }
+      },
+      "Td.Kylin.EnumLibrary/1.0.33.1-beta": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.0.21-beta-23516",
+          "System.Runtime.InteropServices": "4.0.21-beta-23516",
+          "Td.CoreLibrary": "1.0.6-beta"
+        },
+        "compile": {
+          "lib/dnxcore50/Td.Kylin.EnumLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/Td.Kylin.EnumLibrary.dll": {}
         }
       },
       "Td.Kylin.Redis/1.0.5-alpha": {
@@ -5994,7 +6136,28 @@
           "lib/net45/_._": {}
         }
       },
-      "Td.Kylin.DataCache/1.0.1-rc1": {
+      "Td.CoreLibrary/1.1.3-beta": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Linq",
+          "System.Linq.Expressions",
+          "System.Runtime",
+          "System.Runtime.Caching",
+          "System.Xml",
+          "System.Xml.ReaderWriter"
+        ],
+        "compile": {
+          "lib/dnx451/Td.CoreLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/Td.CoreLibrary.dll": {}
+        }
+      },
+      "Td.Kylin.DataCache/1.0.7-rc1": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -6006,7 +6169,9 @@
           "StackExchange.Redis": "1.1.553-alpha",
           "System.Runtime": "4.0.21-beta-23516",
           "System.Runtime.InteropServices": "4.0.21-beta-23516",
+          "Td.CoreLibrary": "1.1.3-beta",
           "Td.Kylin.Entity": "1.0.0-rc1-19",
+          "Td.Kylin.EnumLibrary": "1.0.33.1-beta",
           "Td.Kylin.Redis": "1.0.5-alpha"
         }
       },
@@ -6017,6 +6182,26 @@
         },
         "runtime": {
           "lib/dnx451/Td.Kylin.Entity.dll": {}
+        }
+      },
+      "Td.Kylin.EnumLibrary/1.0.33.1-beta": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.0.21-beta-23516",
+          "System.Runtime.InteropServices": "4.0.21-beta-23516",
+          "Td.CoreLibrary": "1.0.6-beta"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/Td.Kylin.EnumLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/Td.Kylin.EnumLibrary.dll": {}
         }
       },
       "Td.Kylin.Redis/1.0.5-alpha": {
@@ -7761,7 +7946,28 @@
           "lib/net45/_._": {}
         }
       },
-      "Td.Kylin.DataCache/1.0.1-rc1": {
+      "Td.CoreLibrary/1.1.3-beta": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Linq",
+          "System.Linq.Expressions",
+          "System.Runtime",
+          "System.Runtime.Caching",
+          "System.Xml",
+          "System.Xml.ReaderWriter"
+        ],
+        "compile": {
+          "lib/dnx451/Td.CoreLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/Td.CoreLibrary.dll": {}
+        }
+      },
+      "Td.Kylin.DataCache/1.0.7-rc1": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -7773,7 +7979,9 @@
           "StackExchange.Redis": "1.1.553-alpha",
           "System.Runtime": "4.0.21-beta-23516",
           "System.Runtime.InteropServices": "4.0.21-beta-23516",
+          "Td.CoreLibrary": "1.1.3-beta",
           "Td.Kylin.Entity": "1.0.0-rc1-19",
+          "Td.Kylin.EnumLibrary": "1.0.33.1-beta",
           "Td.Kylin.Redis": "1.0.5-alpha"
         }
       },
@@ -7784,6 +7992,26 @@
         },
         "runtime": {
           "lib/dnx451/Td.Kylin.Entity.dll": {}
+        }
+      },
+      "Td.Kylin.EnumLibrary/1.0.33.1-beta": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.0.21-beta-23516",
+          "System.Runtime.InteropServices": "4.0.21-beta-23516",
+          "Td.CoreLibrary": "1.0.6-beta"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/Td.Kylin.EnumLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/Td.Kylin.EnumLibrary.dll": {}
         }
       },
       "Td.Kylin.Redis/1.0.5-alpha": {
@@ -9216,6 +9444,19 @@
           "lib/DNXCore50/System.Linq.Expressions.dll": {}
         }
       },
+      "runtime.win.System.Runtime.InteropServices.RuntimeInformation/4.0.0-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/dotnet5.4/System.Runtime.InteropServices.RuntimeInformation.dll": {}
+        }
+      },
       "runtime.win.System.Text.Encoding.CodePages/4.0.1-beta-23516": {
         "type": "package",
         "dependencies": {
@@ -9388,6 +9629,24 @@
         },
         "runtime": {
           "runtimes/win7/lib/dotnet5.4/System.IO.FileSystem.dll": {}
+        }
+      },
+      "runtime.win7.System.IO.FileSystem.DriveInfo/4.0.0-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.IO.FileSystem": "4.0.0",
+          "System.IO.FileSystem.Primitives": "4.0.0",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Runtime.InteropServices": "4.0.20",
+          "System.Threading.Tasks": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "runtimes/win7/lib/dotnet5.4/System.IO.FileSystem.DriveInfo.dll": {}
         }
       },
       "runtime.win7.System.IO.FileSystem.Watcher/4.0.0-beta-23516": {
@@ -9619,13 +9878,13 @@
           "lib/dnxcore50/StackExchange.Redis.dll": {}
         }
       },
-      "System.AppContext/4.0.0": {
+      "System.AppContext/4.0.1-beta-23516": {
         "type": "package",
         "dependencies": {
           "System.Runtime": "4.0.0"
         },
         "compile": {
-          "ref/dotnet/System.AppContext.dll": {}
+          "ref/dotnet5.1/System.AppContext.dll": {}
         },
         "runtime": {
           "lib/DNXCore50/System.AppContext.dll": {}
@@ -9946,14 +10205,14 @@
           "lib/DNXCore50/System.Globalization.dll": {}
         }
       },
-      "System.Globalization.Calendars/4.0.0": {
+      "System.Globalization.Calendars/4.0.1-beta-23516": {
         "type": "package",
         "dependencies": {
           "System.Globalization": "4.0.0",
           "System.Runtime": "4.0.0"
         },
         "compile": {
-          "ref/dotnet/System.Globalization.Calendars.dll": {}
+          "ref/dotnet5.1/System.Globalization.Calendars.dll": {}
         },
         "runtime": {
           "lib/DNXCore50/System.Globalization.Calendars.dll": {}
@@ -10008,6 +10267,17 @@
         },
         "compile": {
           "ref/dotnet5.4/System.IO.FileSystem.dll": {}
+        }
+      },
+      "System.IO.FileSystem.DriveInfo/4.0.0-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.IO": "4.0.0",
+          "System.IO.FileSystem": "4.0.0",
+          "System.Runtime": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.IO.FileSystem.DriveInfo.dll": {}
         }
       },
       "System.IO.FileSystem.Primitives/4.0.1-beta-23516": {
@@ -10418,6 +10688,15 @@
           "lib/DNXCore50/System.Runtime.InteropServices.dll": {}
         }
       },
+      "System.Runtime.InteropServices.RuntimeInformation/4.0.0-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet5.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
+        }
+      },
       "System.Runtime.Loader/4.0.0-beta-23516": {
         "type": "package",
         "dependencies": {
@@ -10445,6 +10724,19 @@
         },
         "runtime": {
           "lib/dotnet5.4/System.Runtime.Numerics.dll": {}
+        }
+      },
+      "System.Runtime.Serialization.Primitives/4.1.0-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Runtime.Serialization.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet5.4/System.Runtime.Serialization.Primitives.dll": {}
         }
       },
       "System.Security.Claims/4.0.1-beta-23516": {
@@ -10737,7 +11029,7 @@
           "lib/DNXCore50/System.Threading.Timer.dll": {}
         }
       },
-      "System.Xml.ReaderWriter/4.0.10": {
+      "System.Xml.ReaderWriter/4.0.11-beta-23516": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -10752,14 +11044,14 @@
           "System.Runtime.InteropServices": "4.0.20",
           "System.Text.Encoding": "4.0.10",
           "System.Text.Encoding.Extensions": "4.0.10",
-          "System.Text.RegularExpressions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.0",
           "System.Threading.Tasks": "4.0.10"
         },
         "compile": {
-          "ref/dotnet/System.Xml.ReaderWriter.dll": {}
+          "ref/dotnet5.4/System.Xml.ReaderWriter.dll": {}
         },
         "runtime": {
-          "lib/dotnet/System.Xml.ReaderWriter.dll": {}
+          "lib/dotnet5.4/System.Xml.ReaderWriter.dll": {}
         }
       },
       "System.Xml.XDocument/4.0.11-beta-23516": {
@@ -10785,7 +11077,44 @@
           "lib/dotnet5.4/System.Xml.XDocument.dll": {}
         }
       },
-      "Td.Kylin.DataCache/1.0.1-rc1": {
+      "Td.CoreLibrary/1.1.3-beta": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Dnx.Compilation.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Primitives": "1.0.0-rc1-final",
+          "System.AppContext": "4.0.1-beta-23516",
+          "System.Collections.Concurrent": "4.0.11-beta-23516",
+          "System.ComponentModel.TypeConverter": "4.0.1-beta-23516",
+          "System.Console": "4.0.0-beta-23516",
+          "System.Data.Common": "4.0.1-beta-23516",
+          "System.Diagnostics.StackTrace": "4.0.1-beta-23516",
+          "System.Dynamic.Runtime": "4.0.11-beta-23516",
+          "System.Globalization.Calendars": "4.0.1-beta-23516",
+          "System.IO.FileSystem.DriveInfo": "4.0.0-beta-23516",
+          "System.Linq": "4.0.1-beta-23516",
+          "System.Net.Primitives": "4.0.11-beta-23516",
+          "System.Reflection.TypeExtensions": "4.0.1-beta-23409",
+          "System.Runtime": "4.0.21-beta-23516",
+          "System.Runtime.InteropServices": "4.0.21-beta-23516",
+          "System.Runtime.InteropServices.RuntimeInformation": "4.0.0-beta-23516",
+          "System.Runtime.Serialization.Primitives": "4.1.0-beta-23516",
+          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23516",
+          "System.Security.Principal": "4.0.1-beta-23516",
+          "System.Text.Encoding": "4.0.11-beta-23516",
+          "System.Text.RegularExpressions": "4.0.11-beta-23516",
+          "System.Threading.Tasks.Parallel": "4.0.1-beta-23516",
+          "System.Threading.ThreadPool": "4.0.10-beta-23516",
+          "System.Xml.ReaderWriter": "4.0.11-beta-23516"
+        },
+        "compile": {
+          "lib/dnxcore50/Td.CoreLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/Td.CoreLibrary.dll": {}
+        }
+      },
+      "Td.Kylin.DataCache/1.0.7-rc1": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -10797,7 +11126,9 @@
           "StackExchange.Redis": "1.1.553-alpha",
           "System.Runtime": "4.0.21-beta-23516",
           "System.Runtime.InteropServices": "4.0.21-beta-23516",
+          "Td.CoreLibrary": "1.1.3-beta",
           "Td.Kylin.Entity": "1.0.0-rc1-19",
+          "Td.Kylin.EnumLibrary": "1.0.33.1-beta",
           "Td.Kylin.Redis": "1.0.5-alpha"
         }
       },
@@ -10808,6 +11139,20 @@
         },
         "runtime": {
           "lib/dnxcore50/Td.Kylin.Entity.dll": {}
+        }
+      },
+      "Td.Kylin.EnumLibrary/1.0.33.1-beta": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.0.21-beta-23516",
+          "System.Runtime.InteropServices": "4.0.21-beta-23516",
+          "Td.CoreLibrary": "1.0.6-beta"
+        },
+        "compile": {
+          "lib/dnxcore50/Td.Kylin.EnumLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/Td.Kylin.EnumLibrary.dll": {}
         }
       },
       "Td.Kylin.Redis/1.0.5-alpha": {
@@ -12234,6 +12579,19 @@
           "lib/DNXCore50/System.Linq.Expressions.dll": {}
         }
       },
+      "runtime.win.System.Runtime.InteropServices.RuntimeInformation/4.0.0-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/dotnet5.4/System.Runtime.InteropServices.RuntimeInformation.dll": {}
+        }
+      },
       "runtime.win.System.Text.Encoding.CodePages/4.0.1-beta-23516": {
         "type": "package",
         "dependencies": {
@@ -12406,6 +12764,24 @@
         },
         "runtime": {
           "runtimes/win7/lib/dotnet5.4/System.IO.FileSystem.dll": {}
+        }
+      },
+      "runtime.win7.System.IO.FileSystem.DriveInfo/4.0.0-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.IO.FileSystem": "4.0.0",
+          "System.IO.FileSystem.Primitives": "4.0.0",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Runtime.InteropServices": "4.0.20",
+          "System.Threading.Tasks": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "runtimes/win7/lib/dotnet5.4/System.IO.FileSystem.DriveInfo.dll": {}
         }
       },
       "runtime.win7.System.IO.FileSystem.Watcher/4.0.0-beta-23516": {
@@ -12637,13 +13013,13 @@
           "lib/dnxcore50/StackExchange.Redis.dll": {}
         }
       },
-      "System.AppContext/4.0.0": {
+      "System.AppContext/4.0.1-beta-23516": {
         "type": "package",
         "dependencies": {
           "System.Runtime": "4.0.0"
         },
         "compile": {
-          "ref/dotnet/System.AppContext.dll": {}
+          "ref/dotnet5.1/System.AppContext.dll": {}
         },
         "runtime": {
           "lib/DNXCore50/System.AppContext.dll": {}
@@ -12964,14 +13340,14 @@
           "lib/DNXCore50/System.Globalization.dll": {}
         }
       },
-      "System.Globalization.Calendars/4.0.0": {
+      "System.Globalization.Calendars/4.0.1-beta-23516": {
         "type": "package",
         "dependencies": {
           "System.Globalization": "4.0.0",
           "System.Runtime": "4.0.0"
         },
         "compile": {
-          "ref/dotnet/System.Globalization.Calendars.dll": {}
+          "ref/dotnet5.1/System.Globalization.Calendars.dll": {}
         },
         "runtime": {
           "lib/DNXCore50/System.Globalization.Calendars.dll": {}
@@ -13026,6 +13402,17 @@
         },
         "compile": {
           "ref/dotnet5.4/System.IO.FileSystem.dll": {}
+        }
+      },
+      "System.IO.FileSystem.DriveInfo/4.0.0-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.IO": "4.0.0",
+          "System.IO.FileSystem": "4.0.0",
+          "System.Runtime": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.IO.FileSystem.DriveInfo.dll": {}
         }
       },
       "System.IO.FileSystem.Primitives/4.0.1-beta-23516": {
@@ -13436,6 +13823,15 @@
           "lib/DNXCore50/System.Runtime.InteropServices.dll": {}
         }
       },
+      "System.Runtime.InteropServices.RuntimeInformation/4.0.0-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet5.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
+        }
+      },
       "System.Runtime.Loader/4.0.0-beta-23516": {
         "type": "package",
         "dependencies": {
@@ -13463,6 +13859,19 @@
         },
         "runtime": {
           "lib/dotnet5.4/System.Runtime.Numerics.dll": {}
+        }
+      },
+      "System.Runtime.Serialization.Primitives/4.1.0-beta-23516": {
+        "type": "package",
+        "dependencies": {
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Runtime.Serialization.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet5.4/System.Runtime.Serialization.Primitives.dll": {}
         }
       },
       "System.Security.Claims/4.0.1-beta-23516": {
@@ -13755,7 +14164,7 @@
           "lib/DNXCore50/System.Threading.Timer.dll": {}
         }
       },
-      "System.Xml.ReaderWriter/4.0.10": {
+      "System.Xml.ReaderWriter/4.0.11-beta-23516": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -13770,14 +14179,14 @@
           "System.Runtime.InteropServices": "4.0.20",
           "System.Text.Encoding": "4.0.10",
           "System.Text.Encoding.Extensions": "4.0.10",
-          "System.Text.RegularExpressions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.0",
           "System.Threading.Tasks": "4.0.10"
         },
         "compile": {
-          "ref/dotnet/System.Xml.ReaderWriter.dll": {}
+          "ref/dotnet5.4/System.Xml.ReaderWriter.dll": {}
         },
         "runtime": {
-          "lib/dotnet/System.Xml.ReaderWriter.dll": {}
+          "lib/dotnet5.4/System.Xml.ReaderWriter.dll": {}
         }
       },
       "System.Xml.XDocument/4.0.11-beta-23516": {
@@ -13803,7 +14212,44 @@
           "lib/dotnet5.4/System.Xml.XDocument.dll": {}
         }
       },
-      "Td.Kylin.DataCache/1.0.1-rc1": {
+      "Td.CoreLibrary/1.1.3-beta": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Dnx.Compilation.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Primitives": "1.0.0-rc1-final",
+          "System.AppContext": "4.0.1-beta-23516",
+          "System.Collections.Concurrent": "4.0.11-beta-23516",
+          "System.ComponentModel.TypeConverter": "4.0.1-beta-23516",
+          "System.Console": "4.0.0-beta-23516",
+          "System.Data.Common": "4.0.1-beta-23516",
+          "System.Diagnostics.StackTrace": "4.0.1-beta-23516",
+          "System.Dynamic.Runtime": "4.0.11-beta-23516",
+          "System.Globalization.Calendars": "4.0.1-beta-23516",
+          "System.IO.FileSystem.DriveInfo": "4.0.0-beta-23516",
+          "System.Linq": "4.0.1-beta-23516",
+          "System.Net.Primitives": "4.0.11-beta-23516",
+          "System.Reflection.TypeExtensions": "4.0.1-beta-23409",
+          "System.Runtime": "4.0.21-beta-23516",
+          "System.Runtime.InteropServices": "4.0.21-beta-23516",
+          "System.Runtime.InteropServices.RuntimeInformation": "4.0.0-beta-23516",
+          "System.Runtime.Serialization.Primitives": "4.1.0-beta-23516",
+          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23516",
+          "System.Security.Principal": "4.0.1-beta-23516",
+          "System.Text.Encoding": "4.0.11-beta-23516",
+          "System.Text.RegularExpressions": "4.0.11-beta-23516",
+          "System.Threading.Tasks.Parallel": "4.0.1-beta-23516",
+          "System.Threading.ThreadPool": "4.0.10-beta-23516",
+          "System.Xml.ReaderWriter": "4.0.11-beta-23516"
+        },
+        "compile": {
+          "lib/dnxcore50/Td.CoreLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/Td.CoreLibrary.dll": {}
+        }
+      },
+      "Td.Kylin.DataCache/1.0.7-rc1": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -13815,7 +14261,9 @@
           "StackExchange.Redis": "1.1.553-alpha",
           "System.Runtime": "4.0.21-beta-23516",
           "System.Runtime.InteropServices": "4.0.21-beta-23516",
+          "Td.CoreLibrary": "1.1.3-beta",
           "Td.Kylin.Entity": "1.0.0-rc1-19",
+          "Td.Kylin.EnumLibrary": "1.0.33.1-beta",
           "Td.Kylin.Redis": "1.0.5-alpha"
         }
       },
@@ -13826,6 +14274,20 @@
         },
         "runtime": {
           "lib/dnxcore50/Td.Kylin.Entity.dll": {}
+        }
+      },
+      "Td.Kylin.EnumLibrary/1.0.33.1-beta": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.0.21-beta-23516",
+          "System.Runtime.InteropServices": "4.0.21-beta-23516",
+          "Td.CoreLibrary": "1.0.6-beta"
+        },
+        "compile": {
+          "lib/dnxcore50/Td.Kylin.EnumLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/Td.Kylin.EnumLibrary.dll": {}
         }
       },
       "Td.Kylin.Redis/1.0.5-alpha": {
@@ -13845,7 +14307,7 @@
     }
   },
   "libraries": {
-    "Td.Kylin.DataCache/1.0.1-rc1": {
+    "Td.Kylin.DataCache/1.0.7-rc1": {
       "type": "project",
       "path": "../Td.Kylin.DataCache/project.json"
     },
@@ -15160,6 +15622,18 @@
         "runtimes/aot/lib/netcore50/_._"
       ]
     },
+    "runtime.win.System.Runtime.InteropServices.RuntimeInformation/4.0.0-beta-23516": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "Ge4VbEM9Yre+DpsgTZha1wVnm8DolIbPTblkp74pGqR8d7YIKZ+LXrd12KtXpIh+rtt2kxHrImjIJnIjo4S+UA==",
+      "files": [
+        "ref/dotnet/_._",
+        "runtime.win.System.Runtime.InteropServices.RuntimeInformation.4.0.0-beta-23516.nupkg",
+        "runtime.win.System.Runtime.InteropServices.RuntimeInformation.4.0.0-beta-23516.nupkg.sha512",
+        "runtime.win.System.Runtime.InteropServices.RuntimeInformation.nuspec",
+        "runtimes/win/lib/dotnet5.4/System.Runtime.InteropServices.RuntimeInformation.dll"
+      ]
+    },
     "runtime.win.System.Text.Encoding.CodePages/4.0.1-beta-23516": {
       "type": "package",
       "serviceable": true,
@@ -15278,6 +15752,23 @@
         "runtimes/win7/lib/dotnet5.4/System.IO.FileSystem.dll",
         "runtimes/win7/lib/net/_._",
         "runtimes/win7/lib/netcore50/System.IO.FileSystem.dll",
+        "runtimes/win7/lib/win8/_._",
+        "runtimes/win7/lib/wp8/_._",
+        "runtimes/win7/lib/wpa81/_._"
+      ]
+    },
+    "runtime.win7.System.IO.FileSystem.DriveInfo/4.0.0-beta-23516": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "ha9ZV9a6xmNg/EC4HnZyQ+cYXtoxOvhmmjh0cvoBBKePxqwuumUnVH3SZuF/P3ogdP7t3BXE73vLo7whml7mMg==",
+      "files": [
+        "ref/dotnet/_._",
+        "runtime.win7.System.IO.FileSystem.DriveInfo.4.0.0-beta-23516.nupkg",
+        "runtime.win7.System.IO.FileSystem.DriveInfo.4.0.0-beta-23516.nupkg.sha512",
+        "runtime.win7.System.IO.FileSystem.DriveInfo.nuspec",
+        "runtimes/win7/lib/dotnet5.4/System.IO.FileSystem.DriveInfo.dll",
+        "runtimes/win7/lib/net/_._",
+        "runtimes/win7/lib/netcore50/_._",
         "runtimes/win7/lib/win8/_._",
         "runtimes/win7/lib/wp8/_._",
         "runtimes/win7/lib/wpa81/_._"
@@ -15507,10 +15998,10 @@
         "StackExchange.Redis.nuspec"
       ]
     },
-    "System.AppContext/4.0.0": {
+    "System.AppContext/4.0.1-beta-23516": {
       "type": "package",
       "serviceable": true,
-      "sha512": "gUoYgAWDC3+xhKeU5KSLbYDhTdBYk9GssrMSCcWUADzOglW+s0AmwVhOUGt2tL5xUl7ZXoYTPdA88zCgKrlG0A==",
+      "sha512": "5xHkTfjYOOsw3oTcl1HrTj/ays+49IQAgZ6ZStJVwn197mm2ml7PuHCJ4fzk5rZONZZTkwT3Os20WproAp2/3g==",
       "files": [
         "lib/DNXCore50/System.AppContext.dll",
         "lib/MonoAndroid10/_._",
@@ -15519,24 +16010,24 @@
         "lib/netcore50/System.AppContext.dll",
         "lib/xamarinios10/_._",
         "lib/xamarinmac20/_._",
-        "ref/dotnet/de/System.AppContext.xml",
-        "ref/dotnet/es/System.AppContext.xml",
-        "ref/dotnet/fr/System.AppContext.xml",
-        "ref/dotnet/it/System.AppContext.xml",
-        "ref/dotnet/ja/System.AppContext.xml",
-        "ref/dotnet/ko/System.AppContext.xml",
-        "ref/dotnet/ru/System.AppContext.xml",
-        "ref/dotnet/System.AppContext.dll",
-        "ref/dotnet/System.AppContext.xml",
-        "ref/dotnet/zh-hans/System.AppContext.xml",
-        "ref/dotnet/zh-hant/System.AppContext.xml",
+        "ref/dotnet5.1/de/System.AppContext.xml",
+        "ref/dotnet5.1/es/System.AppContext.xml",
+        "ref/dotnet5.1/fr/System.AppContext.xml",
+        "ref/dotnet5.1/it/System.AppContext.xml",
+        "ref/dotnet5.1/ja/System.AppContext.xml",
+        "ref/dotnet5.1/ko/System.AppContext.xml",
+        "ref/dotnet5.1/ru/System.AppContext.xml",
+        "ref/dotnet5.1/System.AppContext.dll",
+        "ref/dotnet5.1/System.AppContext.xml",
+        "ref/dotnet5.1/zh-hans/System.AppContext.xml",
+        "ref/dotnet5.1/zh-hant/System.AppContext.xml",
         "ref/MonoAndroid10/_._",
         "ref/MonoTouch10/_._",
         "ref/net46/System.AppContext.dll",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
-        "System.AppContext.4.0.0.nupkg",
-        "System.AppContext.4.0.0.nupkg.sha512",
+        "System.AppContext.4.0.1-beta-23516.nupkg",
+        "System.AppContext.4.0.1-beta-23516.nupkg.sha512",
         "System.AppContext.nuspec"
       ]
     },
@@ -16609,9 +17100,10 @@
         "System.Globalization.nuspec"
       ]
     },
-    "System.Globalization.Calendars/4.0.0": {
+    "System.Globalization.Calendars/4.0.1-beta-23516": {
       "type": "package",
-      "sha512": "cL6WrdGKnNBx9W/iTr+jbffsEO4RLjEtOYcpVSzPNDoli6X5Q6bAfWtJYbJNOPi8Q0fXgBEvKK1ncFL/3FTqlA==",
+      "serviceable": true,
+      "sha512": "ma+ZpRFsTqOYIGHGUMSZ+qETQlMpYzIyEDd9DWUXdgT8WX90g7CgSr8UAYpcHVNyB/lqCJqcPTjXjmDlMHjhaQ==",
       "files": [
         "lib/DNXCore50/System.Globalization.Calendars.dll",
         "lib/MonoAndroid10/_._",
@@ -16620,25 +17112,25 @@
         "lib/netcore50/System.Globalization.Calendars.dll",
         "lib/xamarinios10/_._",
         "lib/xamarinmac20/_._",
-        "ref/dotnet/de/System.Globalization.Calendars.xml",
-        "ref/dotnet/es/System.Globalization.Calendars.xml",
-        "ref/dotnet/fr/System.Globalization.Calendars.xml",
-        "ref/dotnet/it/System.Globalization.Calendars.xml",
-        "ref/dotnet/ja/System.Globalization.Calendars.xml",
-        "ref/dotnet/ko/System.Globalization.Calendars.xml",
-        "ref/dotnet/ru/System.Globalization.Calendars.xml",
-        "ref/dotnet/System.Globalization.Calendars.dll",
-        "ref/dotnet/System.Globalization.Calendars.xml",
-        "ref/dotnet/zh-hans/System.Globalization.Calendars.xml",
-        "ref/dotnet/zh-hant/System.Globalization.Calendars.xml",
+        "ref/dotnet5.1/de/System.Globalization.Calendars.xml",
+        "ref/dotnet5.1/es/System.Globalization.Calendars.xml",
+        "ref/dotnet5.1/fr/System.Globalization.Calendars.xml",
+        "ref/dotnet5.1/it/System.Globalization.Calendars.xml",
+        "ref/dotnet5.1/ja/System.Globalization.Calendars.xml",
+        "ref/dotnet5.1/ko/System.Globalization.Calendars.xml",
+        "ref/dotnet5.1/ru/System.Globalization.Calendars.xml",
+        "ref/dotnet5.1/System.Globalization.Calendars.dll",
+        "ref/dotnet5.1/System.Globalization.Calendars.xml",
+        "ref/dotnet5.1/zh-hans/System.Globalization.Calendars.xml",
+        "ref/dotnet5.1/zh-hant/System.Globalization.Calendars.xml",
         "ref/MonoAndroid10/_._",
         "ref/MonoTouch10/_._",
         "ref/net46/System.Globalization.Calendars.dll",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
         "runtimes/win8-aot/lib/netcore50/System.Globalization.Calendars.dll",
-        "System.Globalization.Calendars.4.0.0.nupkg",
-        "System.Globalization.Calendars.4.0.0.nupkg.sha512",
+        "System.Globalization.Calendars.4.0.1-beta-23516.nupkg",
+        "System.Globalization.Calendars.4.0.1-beta-23516.nupkg.sha512",
         "System.Globalization.Calendars.nuspec"
       ]
     },
@@ -16874,6 +17366,38 @@
         "System.IO.FileSystem.4.0.1-beta-23516.nupkg",
         "System.IO.FileSystem.4.0.1-beta-23516.nupkg.sha512",
         "System.IO.FileSystem.nuspec"
+      ]
+    },
+    "System.IO.FileSystem.DriveInfo/4.0.0-beta-23516": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "k/GR3QoVvBRD19aidnH+xdXwnodChNHnB8wIFxgyYUlWddXAiOAX+sSAwon2aZhnGkN4TVi8jWnevn7aSwVTXg==",
+      "files": [
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/System.IO.FileSystem.DriveInfo.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "ref/dotnet5.4/de/System.IO.FileSystem.DriveInfo.xml",
+        "ref/dotnet5.4/es/System.IO.FileSystem.DriveInfo.xml",
+        "ref/dotnet5.4/fr/System.IO.FileSystem.DriveInfo.xml",
+        "ref/dotnet5.4/it/System.IO.FileSystem.DriveInfo.xml",
+        "ref/dotnet5.4/ja/System.IO.FileSystem.DriveInfo.xml",
+        "ref/dotnet5.4/ko/System.IO.FileSystem.DriveInfo.xml",
+        "ref/dotnet5.4/ru/System.IO.FileSystem.DriveInfo.xml",
+        "ref/dotnet5.4/System.IO.FileSystem.DriveInfo.dll",
+        "ref/dotnet5.4/System.IO.FileSystem.DriveInfo.xml",
+        "ref/dotnet5.4/zh-hans/System.IO.FileSystem.DriveInfo.xml",
+        "ref/dotnet5.4/zh-hant/System.IO.FileSystem.DriveInfo.xml",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net46/System.IO.FileSystem.DriveInfo.dll",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "runtime.json",
+        "System.IO.FileSystem.DriveInfo.4.0.0-beta-23516.nupkg",
+        "System.IO.FileSystem.DriveInfo.4.0.0-beta-23516.nupkg.sha512",
+        "System.IO.FileSystem.DriveInfo.nuspec"
       ]
     },
     "System.IO.FileSystem.Primitives/4.0.1-beta-23516": {
@@ -18293,6 +18817,26 @@
         "System.Runtime.InteropServices.nuspec"
       ]
     },
+    "System.Runtime.InteropServices.RuntimeInformation/4.0.0-beta-23516": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "ZEMNyVBUeQE2hXkXsw8jF4d1ev5H6CT3N4sbnvrM6J6EVln2stGxSHq/QawZVO0zYbMXeYBzM9qLxrz26utSHw==",
+      "files": [
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "ref/dotnet5.1/System.Runtime.InteropServices.RuntimeInformation.dll",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "runtime.json",
+        "System.Runtime.InteropServices.RuntimeInformation.4.0.0-beta-23516.nupkg",
+        "System.Runtime.InteropServices.RuntimeInformation.4.0.0-beta-23516.nupkg.sha512",
+        "System.Runtime.InteropServices.RuntimeInformation.nuspec"
+      ]
+    },
     "System.Runtime.Loader/4.0.0-beta-23516": {
       "type": "package",
       "serviceable": true,
@@ -18353,6 +18897,67 @@
         "System.Runtime.Numerics.4.0.1-beta-23516.nupkg",
         "System.Runtime.Numerics.4.0.1-beta-23516.nupkg.sha512",
         "System.Runtime.Numerics.nuspec"
+      ]
+    },
+    "System.Runtime.Serialization.Primitives/4.1.0-beta-23516": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "Dsl95PE2vyGIy9voclfTVKSqYD8O4PjsMS+TV0bM3N1xNraS2BBaChGk1stGmf04cn2/xA3cZyh80bkZL+v1/Q==",
+      "files": [
+        "lib/dotnet5.4/System.Runtime.Serialization.Primitives.dll",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcore50/System.Runtime.Serialization.Primitives.dll",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "ref/dotnet5.1/de/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.1/es/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.1/fr/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.1/it/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.1/ja/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.1/ko/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.1/ru/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.1/System.Runtime.Serialization.Primitives.dll",
+        "ref/dotnet5.1/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.1/zh-hans/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.1/zh-hant/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.4/de/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.4/es/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.4/fr/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.4/it/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.4/ja/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.4/ko/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.4/ru/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.4/System.Runtime.Serialization.Primitives.dll",
+        "ref/dotnet5.4/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.4/zh-hans/System.Runtime.Serialization.Primitives.xml",
+        "ref/dotnet5.4/zh-hant/System.Runtime.Serialization.Primitives.xml",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/netcore50/de/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/es/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/fr/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/it/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/ja/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/ko/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/ru/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/System.Runtime.Serialization.Primitives.dll",
+        "ref/netcore50/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/zh-hans/System.Runtime.Serialization.Primitives.xml",
+        "ref/netcore50/zh-hant/System.Runtime.Serialization.Primitives.xml",
+        "ref/win8/_._",
+        "ref/wp80/_._",
+        "ref/wpa81/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "System.Runtime.Serialization.Primitives.4.1.0-beta-23516.nupkg",
+        "System.Runtime.Serialization.Primitives.4.1.0-beta-23516.nupkg.sha512",
+        "System.Runtime.Serialization.Primitives.nuspec"
       ]
     },
     "System.Security.Claims/4.0.1-beta-23516": {
@@ -19248,35 +19853,64 @@
         "System.Threading.Timer.nuspec"
       ]
     },
-    "System.Xml.ReaderWriter/4.0.10": {
+    "System.Xml.ReaderWriter/4.0.11-beta-23516": {
       "type": "package",
       "serviceable": true,
-      "sha512": "VdmWWMH7otrYV7D+cviUo7XjX0jzDnD/lTGSZTlZqfIQ5PhXk85j+6P0TK9od3PnOd5ZIM+pOk01G/J+3nh9/w==",
+      "sha512": "E3/KJQWqUUrkUsorS42EwoGxLJQ3XMMYNXFlAW4bWT1kOeiGZHj1CqYk1sQuvxPVasZdqjcS/AAbPfYS01Y9Ag==",
       "files": [
-        "lib/dotnet/System.Xml.ReaderWriter.dll",
+        "lib/dotnet5.4/System.Xml.ReaderWriter.dll",
         "lib/MonoAndroid10/_._",
         "lib/MonoTouch10/_._",
-        "lib/net46/_._",
+        "lib/net45/_._",
+        "lib/netcore50/System.Xml.ReaderWriter.dll",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
         "lib/xamarinios10/_._",
         "lib/xamarinmac20/_._",
-        "ref/dotnet/de/System.Xml.ReaderWriter.xml",
-        "ref/dotnet/es/System.Xml.ReaderWriter.xml",
-        "ref/dotnet/fr/System.Xml.ReaderWriter.xml",
-        "ref/dotnet/it/System.Xml.ReaderWriter.xml",
-        "ref/dotnet/ja/System.Xml.ReaderWriter.xml",
-        "ref/dotnet/ko/System.Xml.ReaderWriter.xml",
-        "ref/dotnet/ru/System.Xml.ReaderWriter.xml",
-        "ref/dotnet/System.Xml.ReaderWriter.dll",
-        "ref/dotnet/System.Xml.ReaderWriter.xml",
-        "ref/dotnet/zh-hans/System.Xml.ReaderWriter.xml",
-        "ref/dotnet/zh-hant/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.1/de/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.1/es/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.1/fr/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.1/it/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.1/ja/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.1/ko/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.1/ru/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.1/System.Xml.ReaderWriter.dll",
+        "ref/dotnet5.1/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.1/zh-hans/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.1/zh-hant/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.4/de/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.4/es/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.4/fr/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.4/it/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.4/ja/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.4/ko/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.4/ru/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.4/System.Xml.ReaderWriter.dll",
+        "ref/dotnet5.4/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.4/zh-hans/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.4/zh-hant/System.Xml.ReaderWriter.xml",
         "ref/MonoAndroid10/_._",
         "ref/MonoTouch10/_._",
-        "ref/net46/_._",
+        "ref/net45/_._",
+        "ref/netcore50/de/System.Xml.ReaderWriter.xml",
+        "ref/netcore50/es/System.Xml.ReaderWriter.xml",
+        "ref/netcore50/fr/System.Xml.ReaderWriter.xml",
+        "ref/netcore50/it/System.Xml.ReaderWriter.xml",
+        "ref/netcore50/ja/System.Xml.ReaderWriter.xml",
+        "ref/netcore50/ko/System.Xml.ReaderWriter.xml",
+        "ref/netcore50/ru/System.Xml.ReaderWriter.xml",
+        "ref/netcore50/System.Xml.ReaderWriter.dll",
+        "ref/netcore50/System.Xml.ReaderWriter.xml",
+        "ref/netcore50/zh-hans/System.Xml.ReaderWriter.xml",
+        "ref/netcore50/zh-hant/System.Xml.ReaderWriter.xml",
+        "ref/win8/_._",
+        "ref/wp80/_._",
+        "ref/wpa81/_._",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
-        "System.Xml.ReaderWriter.4.0.10.nupkg",
-        "System.Xml.ReaderWriter.4.0.10.nupkg.sha512",
+        "System.Xml.ReaderWriter.4.0.11-beta-23516.nupkg",
+        "System.Xml.ReaderWriter.4.0.11-beta-23516.nupkg.sha512",
         "System.Xml.ReaderWriter.nuspec"
       ]
     },
@@ -19341,6 +19975,19 @@
         "System.Xml.XDocument.nuspec"
       ]
     },
+    "Td.CoreLibrary/1.1.3-beta": {
+      "type": "package",
+      "sha512": "5yHmkJyy43mXSss5noPg/wo22TbD024YTNQata0wmPI9FI+xkcY9PQkVfsCBDBgyJW9YzZY3b0yeutiIvEMqjw==",
+      "files": [
+        "lib/dnx451/Td.CoreLibrary.dll",
+        "lib/dnx451/Td.CoreLibrary.xml",
+        "lib/dnxcore50/Td.CoreLibrary.dll",
+        "lib/dnxcore50/Td.CoreLibrary.xml",
+        "Td.CoreLibrary.1.1.3-beta.nupkg",
+        "Td.CoreLibrary.1.1.3-beta.nupkg.sha512",
+        "Td.CoreLibrary.nuspec"
+      ]
+    },
     "Td.Kylin.Entity/1.0.0-rc1-19": {
       "type": "package",
       "sha512": "SGOpPB6v64tSsT5CNcQ/wIzOCYwe3k3Ffh1zdr9Q7dVmAtcCqExRSltBQv3lLYg5pP1anTUFKqe2cIPNDSBGiQ==",
@@ -19352,6 +19999,27 @@
         "Td.Kylin.Entity.1.0.0-rc1-19.nupkg",
         "Td.Kylin.Entity.1.0.0-rc1-19.nupkg.sha512",
         "Td.Kylin.Entity.nuspec"
+      ]
+    },
+    "Td.Kylin.EnumLibrary/1.0.33.1-beta": {
+      "type": "package",
+      "sha512": "r8EsTZIbaAedMI0qHli5MsiBdjn1v27PUwz/3KSs9NDERvuM5CJ9plDL6rrp4Jr8raY468URcabyaoWz8fyh4Q==",
+      "files": [
+        "lib/dnx451/Td.Kylin.EnumLibrary.dll",
+        "lib/dnx451/Td.Kylin.EnumLibrary.xml",
+        "lib/dnxcore50/Td.Kylin.EnumLibrary.dll",
+        "lib/dnxcore50/Td.Kylin.EnumLibrary.xml",
+        "lib/MonoAndroid/Td.Kylin.EnumLibrary.dll",
+        "lib/MonoAndroid/Td.Kylin.EnumLibrary.xml",
+        "lib/MonoTouch/Td.Kylin.EnumLibrary.dll",
+        "lib/MonoTouch/Td.Kylin.EnumLibrary.xml",
+        "lib/net45/Td.Kylin.EnumLibrary.dll",
+        "lib/net45/Td.Kylin.EnumLibrary.xml",
+        "lib/net46/Td.Kylin.EnumLibrary.dll",
+        "lib/net46/Td.Kylin.EnumLibrary.xml",
+        "Td.Kylin.EnumLibrary.1.0.33.1-beta.nupkg",
+        "Td.Kylin.EnumLibrary.1.0.33.1-beta.nupkg.sha512",
+        "Td.Kylin.EnumLibrary.nuspec"
       ]
     },
     "Td.Kylin.Redis/1.0.5-alpha": {

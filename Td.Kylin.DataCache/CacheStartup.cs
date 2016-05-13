@@ -1,4 +1,5 @@
 ﻿using Td.Kylin.DataCache.RedisConfig;
+using Td.Kylin.EnumLibrary;
 
 namespace Td.Kylin.DataCache
 {
@@ -8,11 +9,11 @@ namespace Td.Kylin.DataCache
         {
             RedisConfiguration = InitRedisConfigration();
         }
-        
+
         /// <summary>
         /// Redis缓存配置
         /// </summary>
-        public static RedisConfigurationRoot RedisConfiguration { get;private set; }
+        public static RedisConfigurationRoot RedisConfiguration { get; private set; }
 
         /// <summary>
         /// 数据库提供者类型
@@ -35,11 +36,11 @@ namespace Td.Kylin.DataCache
             var config = new RedisConfigurationRoot();
 
             //全国区域
-            config.Add(CacheItemType.SystemArea, 0, RedisSaveType.HashSet,CacheLevel.Permanent);
+            config.Add(CacheItemType.SystemArea, 0, RedisSaveType.HashSet, CacheLevel.Permanent);
             //开通区域
-            config.Add(CacheItemType.OpenArea, 0, RedisSaveType.HashSet,CacheLevel.Hight);
+            config.Add(CacheItemType.OpenArea, 0, RedisSaveType.HashSet, CacheLevel.Hight);
             //区域圈子
-            config.Add(CacheItemType.AreaForum, 0, RedisSaveType.HashSet,CacheLevel.Hight);
+            config.Add(CacheItemType.AreaForum, 0, RedisSaveType.HashSet, CacheLevel.Hight);
             //区域行业推荐
             config.Add(CacheItemType.AreaRecommendIndustry, 0, RedisSaveType.HashSet, CacheLevel.Hight);
             //B2C商品分类
@@ -74,6 +75,8 @@ namespace Td.Kylin.DataCache
             config.Add(CacheItemType.AreaForPersonalWorkerCommission, 0, RedisSaveType.HashSet, CacheLevel.Hight);
             //区域默认抽成
             config.Add(CacheItemType.AreaDefaultCommission, 0, RedisSaveType.HashSet, CacheLevel.Middel);
+            //接口对模块授权
+            config.Add(CacheItemType.ApiModuleAuthorize, 0, RedisSaveType.HashSet, CacheLevel.Permanent);
 
             return config;
         }

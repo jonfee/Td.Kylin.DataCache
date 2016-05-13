@@ -4,6 +4,7 @@ using StackExchange.Redis;
 using System;
 using System.Threading.Tasks;
 using Td.Kylin.DataCache.RedisConfig;
+using Td.Kylin.EnumLibrary;
 using Td.Kylin.Redis;
 
 namespace Td.Kylin.DataCache
