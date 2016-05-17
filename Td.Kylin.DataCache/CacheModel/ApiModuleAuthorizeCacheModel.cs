@@ -6,7 +6,7 @@
     public class ApiModuleAuthorizeCacheModel : BaseCacheModel
     {
         /// <summary>
-        /// HastField（ AreaID+CommissionItem）
+        /// HastField（ ServerID+ModuleID）
         /// </summary>
         public override string HashField
         {

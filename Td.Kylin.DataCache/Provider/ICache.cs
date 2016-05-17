@@ -1,4 +1,6 @@
-﻿namespace Td.Kylin.DataCache.Provider
+﻿using System.Collections.Generic;
+
+namespace Td.Kylin.DataCache.Provider
 {
     /// <summary>
     /// 缓存接口
@@ -30,5 +32,10 @@
         /// </summary>
         /// <param name="level"></param>
         void ResetLevel(CacheLevel level);
+
+        /// <summary>
+        /// 获取缓存原数据
+        /// </summary>
+        List<object> GetCacheData();
     }
 }

@@ -3,6 +3,26 @@
   "version": 2,
   "targets": {
     "DNX,Version=v4.5.1": {
+      "EntityFramework.Commands/7.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Relational.Design": "7.0.0-rc1-final",
+          "Microsoft.AspNet.Hosting.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/EntityFramework.Commands.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/EntityFramework.Commands.dll": {}
+        }
+      },
       "EntityFramework.Core/7.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -82,6 +102,28 @@
         },
         "runtime": {
           "lib/net451/EntityFramework.Relational.dll": {}
+        }
+      },
+      "EntityFramework.Relational.Design/7.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Relational": "7.0.0-rc1-final"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.ComponentModel.DataAnnotations",
+          "System.Core",
+          "System.IO",
+          "System.Text.Encoding",
+          "System.Threading.Tasks"
+        ],
+        "compile": {
+          "lib/dnx451/EntityFramework.Relational.Design.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/EntityFramework.Relational.Design.dll": {}
         }
       },
       "EntityFramework7.Npgsql/3.1.0-rc1-3": {
@@ -1720,7 +1762,7 @@
           "lib/net45/_._": {}
         }
       },
-      "Td.CoreLibrary/1.1.3-beta": {
+      "Td.CoreLibrary/1.1.3.2-beta": {
         "type": "package",
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -1741,7 +1783,7 @@
           "lib/dnx451/Td.CoreLibrary.dll": {}
         }
       },
-      "Td.Kylin.DataCache/1.0.7-rc1": {
+      "Td.Kylin.DataCache/1.0.9-rc1": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -1753,14 +1795,34 @@
           "StackExchange.Redis": "1.1.553-alpha",
           "System.Runtime": "4.0.21-beta-23516",
           "System.Runtime.InteropServices": "4.0.21-beta-23516",
-          "Td.CoreLibrary": "1.1.3-beta",
-          "Td.Kylin.Entity": "1.0.0-rc1-19",
-          "Td.Kylin.EnumLibrary": "1.0.33.1-beta",
+          "Td.CoreLibrary": "1.1.3.2-beta",
+          "Td.Kylin.Entity": "1.0.0-rc1-32",
+          "Td.Kylin.EnumLibrary": "1.0.33.7-bata",
           "Td.Kylin.Redis": "1.0.5-alpha"
         }
       },
-      "Td.Kylin.Entity/1.0.0-rc1-19": {
+      "Td.Kylin.Entity/1.0.0-rc1-32": {
         "type": "package",
+        "dependencies": {
+          "EntityFramework.Commands": "7.0.0-rc1-final",
+          "EntityFramework.Core": "7.0.0-rc1-final",
+          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+          "EntityFramework7.Npgsql": "3.1.0-rc1-3",
+          "Microsoft.AspNet.Hosting": "1.0.0-rc1-final",
+          "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.AspNet.Mvc.Core": "6.0.0-rc1-final",
+          "Microsoft.AspNet.Mvc.ViewFeatures": "6.0.0-rc1-final",
+          "Microsoft.Extensions.Configuration.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
+          "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
         "compile": {
           "lib/dnx451/Td.Kylin.Entity.dll": {}
         },
@@ -1768,7 +1830,7 @@
           "lib/dnx451/Td.Kylin.Entity.dll": {}
         }
       },
-      "Td.Kylin.EnumLibrary/1.0.33.1-beta": {
+      "Td.Kylin.EnumLibrary/1.0.33.7-bata": {
         "type": "package",
         "dependencies": {
           "System.Runtime": "4.0.21-beta-23516",
@@ -1810,6 +1872,21 @@
       }
     },
     "DNXCore,Version=v5.0": {
+      "EntityFramework.Commands/7.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Relational.Design": "7.0.0-rc1-final",
+          "Microsoft.AspNet.Hosting.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final",
+          "System.Console": "4.0.0-beta-23516"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.Commands.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.Commands.dll": {}
+        }
+      },
       "EntityFramework.Core/7.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -1878,6 +1955,19 @@
         },
         "runtime": {
           "lib/dotnet5.4/EntityFramework.Relational.dll": {}
+        }
+      },
+      "EntityFramework.Relational.Design/7.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Relational": "7.0.0-rc1-final",
+          "System.ComponentModel.Annotations": "4.0.11-beta-23516"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.Relational.Design.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.Relational.Design.dll": {}
         }
       },
       "EntityFramework7.Npgsql/3.1.0-rc1-3": {
@@ -4322,7 +4412,7 @@
           "lib/dotnet5.4/System.Xml.XDocument.dll": {}
         }
       },
-      "Td.CoreLibrary/1.1.3-beta": {
+      "Td.CoreLibrary/1.1.3.2-beta": {
         "type": "package",
         "dependencies": {
           "Microsoft.Dnx.Compilation.Abstractions": "1.0.0-rc1-final",
@@ -4359,7 +4449,7 @@
           "lib/dnxcore50/Td.CoreLibrary.dll": {}
         }
       },
-      "Td.Kylin.DataCache/1.0.7-rc1": {
+      "Td.Kylin.DataCache/1.0.9-rc1": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -4371,14 +4461,28 @@
           "StackExchange.Redis": "1.1.553-alpha",
           "System.Runtime": "4.0.21-beta-23516",
           "System.Runtime.InteropServices": "4.0.21-beta-23516",
-          "Td.CoreLibrary": "1.1.3-beta",
-          "Td.Kylin.Entity": "1.0.0-rc1-19",
-          "Td.Kylin.EnumLibrary": "1.0.33.1-beta",
+          "Td.CoreLibrary": "1.1.3.2-beta",
+          "Td.Kylin.Entity": "1.0.0-rc1-32",
+          "Td.Kylin.EnumLibrary": "1.0.33.7-bata",
           "Td.Kylin.Redis": "1.0.5-alpha"
         }
       },
-      "Td.Kylin.Entity/1.0.0-rc1-19": {
+      "Td.Kylin.Entity/1.0.0-rc1-32": {
         "type": "package",
+        "dependencies": {
+          "EntityFramework.Commands": "7.0.0-rc1-final",
+          "EntityFramework.Core": "7.0.0-rc1-final",
+          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+          "EntityFramework7.Npgsql": "3.1.0-rc1-3",
+          "Microsoft.AspNet.Hosting": "1.0.0-rc1-final",
+          "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.AspNet.Mvc.Core": "6.0.0-rc1-final",
+          "Microsoft.AspNet.Mvc.ViewFeatures": "6.0.0-rc1-final",
+          "Microsoft.Extensions.Configuration.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
+          "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final"
+        },
         "compile": {
           "lib/dnxcore50/Td.Kylin.Entity.dll": {}
         },
@@ -4386,7 +4490,7 @@
           "lib/dnxcore50/Td.Kylin.Entity.dll": {}
         }
       },
-      "Td.Kylin.EnumLibrary/1.0.33.1-beta": {
+      "Td.Kylin.EnumLibrary/1.0.33.7-bata": {
         "type": "package",
         "dependencies": {
           "System.Runtime": "4.0.21-beta-23516",
@@ -4416,6 +4520,26 @@
       }
     },
     "DNX,Version=v4.5.1/win7-x86": {
+      "EntityFramework.Commands/7.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Relational.Design": "7.0.0-rc1-final",
+          "Microsoft.AspNet.Hosting.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/EntityFramework.Commands.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/EntityFramework.Commands.dll": {}
+        }
+      },
       "EntityFramework.Core/7.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -4495,6 +4619,28 @@
         },
         "runtime": {
           "lib/net451/EntityFramework.Relational.dll": {}
+        }
+      },
+      "EntityFramework.Relational.Design/7.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Relational": "7.0.0-rc1-final"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.ComponentModel.DataAnnotations",
+          "System.Core",
+          "System.IO",
+          "System.Text.Encoding",
+          "System.Threading.Tasks"
+        ],
+        "compile": {
+          "lib/dnx451/EntityFramework.Relational.Design.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/EntityFramework.Relational.Design.dll": {}
         }
       },
       "EntityFramework7.Npgsql/3.1.0-rc1-3": {
@@ -6136,7 +6282,7 @@
           "lib/net45/_._": {}
         }
       },
-      "Td.CoreLibrary/1.1.3-beta": {
+      "Td.CoreLibrary/1.1.3.2-beta": {
         "type": "package",
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -6157,7 +6303,7 @@
           "lib/dnx451/Td.CoreLibrary.dll": {}
         }
       },
-      "Td.Kylin.DataCache/1.0.7-rc1": {
+      "Td.Kylin.DataCache/1.0.9-rc1": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -6169,14 +6315,34 @@
           "StackExchange.Redis": "1.1.553-alpha",
           "System.Runtime": "4.0.21-beta-23516",
           "System.Runtime.InteropServices": "4.0.21-beta-23516",
-          "Td.CoreLibrary": "1.1.3-beta",
-          "Td.Kylin.Entity": "1.0.0-rc1-19",
-          "Td.Kylin.EnumLibrary": "1.0.33.1-beta",
+          "Td.CoreLibrary": "1.1.3.2-beta",
+          "Td.Kylin.Entity": "1.0.0-rc1-32",
+          "Td.Kylin.EnumLibrary": "1.0.33.7-bata",
           "Td.Kylin.Redis": "1.0.5-alpha"
         }
       },
-      "Td.Kylin.Entity/1.0.0-rc1-19": {
+      "Td.Kylin.Entity/1.0.0-rc1-32": {
         "type": "package",
+        "dependencies": {
+          "EntityFramework.Commands": "7.0.0-rc1-final",
+          "EntityFramework.Core": "7.0.0-rc1-final",
+          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+          "EntityFramework7.Npgsql": "3.1.0-rc1-3",
+          "Microsoft.AspNet.Hosting": "1.0.0-rc1-final",
+          "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.AspNet.Mvc.Core": "6.0.0-rc1-final",
+          "Microsoft.AspNet.Mvc.ViewFeatures": "6.0.0-rc1-final",
+          "Microsoft.Extensions.Configuration.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
+          "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
         "compile": {
           "lib/dnx451/Td.Kylin.Entity.dll": {}
         },
@@ -6184,7 +6350,7 @@
           "lib/dnx451/Td.Kylin.Entity.dll": {}
         }
       },
-      "Td.Kylin.EnumLibrary/1.0.33.1-beta": {
+      "Td.Kylin.EnumLibrary/1.0.33.7-bata": {
         "type": "package",
         "dependencies": {
           "System.Runtime": "4.0.21-beta-23516",
@@ -6226,6 +6392,26 @@
       }
     },
     "DNX,Version=v4.5.1/win7-x64": {
+      "EntityFramework.Commands/7.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Relational.Design": "7.0.0-rc1-final",
+          "Microsoft.AspNet.Hosting.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/EntityFramework.Commands.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/EntityFramework.Commands.dll": {}
+        }
+      },
       "EntityFramework.Core/7.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -6305,6 +6491,28 @@
         },
         "runtime": {
           "lib/net451/EntityFramework.Relational.dll": {}
+        }
+      },
+      "EntityFramework.Relational.Design/7.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Relational": "7.0.0-rc1-final"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.ComponentModel.DataAnnotations",
+          "System.Core",
+          "System.IO",
+          "System.Text.Encoding",
+          "System.Threading.Tasks"
+        ],
+        "compile": {
+          "lib/dnx451/EntityFramework.Relational.Design.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/EntityFramework.Relational.Design.dll": {}
         }
       },
       "EntityFramework7.Npgsql/3.1.0-rc1-3": {
@@ -7946,7 +8154,7 @@
           "lib/net45/_._": {}
         }
       },
-      "Td.CoreLibrary/1.1.3-beta": {
+      "Td.CoreLibrary/1.1.3.2-beta": {
         "type": "package",
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -7967,7 +8175,7 @@
           "lib/dnx451/Td.CoreLibrary.dll": {}
         }
       },
-      "Td.Kylin.DataCache/1.0.7-rc1": {
+      "Td.Kylin.DataCache/1.0.9-rc1": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
@@ -7979,14 +8187,34 @@
           "StackExchange.Redis": "1.1.553-alpha",
           "System.Runtime": "4.0.21-beta-23516",
           "System.Runtime.InteropServices": "4.0.21-beta-23516",
-          "Td.CoreLibrary": "1.1.3-beta",
-          "Td.Kylin.Entity": "1.0.0-rc1-19",
-          "Td.Kylin.EnumLibrary": "1.0.33.1-beta",
+          "Td.CoreLibrary": "1.1.3.2-beta",
+          "Td.Kylin.Entity": "1.0.0-rc1-32",
+          "Td.Kylin.EnumLibrary": "1.0.33.7-bata",
           "Td.Kylin.Redis": "1.0.5-alpha"
         }
       },
-      "Td.Kylin.Entity/1.0.0-rc1-19": {
+      "Td.Kylin.Entity/1.0.0-rc1-32": {
         "type": "package",
+        "dependencies": {
+          "EntityFramework.Commands": "7.0.0-rc1-final",
+          "EntityFramework.Core": "7.0.0-rc1-final",
+          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+          "EntityFramework7.Npgsql": "3.1.0-rc1-3",
+          "Microsoft.AspNet.Hosting": "1.0.0-rc1-final",
+          "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.AspNet.Mvc.Core": "6.0.0-rc1-final",
+          "Microsoft.AspNet.Mvc.ViewFeatures": "6.0.0-rc1-final",
+          "Microsoft.Extensions.Configuration.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
+          "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
         "compile": {
           "lib/dnx451/Td.Kylin.Entity.dll": {}
         },
@@ -7994,7 +8222,7 @@
           "lib/dnx451/Td.Kylin.Entity.dll": {}
         }
       },
-      "Td.Kylin.EnumLibrary/1.0.33.1-beta": {
+      "Td.Kylin.EnumLibrary/1.0.33.7-bata": {
         "type": "package",
         "dependencies": {
           "System.Runtime": "4.0.21-beta-23516",
@@ -8036,6 +8264,21 @@
       }
     },
     "DNXCore,Version=v5.0/win7-x86": {
+      "EntityFramework.Commands/7.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Relational.Design": "7.0.0-rc1-final",
+          "Microsoft.AspNet.Hosting.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final",
+          "System.Console": "4.0.0-beta-23516"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.Commands.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.Commands.dll": {}
+        }
+      },
       "EntityFramework.Core/7.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -8104,6 +8347,19 @@
         },
         "runtime": {
           "lib/dotnet5.4/EntityFramework.Relational.dll": {}
+        }
+      },
+      "EntityFramework.Relational.Design/7.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Relational": "7.0.0-rc1-final",
+          "System.ComponentModel.Annotations": "4.0.11-beta-23516"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.Relational.Design.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.Relational.Design.dll": {}
         }
       },
       "EntityFramework7.Npgsql/3.1.0-rc1-3": {
@@ -11077,7 +11333,7 @@
           "lib/dotnet5.4/System.Xml.XDocument.dll": {}
         }
       },
-      "Td.CoreLibrary/1.1.3-beta": {
+      "Td.CoreLibrary/1.1.3.2-beta": {
         "type": "package",
         "dependencies": {
           "Microsoft.Dnx.Compilation.Abstractions": "1.0.0-rc1-final",
@@ -11114,7 +11370,7 @@
           "lib/dnxcore50/Td.CoreLibrary.dll": {}
         }
       },
-      "Td.Kylin.DataCache/1.0.7-rc1": {
+      "Td.Kylin.DataCache/1.0.9-rc1": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -11126,14 +11382,28 @@
           "StackExchange.Redis": "1.1.553-alpha",
           "System.Runtime": "4.0.21-beta-23516",
           "System.Runtime.InteropServices": "4.0.21-beta-23516",
-          "Td.CoreLibrary": "1.1.3-beta",
-          "Td.Kylin.Entity": "1.0.0-rc1-19",
-          "Td.Kylin.EnumLibrary": "1.0.33.1-beta",
+          "Td.CoreLibrary": "1.1.3.2-beta",
+          "Td.Kylin.Entity": "1.0.0-rc1-32",
+          "Td.Kylin.EnumLibrary": "1.0.33.7-bata",
           "Td.Kylin.Redis": "1.0.5-alpha"
         }
       },
-      "Td.Kylin.Entity/1.0.0-rc1-19": {
+      "Td.Kylin.Entity/1.0.0-rc1-32": {
         "type": "package",
+        "dependencies": {
+          "EntityFramework.Commands": "7.0.0-rc1-final",
+          "EntityFramework.Core": "7.0.0-rc1-final",
+          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+          "EntityFramework7.Npgsql": "3.1.0-rc1-3",
+          "Microsoft.AspNet.Hosting": "1.0.0-rc1-final",
+          "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.AspNet.Mvc.Core": "6.0.0-rc1-final",
+          "Microsoft.AspNet.Mvc.ViewFeatures": "6.0.0-rc1-final",
+          "Microsoft.Extensions.Configuration.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
+          "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final"
+        },
         "compile": {
           "lib/dnxcore50/Td.Kylin.Entity.dll": {}
         },
@@ -11141,7 +11411,7 @@
           "lib/dnxcore50/Td.Kylin.Entity.dll": {}
         }
       },
-      "Td.Kylin.EnumLibrary/1.0.33.1-beta": {
+      "Td.Kylin.EnumLibrary/1.0.33.7-bata": {
         "type": "package",
         "dependencies": {
           "System.Runtime": "4.0.21-beta-23516",
@@ -11171,6 +11441,21 @@
       }
     },
     "DNXCore,Version=v5.0/win7-x64": {
+      "EntityFramework.Commands/7.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Relational.Design": "7.0.0-rc1-final",
+          "Microsoft.AspNet.Hosting.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final",
+          "System.Console": "4.0.0-beta-23516"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.Commands.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.Commands.dll": {}
+        }
+      },
       "EntityFramework.Core/7.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -11239,6 +11524,19 @@
         },
         "runtime": {
           "lib/dotnet5.4/EntityFramework.Relational.dll": {}
+        }
+      },
+      "EntityFramework.Relational.Design/7.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework.Relational": "7.0.0-rc1-final",
+          "System.ComponentModel.Annotations": "4.0.11-beta-23516"
+        },
+        "compile": {
+          "lib/dnxcore50/EntityFramework.Relational.Design.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/EntityFramework.Relational.Design.dll": {}
         }
       },
       "EntityFramework7.Npgsql/3.1.0-rc1-3": {
@@ -14212,7 +14510,7 @@
           "lib/dotnet5.4/System.Xml.XDocument.dll": {}
         }
       },
-      "Td.CoreLibrary/1.1.3-beta": {
+      "Td.CoreLibrary/1.1.3.2-beta": {
         "type": "package",
         "dependencies": {
           "Microsoft.Dnx.Compilation.Abstractions": "1.0.0-rc1-final",
@@ -14249,7 +14547,7 @@
           "lib/dnxcore50/Td.CoreLibrary.dll": {}
         }
       },
-      "Td.Kylin.DataCache/1.0.7-rc1": {
+      "Td.Kylin.DataCache/1.0.9-rc1": {
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
@@ -14261,14 +14559,28 @@
           "StackExchange.Redis": "1.1.553-alpha",
           "System.Runtime": "4.0.21-beta-23516",
           "System.Runtime.InteropServices": "4.0.21-beta-23516",
-          "Td.CoreLibrary": "1.1.3-beta",
-          "Td.Kylin.Entity": "1.0.0-rc1-19",
-          "Td.Kylin.EnumLibrary": "1.0.33.1-beta",
+          "Td.CoreLibrary": "1.1.3.2-beta",
+          "Td.Kylin.Entity": "1.0.0-rc1-32",
+          "Td.Kylin.EnumLibrary": "1.0.33.7-bata",
           "Td.Kylin.Redis": "1.0.5-alpha"
         }
       },
-      "Td.Kylin.Entity/1.0.0-rc1-19": {
+      "Td.Kylin.Entity/1.0.0-rc1-32": {
         "type": "package",
+        "dependencies": {
+          "EntityFramework.Commands": "7.0.0-rc1-final",
+          "EntityFramework.Core": "7.0.0-rc1-final",
+          "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+          "EntityFramework7.Npgsql": "3.1.0-rc1-3",
+          "Microsoft.AspNet.Hosting": "1.0.0-rc1-final",
+          "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.AspNet.Mvc.Core": "6.0.0-rc1-final",
+          "Microsoft.AspNet.Mvc.ViewFeatures": "6.0.0-rc1-final",
+          "Microsoft.Extensions.Configuration.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
+          "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final"
+        },
         "compile": {
           "lib/dnxcore50/Td.Kylin.Entity.dll": {}
         },
@@ -14276,7 +14588,7 @@
           "lib/dnxcore50/Td.Kylin.Entity.dll": {}
         }
       },
-      "Td.Kylin.EnumLibrary/1.0.33.1-beta": {
+      "Td.Kylin.EnumLibrary/1.0.33.7-bata": {
         "type": "package",
         "dependencies": {
           "System.Runtime": "4.0.21-beta-23516",
@@ -14307,9 +14619,36 @@
     }
   },
   "libraries": {
-    "Td.Kylin.DataCache/1.0.7-rc1": {
+    "Td.Kylin.DataCache/1.0.9-rc1": {
       "type": "project",
       "path": "../Td.Kylin.DataCache/project.json"
+    },
+    "EntityFramework.Commands/7.0.0-rc1-final": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "+wa2VWX3/vDkOpeCeIotMevqpIISimGqeYNTGYRLRhv+8HzsCLeymLzmmYpjav6zYQVvuJiJodapQvijAIfRrA==",
+      "files": [
+        "app/ef",
+        "app/ef.cmd",
+        "app/project.json",
+        "build/netcore50/EntityFramework.Commands.props",
+        "EntityFramework.Commands.7.0.0-rc1-final.nupkg",
+        "EntityFramework.Commands.7.0.0-rc1-final.nupkg.sha512",
+        "EntityFramework.Commands.nuspec",
+        "lib/dnx451/EntityFramework.Commands.dll",
+        "lib/dnx451/EntityFramework.Commands.xml",
+        "lib/dnxcore50/EntityFramework.Commands.dll",
+        "lib/dnxcore50/EntityFramework.Commands.xml",
+        "lib/net451/EntityFramework.Commands.dll",
+        "lib/net451/EntityFramework.Commands.xml",
+        "lib/netcore50/_._",
+        "tools/about_EntityFramework.help.txt",
+        "tools/EntityFramework.psd1",
+        "tools/EntityFramework.psm1",
+        "tools/init.ps1",
+        "tools/install.ps1",
+        "tools/OperationHandlers.cs"
+      ]
     },
     "EntityFramework.Core/7.0.0-rc1-final": {
       "type": "package",
@@ -14359,6 +14698,24 @@
         "lib/net451/EntityFramework.Relational.xml",
         "lib/netcore50/EntityFramework.Relational.dll",
         "lib/netcore50/EntityFramework.Relational.xml"
+      ]
+    },
+    "EntityFramework.Relational.Design/7.0.0-rc1-final": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sXAqOxpHmbqOELC21vAzKlsjqgNCrk3jEjyJxjGnn1+j4hazxiqgSBTl8ZofqYzLO6ias9WfeXJy8HcXOl7waw==",
+      "files": [
+        "build/netcore50/EntityFramework.Relational.Design.props",
+        "EntityFramework.Relational.Design.7.0.0-rc1-final.nupkg",
+        "EntityFramework.Relational.Design.7.0.0-rc1-final.nupkg.sha512",
+        "EntityFramework.Relational.Design.nuspec",
+        "lib/dnx451/EntityFramework.Relational.Design.dll",
+        "lib/dnx451/EntityFramework.Relational.Design.xml",
+        "lib/dnxcore50/EntityFramework.Relational.Design.dll",
+        "lib/dnxcore50/EntityFramework.Relational.Design.xml",
+        "lib/net451/EntityFramework.Relational.Design.dll",
+        "lib/net451/EntityFramework.Relational.Design.xml",
+        "lib/netcore50/_._"
       ]
     },
     "EntityFramework7.Npgsql/3.1.0-rc1-3": {
@@ -19975,35 +20332,37 @@
         "System.Xml.XDocument.nuspec"
       ]
     },
-    "Td.CoreLibrary/1.1.3-beta": {
+    "Td.CoreLibrary/1.1.3.2-beta": {
       "type": "package",
-      "sha512": "5yHmkJyy43mXSss5noPg/wo22TbD024YTNQata0wmPI9FI+xkcY9PQkVfsCBDBgyJW9YzZY3b0yeutiIvEMqjw==",
+      "sha512": "KrbPc2fNHrG8a4u0TyBCo7PFx72GnLHgh0ffVV9FVchbj2Ea11tC2/dD03CYrZaNG8Fq0Qi1x7Vg5roxMnSyyA==",
       "files": [
         "lib/dnx451/Td.CoreLibrary.dll",
         "lib/dnx451/Td.CoreLibrary.xml",
         "lib/dnxcore50/Td.CoreLibrary.dll",
         "lib/dnxcore50/Td.CoreLibrary.xml",
-        "Td.CoreLibrary.1.1.3-beta.nupkg",
-        "Td.CoreLibrary.1.1.3-beta.nupkg.sha512",
+        "Td.CoreLibrary.1.1.3.2-beta.nupkg",
+        "Td.CoreLibrary.1.1.3.2-beta.nupkg.sha512",
         "Td.CoreLibrary.nuspec"
       ]
     },
-    "Td.Kylin.Entity/1.0.0-rc1-19": {
+    "Td.Kylin.Entity/1.0.0-rc1-32": {
       "type": "package",
-      "sha512": "SGOpPB6v64tSsT5CNcQ/wIzOCYwe3k3Ffh1zdr9Q7dVmAtcCqExRSltBQv3lLYg5pP1anTUFKqe2cIPNDSBGiQ==",
+      "sha512": "t1xbTVRRty7tT5fk604LGwcYVgyZRQrPgD+XhaN4stZyvbWtYvJM0bczoIzmXFj9RtFDfquA7HlH303Y5vDh+g==",
       "files": [
         "lib/dnx451/Td.Kylin.Entity.dll",
         "lib/dnx451/Td.Kylin.Entity.xml",
         "lib/dnxcore50/Td.Kylin.Entity.dll",
         "lib/dnxcore50/Td.Kylin.Entity.xml",
-        "Td.Kylin.Entity.1.0.0-rc1-19.nupkg",
-        "Td.Kylin.Entity.1.0.0-rc1-19.nupkg.sha512",
+        "lib/net46/Td.Kylin.Entity.dll",
+        "lib/net46/Td.Kylin.Entity.xml",
+        "Td.Kylin.Entity.1.0.0-rc1-32.nupkg",
+        "Td.Kylin.Entity.1.0.0-rc1-32.nupkg.sha512",
         "Td.Kylin.Entity.nuspec"
       ]
     },
-    "Td.Kylin.EnumLibrary/1.0.33.1-beta": {
+    "Td.Kylin.EnumLibrary/1.0.33.7-bata": {
       "type": "package",
-      "sha512": "r8EsTZIbaAedMI0qHli5MsiBdjn1v27PUwz/3KSs9NDERvuM5CJ9plDL6rrp4Jr8raY468URcabyaoWz8fyh4Q==",
+      "sha512": "h84hn66voTONqyjtapvDNlk2EYAARQaWRDhO3PZX+CvvDTIB1Oty0MFcDqTZXjblVseEVKTWN2DWUlfCd7Zzsw==",
       "files": [
         "lib/dnx451/Td.Kylin.EnumLibrary.dll",
         "lib/dnx451/Td.Kylin.EnumLibrary.xml",
@@ -20017,8 +20376,8 @@
         "lib/net45/Td.Kylin.EnumLibrary.xml",
         "lib/net46/Td.Kylin.EnumLibrary.dll",
         "lib/net46/Td.Kylin.EnumLibrary.xml",
-        "Td.Kylin.EnumLibrary.1.0.33.1-beta.nupkg",
-        "Td.Kylin.EnumLibrary.1.0.33.1-beta.nupkg.sha512",
+        "Td.Kylin.EnumLibrary.1.0.33.7-bata.nupkg",
+        "Td.Kylin.EnumLibrary.1.0.33.7-bata.nupkg.sha512",
         "Td.Kylin.EnumLibrary.nuspec"
       ]
     },

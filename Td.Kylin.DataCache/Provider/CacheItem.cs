@@ -169,14 +169,13 @@ namespace Td.Kylin.DataCache.Provider
         /// <returns></returns>
         protected virtual List<T> GetCache()
         {
-            List<T> data = null;
-
-            if (null != RedisDB)
-            {
-                data = RedisDB.HashGetAll<T>(CacheKey).Select(p => p.Value).ToList();
+            try {
+                return RedisDB.HashGetAll<T>(CacheKey).Select(p => p.Value).ToList();
             }
-
-            return data;
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -265,7 +264,14 @@ namespace Td.Kylin.DataCache.Provider
         /// <returns></returns>
         public virtual T Get(string hashField)
         {
-            return RedisDB.HashGet<T>(CacheKey, hashField);
+            try
+            {
+                return RedisDB.HashGet<T>(CacheKey, hashField);
+            }
+            catch
+            {
+                return default(T);
+            }
         }
 
         /// <summary>
@@ -275,6 +281,29 @@ namespace Td.Kylin.DataCache.Provider
         public void ResetLevel(CacheLevel level)
         {
             this._level = level;
+        }
+
+        /// <summary>
+        /// 获取缓存数据
+        /// </summary>
+        /// <returns></returns>
+        public List<object> GetCacheData()
+        {
+            List<object> data = null;
+
+            try
+            {
+                if (null != RedisDB)
+                {
+                    data = RedisDB.HashGetAll(CacheKey).Select(p => p.Value as object).ToList();
+                }
+            }
+            catch
+            {
+                data = null;
+            }
+
+            return data;
         }
     }
 }

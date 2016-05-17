@@ -111,6 +111,21 @@ namespace Td.Kylin.DataCache
         /// 区域默认抽成配置
         /// </summary>
         [Description("区域默认抽成配置")]
-        AreaDefaultCommission
+        AreaDefaultCommission,
+        /// <summary>
+        /// 跑退业务物品类型
+        /// </summary>
+        [Description("跑退业务物品类型")]
+        LegworkGoodsCategory,
+        /// <summary>
+        /// 跑退业务全局配置
+        /// </summary>
+        [Description("跑退业务全局配置")]
+        LegworkGlobalConfig,
+        /// <summary>
+        /// 跑腿业务区域配置
+        /// </summary>
+        [Description("跑腿业务区域配置")]
+        LegworkAreaConfig,
     }
 }

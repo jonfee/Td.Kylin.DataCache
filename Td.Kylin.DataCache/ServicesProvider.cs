@@ -156,6 +156,21 @@ namespace Td.Kylin.DataCache
         /// </summary>
         public IModuleAuthorizeService ModuleAuthorizeService { get; private set; }
 
+        /// <summary>
+        /// 跑腿业务区域配置
+        /// </summary>
+        public ILegworkAreaConfigService LegworkAreaConfigService { get; private set; }
+
+        /// <summary>
+        /// 跑腿业务全局配置
+        /// </summary>
+        public ILegworkGlobalConfigService LegworkGlobalConfigService { get; private set; }
+
+        /// <summary>
+        /// 跑腿业务物品类型
+        /// </summary>
+        public ILegworkGoodsCategoryService LegworkGoodsCategoryService { get; private set; }
+
         #endregion
 
         /// <summary>
@@ -207,6 +222,12 @@ namespace Td.Kylin.DataCache
             AreaDefaultCommissionService = new AreaDefaultCommissionService<T>();
             //模块授权
             ModuleAuthorizeService = new ModuleAuthorizeService<T>();
+            //跑腿业务物品类型
+            LegworkGoodsCategoryService = new LegworkGoodsCategoryService<T>();
+            //跑腿业务全局配置
+            LegworkGlobalConfigService = new LegworkGlobalConfigService<T>();
+            //跑腿业务区域配置
+            LegworkAreaConfigService = new LegworkAreaConfigService<T>();
         }
     }
 }

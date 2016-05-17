@@ -74,5 +74,42 @@ namespace Td.Kylin.DataCache.Context
         /// 区域运营商对个人服务人员抽成配置
         /// </summary>
         public DbSet<Commission_OperatorFromWorker> Commission_OperatorFromWorker { get { return Set<Commission_OperatorFromWorker>(); } }
+
+        #region 跑腿业务
+
+        /// <summary>
+        /// 跑腿业务全局配置。
+        /// </summary>
+        public DbSet<Legwork_GlobalConfig> Legwork_GlobalConfig
+        {
+            get
+            {
+                return Set<Legwork_GlobalConfig>();
+            }
+        }
+
+        /// <summary>
+        /// 跑腿业务区域配置。
+        /// </summary>
+        public DbSet<Legwork_AreaConfig> Legwork_AreaConfig
+        {
+            get
+            {
+                return Set<Legwork_AreaConfig>();
+            }
+        }
+
+        /// <summary>
+        /// 跑腿业务物品分类。
+        /// </summary>
+        public DbSet<Legwork_GoodsCategory> Legwork_GoodsCategory
+        {
+            get
+            {
+                return Set<Legwork_GoodsCategory>();
+            }
+        }
+
+        #endregion
     }
 }

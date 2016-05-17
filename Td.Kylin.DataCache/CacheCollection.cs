@@ -169,6 +169,22 @@ namespace Td.Kylin.DataCache
                 case CacheItemType.PlatformCommission:
                     cacheItem = new PlatformCommissionCache();
                     break;
+                //接口模块授权配置
+                case CacheItemType.ApiModuleAuthorize:
+                    cacheItem = new ApiModuleAuthorizeCache();
+                    break;
+                //跑腿业务区域配置
+                case CacheItemType.LegworkAreaConfig:
+                    cacheItem = new LegworkAreaConfigCache();
+                    break;
+                //跑腿业务全局配置
+                case CacheItemType.LegworkGlobalConfig:
+                    cacheItem = new LegworkGlobalConfigCache();
+                    break;
+                //跑腿业务物品类型
+                case CacheItemType.LegworkGoodsCategory:
+                    cacheItem = new LegworkGoodsCategoryCache();
+                    break;
             }
 
             return cacheItem;
@@ -187,7 +203,7 @@ namespace Td.Kylin.DataCache
 
             string cacheKey = config?.RedisKey;
 
-            if (Keys.Contains(cacheKey))
+            if (!string.IsNullOrWhiteSpace(cacheKey) && Keys.Contains(cacheKey))
             {
                 object cache = htCache[cacheKey];
 
@@ -304,6 +320,21 @@ namespace Td.Kylin.DataCache
         /// 接口对模块授权缓存
         /// </summary>
         public static ApiModuleAuthorizeCache ApiModuleAuthorizeCache { get { return GetCacheObject<ApiModuleAuthorizeCache>(CacheItemType.ApiModuleAuthorize); } }
+
+        /// <summary>
+        /// 跑腿业务区域配置缓存
+        /// </summary>
+        public static LegworkAreaConfigCache LegworkAreaConfigCache { get { return GetCacheObject<LegworkAreaConfigCache>(CacheItemType.LegworkAreaConfig); } }
+
+        /// <summary>
+        /// 跑腿业务全局配置缓存
+        /// </summary>
+        public static LegworkGlobalConfigCache LegworkGlobalConfigCache { get { return GetCacheObject<LegworkGlobalConfigCache>(CacheItemType.LegworkGlobalConfig); } }
+
+        /// <summary>
+        /// 跑腿业务物品类型缓存
+        /// </summary>
+        public static LegworkGoodsCategoryCache LegworkGoodsCategoryCache { get { return GetCacheObject<LegworkGoodsCategoryCache>(CacheItemType.LegworkGoodsCategory); } }
 
         #endregion
 

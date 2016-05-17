@@ -33,6 +33,11 @@ namespace Td.Kylin.DataCache
         /// </summary>
         private readonly string _sqlconnectionString;
 
+        /// <summary>
+        /// 需要注入的缓存类型
+        /// </summary>
+        private readonly CacheItemType[] _cacheItems;
+
         #region RequestDelegate
         /// <summary>
         /// 实例化
@@ -41,7 +46,8 @@ namespace Td.Kylin.DataCache
         /// <param name="redisOptions">Redis Connections</param>
         /// <param name="sqlType">数据库类型</param>
         /// <param name="sqlConnection">数据库连接字符串</param>
-        public DataCacheMiddleware(RequestDelegate next, ConfigurationOptions redisOptions,SqlProviderType sqlType,string sqlConnection)
+        /// <param name="cacheItems">缓存类型</param>
+        public DataCacheMiddleware(RequestDelegate next, ConfigurationOptions redisOptions, SqlProviderType sqlType, string sqlConnection, params CacheItemType[] cacheItems)
         {
             if (next == null)
             {
@@ -60,6 +66,7 @@ namespace Td.Kylin.DataCache
             _sqlconnectionString = sqlConnection;
             _options = redisOptions;
             _next = next;
+            _cacheItems = cacheItems;
         }
 
         /// <summary>
@@ -69,7 +76,8 @@ namespace Td.Kylin.DataCache
         /// <param name="redisConnection">Redis 连接字符串</param>
         /// <param name="sqlType">数据库类型</param>
         /// <param name="sqlConnection">数据库连接字符串</param>
-        public DataCacheMiddleware(RequestDelegate next, string redisConnection, SqlProviderType sqlType, string sqlConnection)
+        /// <param name="cacheItems">缓存类型</param>
+        public DataCacheMiddleware(RequestDelegate next, string redisConnection, SqlProviderType sqlType, string sqlConnection, params CacheItemType[] cacheItems)
         {
             if (next == null)
             {
@@ -90,6 +98,7 @@ namespace Td.Kylin.DataCache
             _sqlconnectionString = sqlConnection;
             _options = tempOptions;
             _next = next;
+            _cacheItems = cacheItems;
         }
 
         public Task Invoke(HttpContext context)
@@ -99,6 +108,8 @@ namespace Td.Kylin.DataCache
             CacheStartup.SqlType = _sqlProviderType;
 
             CacheStartup.SqlConnctionString = _sqlconnectionString;
+
+            CacheStartup.InitRedisConfigration(_cacheItems);
 
             return _next(context);
         }
@@ -113,7 +124,8 @@ namespace Td.Kylin.DataCache
         /// <param name="redisOptions"></param>
         /// <param name="sqlType">数据库类型</param>
         /// <param name="sqlConnection">数据库连接字符串</param>
-        public DataCacheMiddleware(ConfigurationOptions redisOptions, SqlProviderType sqlType, string sqlConnection)
+        /// <param name="cacheItems">缓存类型</param>
+        public DataCacheMiddleware(ConfigurationOptions redisOptions, SqlProviderType sqlType, string sqlConnection, params CacheItemType[] cacheItems)
         {
             if (redisOptions == null)
             {
@@ -126,6 +138,7 @@ namespace Td.Kylin.DataCache
             _sqlProviderType = sqlType;
             _sqlconnectionString = sqlConnection;
             _options = redisOptions;
+            _cacheItems = cacheItems;
         }
 
         /// <summary>
@@ -135,7 +148,8 @@ namespace Td.Kylin.DataCache
         /// <param name="redisConnection">Redis 连接字符串</param>
         /// <param name="sqlType">数据库类型</param>
         /// <param name="sqlConnection">数据库连接字符串</param>
-        public DataCacheMiddleware(string redisConnection, SqlProviderType sqlType, string sqlConnection)
+        /// <param name="cacheItems">缓存类型</param>
+        public DataCacheMiddleware(string redisConnection, SqlProviderType sqlType, string sqlConnection, params CacheItemType[] cacheItems)
         {
             var tempOptions = ConfigurationOptions.Parse(redisConnection);
 
@@ -150,6 +164,7 @@ namespace Td.Kylin.DataCache
             _sqlProviderType = sqlType;
             _sqlconnectionString = sqlConnection;
             _options = tempOptions;
+            _cacheItems = cacheItems;
         }
 
         public void Invoke()
@@ -159,6 +174,8 @@ namespace Td.Kylin.DataCache
             CacheStartup.SqlType = _sqlProviderType;
 
             CacheStartup.SqlConnctionString = _sqlconnectionString;
+
+            CacheStartup.InitRedisConfigration(_cacheItems);
         }
 
         #endregion

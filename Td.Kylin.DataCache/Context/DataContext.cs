@@ -125,7 +125,7 @@ namespace Td.Kylin.DataCache.Context
                 entity.Property(p => p.AreaForumID).ValueGeneratedNever();
                 entity.HasKey(p => p.AreaForumID);
             });
-            
+
             modelBuilder.Entity<Mall_Category>(entity =>
             {
                 entity.Property(p => p.CategoryID).ValueGeneratedNever();
@@ -167,6 +167,31 @@ namespace Td.Kylin.DataCache.Context
             {
                 entity.HasKey(p => new { p.AreaID, p.UserID, p.CommissionItem });
             });
+
+            #region 跑腿业务
+
+            // 全局配置
+            modelBuilder.Entity<Legwork_GlobalConfig>(entity =>
+               {
+                   entity.Property(p => p.GlobalConfigID).ValueGeneratedNever();
+                   entity.HasKey(p => p.GlobalConfigID);
+               });
+
+            // 区域配置
+            modelBuilder.Entity<Legwork_AreaConfig>(entity =>
+            {
+                entity.Property(p => p.AreaID).ValueGeneratedNever();
+                entity.HasKey(p => p.AreaID);
+            });
+
+            // 物品分类
+            modelBuilder.Entity<Legwork_GoodsCategory>(entity =>
+            {
+                entity.Property(p => p.CategoryID).ValueGeneratedNever();
+                entity.HasKey(p => p.CategoryID);
+            });
+
+            #endregion
         }
 
         #endregion
