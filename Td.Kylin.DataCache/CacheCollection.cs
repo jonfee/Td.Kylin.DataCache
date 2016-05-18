@@ -1,9 +1,11 @@
-﻿using System;
+﻿using StackExchange.Redis;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Td.Kylin.DataCache.Provider;
+using Td.Kylin.Redis;
 
 namespace Td.Kylin.DataCache
 {
@@ -15,12 +17,12 @@ namespace Td.Kylin.DataCache
         /// <summary>
         /// 缓存项实例集合
         /// </summary>
-        private static Hashtable htCache = Hashtable.Synchronized(new Hashtable());
+        private volatile static Hashtable htCache = Hashtable.Synchronized(new Hashtable());
 
         /// <summary>
-        /// 静态构造
+        /// 重置集合器
         /// </summary>
-        static CacheCollection()
+        public static void Reset()
         {
             htCache = Hashtable.Synchronized(new Hashtable());
 
@@ -451,6 +453,11 @@ namespace Td.Kylin.DataCache
             {
                 cache.ResetLevel(level);
             }
+        }
+
+        public static IDatabase MyRedisDB()
+        {
+            return RedisManager.Redis.GetDatabase();
         }
 
         #endregion

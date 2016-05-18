@@ -110,6 +110,8 @@ namespace Td.Kylin.DataCache
             CacheStartup.SqlConnctionString = _sqlconnectionString;
 
             CacheStartup.InitRedisConfigration(_cacheItems);
+            
+            CacheCollection.Reset();
 
             return _next(context);
         }
@@ -176,6 +178,8 @@ namespace Td.Kylin.DataCache
             CacheStartup.SqlConnctionString = _sqlconnectionString;
 
             CacheStartup.InitRedisConfigration(_cacheItems);
+
+            CacheCollection.Reset();
         }
 
         #endregion

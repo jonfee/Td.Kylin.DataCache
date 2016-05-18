@@ -1229,7 +1229,7 @@
           "lib/dnx451/Td.Kylin.EnumLibrary.dll": {}
         }
       },
-      "Td.Kylin.Redis/1.0.5-alpha": {
+      "Td.Kylin.Redis/1.0.8-alpha": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
@@ -3427,7 +3427,7 @@
           "lib/dnxcore50/Td.Kylin.EnumLibrary.dll": {}
         }
       },
-      "Td.Kylin.Redis/1.0.5-alpha": {
+      "Td.Kylin.Redis/1.0.8-alpha": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
@@ -4669,7 +4669,7 @@
           "lib/dnx451/Td.Kylin.EnumLibrary.dll": {}
         }
       },
-      "Td.Kylin.Redis/1.0.5-alpha": {
+      "Td.Kylin.Redis/1.0.8-alpha": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
@@ -5917,7 +5917,7 @@
           "lib/dnx451/Td.Kylin.EnumLibrary.dll": {}
         }
       },
-      "Td.Kylin.Redis/1.0.5-alpha": {
+      "Td.Kylin.Redis/1.0.8-alpha": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
@@ -8641,7 +8641,7 @@
           "lib/dnxcore50/Td.Kylin.EnumLibrary.dll": {}
         }
       },
-      "Td.Kylin.Redis/1.0.5-alpha": {
+      "Td.Kylin.Redis/1.0.8-alpha": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
@@ -11359,7 +11359,7 @@
           "lib/dnxcore50/Td.Kylin.EnumLibrary.dll": {}
         }
       },
-      "Td.Kylin.Redis/1.0.5-alpha": {
+      "Td.Kylin.Redis/1.0.8-alpha": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
@@ -16164,16 +16164,18 @@
         "Td.Kylin.EnumLibrary.nuspec"
       ]
     },
-    "Td.Kylin.Redis/1.0.5-alpha": {
+    "Td.Kylin.Redis/1.0.8-alpha": {
       "type": "package",
-      "sha512": "eB/hxImngoyjxEsYOvyYkZ4mcQDBYR+x0/407Zn4WLzHxQi38qP1Y8jIDiTjtfzjCJDoASzOXcJZVz+VtXI/hQ==",
+      "sha512": "IevuzfYrq5+Xb4JPVyiW6TAshFDl/+7g1f2nucbVFoKJ7ArW38RMzw7p/s4MXZdYLOC1YI6+Ussu7JKL2WtbMw==",
       "files": [
         "lib/dnx451/Td.Kylin.Redis.dll",
         "lib/dnx451/Td.Kylin.Redis.xml",
         "lib/dnxcore50/Td.Kylin.Redis.dll",
         "lib/dnxcore50/Td.Kylin.Redis.xml",
-        "Td.Kylin.Redis.1.0.5-alpha.nupkg",
-        "Td.Kylin.Redis.1.0.5-alpha.nupkg.sha512",
+        "lib/net46/Td.Kylin.Redis.dll",
+        "lib/net46/Td.Kylin.Redis.xml",
+        "Td.Kylin.Redis.1.0.8-alpha.nupkg",
+        "Td.Kylin.Redis.1.0.8-alpha.nupkg.sha512",
         "Td.Kylin.Redis.nuspec"
       ]
     }
@@ -16188,10 +16190,10 @@
       "StackExchange.Redis >= 1.1.553-alpha",
       "System.Runtime >= 4.0.21-beta-23516",
       "System.Runtime.InteropServices >= 4.0.21-beta-23516",
-      "Td.Kylin.Redis >= 1.0.5-alpha",
       "Td.Kylin.Entity >= 1.0.0-rc1-32",
       "Td.Kylin.EnumLibrary >= 1.0.33.7-bata",
-      "Td.CoreLibrary >= 1.1.3.2-beta"
+      "Td.CoreLibrary >= 1.1.3.2-beta",
+      "Td.Kylin.Redis >= 1.0.8-alpha"
     ],
     "DNX,Version=v4.5.1": [],
     "DNXCore,Version=v5.0": []

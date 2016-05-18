@@ -105,11 +105,16 @@ namespace Td.Kylin.DataCache.Provider
         /// <summary>
         /// 当前缓存操作的Redis数据库
         /// </summary>
-        protected IDatabase RedisDB
+        public IDatabase RedisDB
         {
             get
             {
-                return RedisManager.Redis.GetDatabase(_config.RedisDbIndex);
+                if (RedisManager.Redis != null)
+                {
+                    return RedisManager.Redis.GetDatabase(_config.RedisDbIndex);
+                }
+
+                return null;
             }
         }
 
@@ -147,17 +152,15 @@ namespace Td.Kylin.DataCache.Provider
                     //从缓存中读取
                     _data = GetCache();
                 }
-            }
-            catch
-            {
-                //TODO 异常时处理
-            }
-            finally
-            {
+
                 if (null == _data)
                 {
                     _data = ReadDataFromDB();
                 }
+            }
+            catch
+            {
+                //TODO 异常时处理
             }
 
             return _data;
@@ -169,7 +172,10 @@ namespace Td.Kylin.DataCache.Provider
         /// <returns></returns>
         protected virtual List<T> GetCache()
         {
-            try {
+            if (null == RedisDB) return null;
+
+            try
+            {
                 return RedisDB.HashGetAll<T>(CacheKey).Select(p => p.Value).ToList();
             }
             catch
@@ -230,7 +236,7 @@ namespace Td.Kylin.DataCache.Provider
         /// <param name="entity"></param>
         public virtual void Update(T entity)
         {
-            if (null == entity) return;
+            if (null == entity || RedisDB == null) return;
 
             RedisDB.HashSetAsync(CacheKey, entity.HashField, entity);
         }
@@ -241,7 +247,7 @@ namespace Td.Kylin.DataCache.Provider
         /// <param name="entity"></param>
         public virtual void Add(T entity)
         {
-            if (null == entity) return;
+            if (null == entity || RedisDB == null) return;
 
             RedisDB.HashSetAsync(CacheKey, entity.HashField, entity);
         }
@@ -252,7 +258,7 @@ namespace Td.Kylin.DataCache.Provider
         /// <param name="entity"></param>
         public virtual void Delete(T entity)
         {
-            if (null == entity) return;
+            if (null == entity || RedisDB == null) return;
 
             RedisDB.HashDelete(CacheKey, entity.HashField);
         }
@@ -264,6 +270,8 @@ namespace Td.Kylin.DataCache.Provider
         /// <returns></returns>
         public virtual T Get(string hashField)
         {
+            if (null == RedisDB) return default(T);
+
             try
             {
                 return RedisDB.HashGet<T>(CacheKey, hashField);
@@ -289,14 +297,13 @@ namespace Td.Kylin.DataCache.Provider
         /// <returns></returns>
         public List<object> GetCacheData()
         {
+            if (null == RedisDB) return null;
+
             List<object> data = null;
 
             try
             {
-                if (null != RedisDB)
-                {
-                    data = RedisDB.HashGetAll(CacheKey).Select(p => p.Value as object).ToList();
-                }
+                data = RedisDB.HashGetAll(CacheKey).Select(p => p.Value as object).ToList();
             }
             catch
             {
