@@ -17,26 +17,41 @@ namespace Td.Kylin.DataCache
         /// <summary>
         /// 缓存项实例集合
         /// </summary>
-        private volatile static Hashtable htCache = Hashtable.Synchronized(new Hashtable());
+        private static Hashtable htCache = Hashtable.Synchronized(new Hashtable());
+
+        static CacheCollection()
+        {
+            Reset();
+        }
 
         /// <summary>
         /// 重置集合器
         /// </summary>
         public static void Reset()
         {
-            htCache = Hashtable.Synchronized(new Hashtable());
-
-            var configCollections = CacheStartup.RedisConfiguration.Collections;
-
-            foreach (var config in configCollections)
+            lock (htCache)
             {
-                if (null != config)
-                {
-                    var cacheItem = CacheItemFactory(config.ItemType);
+                htCache = Hashtable.Synchronized(new Hashtable());
 
-                    if (null != cacheItem)
+                var configCollections = CacheStartup.RedisConfiguration.Collections;
+
+                foreach (var config in configCollections)
+                {
+                    if (null != config)
                     {
-                        htCache.Add(config.RedisKey, cacheItem);
+                        var cacheItem = CacheItemFactory(config.ItemType);
+
+                        if (null != cacheItem)
+                        {
+                            if (htCache.ContainsKey(config.RedisKey))
+                            {
+                                htCache[config.RedisKey] = cacheItem;
+                            }
+                            else
+                            {
+                                htCache.Add(config.RedisKey, cacheItem);
+                            }
+                        }
                     }
                 }
             }
@@ -453,11 +468,6 @@ namespace Td.Kylin.DataCache
             {
                 cache.ResetLevel(level);
             }
-        }
-
-        public static IDatabase MyRedisDB()
-        {
-            return RedisManager.Redis.GetDatabase();
         }
 
         #endregion
