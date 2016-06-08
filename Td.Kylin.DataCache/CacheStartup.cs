@@ -32,7 +32,7 @@ namespace Td.Kylin.DataCache
         {
             var config = new RedisConfigurationRoot();
 
-            List<CacheItemType> cacheItems = types.ToList();
+            List<CacheItemType> cacheItems = null == types ? null : types.ToList();
 
             bool isAll = cacheItems == null || cacheItems.Count() < 1;
 

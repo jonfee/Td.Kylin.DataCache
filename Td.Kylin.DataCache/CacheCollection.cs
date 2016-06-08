@@ -1,11 +1,7 @@
-﻿using StackExchange.Redis;
-using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Td.Kylin.DataCache.Provider;
-using Td.Kylin.Redis;
 
 namespace Td.Kylin.DataCache
 {
@@ -17,7 +13,9 @@ namespace Td.Kylin.DataCache
         /// <summary>
         /// 缓存项实例集合
         /// </summary>
-        private static Hashtable htCache = Hashtable.Synchronized(new Hashtable());
+        private volatile static Hashtable htCache = null;
+
+        private readonly static object mylock = new object();
 
         static CacheCollection()
         {
@@ -29,7 +27,7 @@ namespace Td.Kylin.DataCache
         /// </summary>
         public static void Reset()
         {
-            lock (htCache)
+            lock (mylock)
             {
                 htCache = Hashtable.Synchronized(new Hashtable());
 

@@ -21,13 +21,17 @@ namespace Td.Kylin.DataCache.Services
             using (var db = new DbContext())
             {
                 var query = from p in db.Area_RecommendIndustry
+                            join i in db.Merchant_Industry
+                            on p.IndustryID equals i.IndustryID
                             select new AreaRecommendIndustryCacheModel
                             {
                                 AreaID = p.AreaID,
                                 IndustryID = p.IndustryID,
                                 OrderNo = p.OrderNo,
                                 ParentID = p.ParentID,
-                                RecommendType = p.RecommendType
+                                RecommendType = p.RecommendType,
+                                Name = i.Name,
+                                Icon = i.Icon
                             };
 
                 return query.ToList();

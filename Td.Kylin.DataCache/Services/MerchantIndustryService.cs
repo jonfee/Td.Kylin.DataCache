@@ -28,7 +28,8 @@ namespace Td.Kylin.DataCache.Services
                                 Name = p.Name,
                                 Layer = p.Layer,
                                 OrderNo = p.OrderNo,
-                                ParentID = p.ParentID
+                                ParentID = p.ParentID,
+                                Icon = p.Icon
                             };
 
                 return query.ToList();

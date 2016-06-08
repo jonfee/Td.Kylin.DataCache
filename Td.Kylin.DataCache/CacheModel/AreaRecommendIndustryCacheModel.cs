@@ -40,5 +40,15 @@
         /// 推荐状态（枚举：AreaIndustryRecommend，以2的N次方值和存储）
         /// </summary>
         public int RecommendType { get; set; }
+
+        /// <summary>
+        /// 行业名称
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// ICON
+        /// </summary>
+        public string Icon { get; set; }
     }
 }

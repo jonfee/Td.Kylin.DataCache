@@ -40,5 +40,10 @@
         ///排序
         ///</summary>
         public int OrderNo { get; set; }
+
+        /// <summary>
+        /// 图标
+        /// </summary>
+        public string Icon { get; set; }
     }
 }
