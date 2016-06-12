@@ -43,6 +43,11 @@ namespace Td.Kylin.DataCache
         /// </summary>
         private readonly CacheItemType[] _cacheItems;
 
+        /// <summary>
+        /// 缓存数据为null时是否初始化
+        /// </summary>
+        private readonly bool _initIfNull;
+
         #region RequestDelegate
         /// <summary>
         /// 实例化
@@ -53,7 +58,8 @@ namespace Td.Kylin.DataCache
         /// <param name="sqlType">数据库类型</param>
         /// <param name="sqlConnection">数据库连接字符串</param>
         /// <param name="cacheItems">缓存类型</param>
-        public DataCacheMiddleware(RequestDelegate next, bool keepAlive, ConfigurationOptions redisOptions, SqlProviderType sqlType, string sqlConnection, params CacheItemType[] cacheItems)
+        /// <param name="initIfNull">缓存数据为空时是否初始化</param>
+        public DataCacheMiddleware(RequestDelegate next, bool keepAlive, ConfigurationOptions redisOptions, SqlProviderType sqlType, string sqlConnection,  CacheItemType[] cacheItems = null, bool initIfNull = false)
         {
             if (next == null)
             {
@@ -74,6 +80,7 @@ namespace Td.Kylin.DataCache
             _next = next;
             _cacheItems = cacheItems;
             _keepAlive = keepAlive;
+            _initIfNull = initIfNull;
         }
 
         /// <summary>
@@ -85,7 +92,8 @@ namespace Td.Kylin.DataCache
         /// <param name="sqlType">数据库类型</param>
         /// <param name="sqlConnection">数据库连接字符串</param>
         /// <param name="cacheItems">缓存类型</param>
-        public DataCacheMiddleware(RequestDelegate next, bool keepAlive, string redisConnection, SqlProviderType sqlType, string sqlConnection, params CacheItemType[] cacheItems)
+        /// <param name="initIfNull">缓存数据为空时是否初始化</param>
+        public DataCacheMiddleware(RequestDelegate next, bool keepAlive, string redisConnection, SqlProviderType sqlType, string sqlConnection,  CacheItemType[] cacheItems = null, bool initIfNull = false)
         {
             if (next == null)
             {
@@ -108,6 +116,7 @@ namespace Td.Kylin.DataCache
             _next = next;
             _cacheItems = cacheItems;
             _keepAlive = keepAlive;
+            _initIfNull = initIfNull;
         }
 
         public Task Invoke(HttpContext context)
@@ -115,6 +124,8 @@ namespace Td.Kylin.DataCache
             CacheStartup.SqlType = _sqlProviderType;
 
             CacheStartup.SqlConnctionString = _sqlconnectionString;
+
+            CacheStartup.InitIfNull = _initIfNull;
 
             CacheStartup.InitRedisConfigration(_options, _keepAlive, _cacheItems);
 
@@ -133,7 +144,8 @@ namespace Td.Kylin.DataCache
         /// <param name="sqlType">数据库类型</param>
         /// <param name="sqlConnection">数据库连接字符串</param>
         /// <param name="cacheItems">缓存类型</param>
-        public DataCacheMiddleware(bool keepAlive, ConfigurationOptions redisOptions, SqlProviderType sqlType, string sqlConnection, params CacheItemType[] cacheItems)
+        /// <param name="initIfNull">缓存数据为空时是否初始化</param>
+        public DataCacheMiddleware(bool keepAlive, ConfigurationOptions redisOptions, SqlProviderType sqlType, string sqlConnection,  CacheItemType[] cacheItems = null, bool initIfNull = false)
         {
             if (redisOptions == null)
             {
@@ -148,6 +160,7 @@ namespace Td.Kylin.DataCache
             _options = redisOptions;
             _cacheItems = cacheItems;
             _keepAlive = keepAlive;
+            _initIfNull = initIfNull;
         }
 
         /// <summary>
@@ -159,7 +172,8 @@ namespace Td.Kylin.DataCache
         /// <param name="sqlType">数据库类型</param>
         /// <param name="sqlConnection">数据库连接字符串</param>
         /// <param name="cacheItems">缓存类型</param>
-        public DataCacheMiddleware(bool keepAlive, string redisConnection, SqlProviderType sqlType, string sqlConnection, params CacheItemType[] cacheItems)
+        /// <param name="initIfNull">缓存数据为空时是否初始化</param>
+        public DataCacheMiddleware(bool keepAlive, string redisConnection, SqlProviderType sqlType, string sqlConnection,  CacheItemType[] cacheItems = null, bool initIfNull = false)
         {
             var tempOptions = ConfigurationOptions.Parse(redisConnection);
 
@@ -176,6 +190,7 @@ namespace Td.Kylin.DataCache
             _options = tempOptions;
             _cacheItems = cacheItems;
             _keepAlive = keepAlive;
+            _initIfNull = initIfNull;
         }
 
         public void Invoke()
@@ -183,6 +198,8 @@ namespace Td.Kylin.DataCache
             CacheStartup.SqlType = _sqlProviderType;
 
             CacheStartup.SqlConnctionString = _sqlconnectionString;
+
+            CacheStartup.InitIfNull = _initIfNull;
 
             CacheStartup.InitRedisConfigration(_options, _keepAlive, _cacheItems);
         }

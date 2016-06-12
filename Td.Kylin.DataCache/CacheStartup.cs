@@ -25,6 +25,11 @@ namespace Td.Kylin.DataCache
         public static RedisConfigurationRoot RedisConfiguration { get; private set; }
 
         /// <summary>
+        /// 缓存数据为null时是否初始化
+        /// </summary>
+        public static bool InitIfNull { get; set; }
+
+        /// <summary>
         /// RedisContext
         /// </summary>
         public static RedisContext RedisContext { get; private set; }

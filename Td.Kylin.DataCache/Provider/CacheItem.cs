@@ -47,17 +47,18 @@ namespace Td.Kylin.DataCache.Provider
             _level = _config != null ? _config.Level : CacheLevel.Permanent;
 
             #region 检测是否存在缓存，不存在则初始化更新
-            List<T> temp = null;
-            try
+            if (CacheStartup.InitIfNull)
             {
-                temp = GetCache();
-            }
-            catch
-            {
-                temp = null;
-            }
-            finally
-            {
+                List<T> temp = null;
+                try
+                {
+                    temp = GetCache();
+                }
+                catch
+                {
+                    temp = null;
+                }
+
                 if (temp == null) Update();
             }
             #endregion
@@ -102,6 +103,8 @@ namespace Td.Kylin.DataCache.Provider
             }
         }
 
+        private IDatabase _redisDB;
+
         /// <summary>
         /// 当前缓存操作的Redis数据库
         /// </summary>
@@ -109,14 +112,26 @@ namespace Td.Kylin.DataCache.Provider
         {
             get
             {
-                if (CacheStartup.KeepAlive && null != CacheStartup.RedisContext)
+                IDatabase tempDB = _redisDB;
+
+                if (null == tempDB)
                 {
-                    return CacheStartup.RedisContext.GetDatabase(_config.RedisDbIndex);
+                    if (null != CacheStartup.RedisContext)
+                    {
+                        tempDB = CacheStartup.RedisContext.GetDatabase(_config.RedisDbIndex);
+                    }
+                    else
+                    {
+                        tempDB = new RedisContext(CacheStartup.RedisOptions).GetDatabase(_config.RedisDbIndex);
+                    }
+
+                    if (CacheStartup.KeepAlive)
+                    {
+                        _redisDB = tempDB;
+                    }
                 }
-                else
-                {
-                    return new RedisContext(CacheStartup.RedisOptions).GetDatabase(_config.RedisDbIndex);
-                }
+
+                return tempDB;
             }
         }
 

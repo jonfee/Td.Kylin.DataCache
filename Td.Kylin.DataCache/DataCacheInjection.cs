@@ -16,8 +16,9 @@ namespace Td.Kylin.DataCache
         /// <param name="sqlType">数据库类型</param>
         /// <param name="sqlConnection">数据库连接字符串</param>
         /// <param name="cacheItems">缓存类型</param>
+        /// <param name="InitIfNull">缓存数据为空时是否初始化</param>
         /// <returns></returns>
-        public static IApplicationBuilder UseDataCache(this IApplicationBuilder builder, bool keepAlive, ConfigurationOptions options, SqlProviderType sqlType, string sqlConnection, params CacheItemType[] cacheItems)
+        public static IApplicationBuilder UseDataCache(this IApplicationBuilder builder, bool keepAlive, ConfigurationOptions options, SqlProviderType sqlType, string sqlConnection, CacheItemType[] cacheItems = null, bool InitIfNull = false)
         {
             if (builder == null)
             {
@@ -35,8 +36,9 @@ namespace Td.Kylin.DataCache
         /// <param name="sqlType">数据库类型</param>
         /// <param name="sqlConnection">数据库连接字符串</param>
         /// <param name="cacheItems">缓存类型</param>
+        /// <param name="InitIfNull">缓存数据为空时是否初始化</param>
         /// <returns></returns>
-        public static IApplicationBuilder UseDataCache(this IApplicationBuilder builder, bool keepAlive, string redisConnectionString, SqlProviderType sqlType, string sqlConnection, params CacheItemType[] cacheItems)
+        public static IApplicationBuilder UseDataCache(this IApplicationBuilder builder, bool keepAlive, string redisConnectionString, SqlProviderType sqlType, string sqlConnection, CacheItemType[] cacheItems = null, bool InitIfNull = false)
         {
             return builder.Use(next => new DataCacheMiddleware(next, keepAlive, redisConnectionString, sqlType, sqlConnection, cacheItems).Invoke);
         }
@@ -50,8 +52,9 @@ namespace Td.Kylin.DataCache
         /// <param name="sqlType">数据库类型</param>
         /// <param name="sqlConnection">数据库连接字符串</param>
         /// <param name="cacheItems">缓存类型</param>
+        /// <param name="InitIfNull">缓存数据为空时是否初始化</param>
         /// <returns></returns>
-        public static void UseDataCache(bool keepAlive, ConfigurationOptions options, SqlProviderType sqlType, string sqlConnection, params CacheItemType[] cacheItems)
+        public static void UseDataCache(bool keepAlive, ConfigurationOptions options, SqlProviderType sqlType, string sqlConnection, CacheItemType[] cacheItems = null, bool InitIfNull = false)
         {
             new DataCacheMiddleware(keepAlive, options, sqlType, sqlConnection, cacheItems).Invoke();
         }
@@ -65,8 +68,9 @@ namespace Td.Kylin.DataCache
         /// <param name="sqlType">数据库类型</param>
         /// <param name="sqlConnection">数据库连接字符串</param>
         /// <param name="cacheItems">缓存类型</param>
+        /// <param name="InitIfNull">缓存数据为空时是否初始化</param>
         /// <returns></returns>
-        public static void UseDataCache(bool keepAlive, string redisConnectionString, SqlProviderType sqlType, string sqlConnection, params CacheItemType[] cacheItems)
+        public static void UseDataCache(bool keepAlive, string redisConnectionString, SqlProviderType sqlType, string sqlConnection, CacheItemType[] cacheItems = null, bool InitIfNull = false)
         {
             new DataCacheMiddleware(keepAlive, redisConnectionString, sqlType, sqlConnection, cacheItems).Invoke();
         }
