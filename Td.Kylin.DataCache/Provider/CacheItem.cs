@@ -109,12 +109,14 @@ namespace Td.Kylin.DataCache.Provider
         {
             get
             {
-                if (RedisManager.Redis != null)
+                if (CacheStartup.KeepAlive && null != CacheStartup.RedisContext)
                 {
-                    return RedisManager.Redis.GetDatabase(_config.RedisDbIndex);
+                    return CacheStartup.RedisContext.GetDatabase(_config.RedisDbIndex);
                 }
-
-                return null;
+                else
+                {
+                    return new RedisContext(CacheStartup.RedisOptions).GetDatabase(_config.RedisDbIndex);
+                }
             }
         }
 
@@ -279,6 +281,29 @@ namespace Td.Kylin.DataCache.Provider
             catch
             {
                 return default(T);
+            }
+        }
+
+        /// <summary>
+        /// 获取指定字段集的数据项集合
+        /// </summary>
+        /// <param name="hashFields"></param>
+        /// <returns></returns>
+        public virtual List<T> Get(string[] hashFields, bool removeNullOrEmpty)
+        {
+            if (null == RedisDB) return null;
+
+            if (null == hashFields || hashFields.Length < 1) return null;
+
+            try
+            {
+                var fields = hashFields.Select(p => (RedisValue)p).ToArray();
+
+                return RedisDB.HashGet<T>(CacheKey, fields, removeNullOrEmpty);
+            }
+            catch
+            {
+                return null;
             }
         }
 

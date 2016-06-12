@@ -24,6 +24,11 @@ namespace Td.Kylin.DataCache
         private readonly ConfigurationOptions _options;
 
         /// <summary>
+        /// Redis是否为长连接
+        /// </summary>
+        private readonly bool _keepAlive;
+
+        /// <summary>
         /// 数据库类型
         /// </summary>
         private readonly SqlProviderType _sqlProviderType;
@@ -43,11 +48,12 @@ namespace Td.Kylin.DataCache
         /// 实例化
         /// </summary>
         /// <param name="next"></param>
+        /// <param name="keepAlive">是否长连接</param>
         /// <param name="redisOptions">Redis Connections</param>
         /// <param name="sqlType">数据库类型</param>
         /// <param name="sqlConnection">数据库连接字符串</param>
         /// <param name="cacheItems">缓存类型</param>
-        public DataCacheMiddleware(RequestDelegate next, ConfigurationOptions redisOptions, SqlProviderType sqlType, string sqlConnection, params CacheItemType[] cacheItems)
+        public DataCacheMiddleware(RequestDelegate next, bool keepAlive, ConfigurationOptions redisOptions, SqlProviderType sqlType, string sqlConnection, params CacheItemType[] cacheItems)
         {
             if (next == null)
             {
@@ -67,17 +73,19 @@ namespace Td.Kylin.DataCache
             _options = redisOptions;
             _next = next;
             _cacheItems = cacheItems;
+            _keepAlive = keepAlive;
         }
 
         /// <summary>
         /// 实例化
         /// </summary>
         /// <param name="next"></param>
+        /// <param name="keepAlive">是否长连接</param>
         /// <param name="redisConnection">Redis 连接字符串</param>
         /// <param name="sqlType">数据库类型</param>
         /// <param name="sqlConnection">数据库连接字符串</param>
         /// <param name="cacheItems">缓存类型</param>
-        public DataCacheMiddleware(RequestDelegate next, string redisConnection, SqlProviderType sqlType, string sqlConnection, params CacheItemType[] cacheItems)
+        public DataCacheMiddleware(RequestDelegate next, bool keepAlive, string redisConnection, SqlProviderType sqlType, string sqlConnection, params CacheItemType[] cacheItems)
         {
             if (next == null)
             {
@@ -99,17 +107,16 @@ namespace Td.Kylin.DataCache
             _options = tempOptions;
             _next = next;
             _cacheItems = cacheItems;
+            _keepAlive = keepAlive;
         }
 
         public Task Invoke(HttpContext context)
         {
-            RedisInjection.UseRedis(_options);
-
             CacheStartup.SqlType = _sqlProviderType;
 
             CacheStartup.SqlConnctionString = _sqlconnectionString;
 
-            CacheStartup.InitRedisConfigration(_cacheItems);
+            CacheStartup.InitRedisConfigration(_options, _keepAlive, _cacheItems);
 
             return _next(context);
         }
@@ -121,11 +128,12 @@ namespace Td.Kylin.DataCache
         /// <summary>
         /// 实例化（非Web程序中使用）
         /// </summary>
+        /// <param name="keepAlive">是否长连接</param>
         /// <param name="redisOptions"></param>
         /// <param name="sqlType">数据库类型</param>
         /// <param name="sqlConnection">数据库连接字符串</param>
         /// <param name="cacheItems">缓存类型</param>
-        public DataCacheMiddleware(ConfigurationOptions redisOptions, SqlProviderType sqlType, string sqlConnection, params CacheItemType[] cacheItems)
+        public DataCacheMiddleware(bool keepAlive, ConfigurationOptions redisOptions, SqlProviderType sqlType, string sqlConnection, params CacheItemType[] cacheItems)
         {
             if (redisOptions == null)
             {
@@ -139,17 +147,19 @@ namespace Td.Kylin.DataCache
             _sqlconnectionString = sqlConnection;
             _options = redisOptions;
             _cacheItems = cacheItems;
+            _keepAlive = keepAlive;
         }
 
         /// <summary>
         /// 实例化（非Web程序中使用）
         /// </summary>
         /// <param name="next"></param>
+        /// <param name="keepAlive">是否长连接</param>
         /// <param name="redisConnection">Redis 连接字符串</param>
         /// <param name="sqlType">数据库类型</param>
         /// <param name="sqlConnection">数据库连接字符串</param>
         /// <param name="cacheItems">缓存类型</param>
-        public DataCacheMiddleware(string redisConnection, SqlProviderType sqlType, string sqlConnection, params CacheItemType[] cacheItems)
+        public DataCacheMiddleware(bool keepAlive, string redisConnection, SqlProviderType sqlType, string sqlConnection, params CacheItemType[] cacheItems)
         {
             var tempOptions = ConfigurationOptions.Parse(redisConnection);
 
@@ -165,17 +175,16 @@ namespace Td.Kylin.DataCache
             _sqlconnectionString = sqlConnection;
             _options = tempOptions;
             _cacheItems = cacheItems;
+            _keepAlive = keepAlive;
         }
 
         public void Invoke()
         {
-            RedisInjection.UseRedis(_options);
-
             CacheStartup.SqlType = _sqlProviderType;
 
             CacheStartup.SqlConnctionString = _sqlconnectionString;
 
-            CacheStartup.InitRedisConfigration(_cacheItems);
+            CacheStartup.InitRedisConfigration(_options, _keepAlive, _cacheItems);
         }
 
         #endregion

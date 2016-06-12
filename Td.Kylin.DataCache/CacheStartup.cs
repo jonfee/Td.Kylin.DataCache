@@ -1,16 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using StackExchange.Redis;
+using System.Collections.Generic;
 using System.Linq;
 using Td.Kylin.DataCache.RedisConfig;
 using Td.Kylin.EnumLibrary;
+using Td.Kylin.Redis;
 
 namespace Td.Kylin.DataCache
 {
     internal sealed class CacheStartup
     {
         /// <summary>
+        /// Redis连接信息
+        /// </summary>
+        public static ConfigurationOptions RedisOptions { get; private set; }
+
+        /// <summary>
+        /// 是否为长连接
+        /// </summary>
+        public static bool KeepAlive { get; private set; }
+
+        /// <summary>
         /// Redis缓存配置
         /// </summary>
         public static RedisConfigurationRoot RedisConfiguration { get; private set; }
+
+        /// <summary>
+        /// RedisContext
+        /// </summary>
+        public static RedisContext RedisContext { get; private set; }
 
         /// <summary>
         /// 数据库提供者类型
@@ -28,8 +45,17 @@ namespace Td.Kylin.DataCache
         /// 创建并初始化Redis缓存配置
         /// </summary>
         /// <returns></returns>
-        public static void InitRedisConfigration(IEnumerable<CacheItemType> types)
+        public static void InitRedisConfigration(ConfigurationOptions options, bool keepAlive, IEnumerable<CacheItemType> types)
         {
+            RedisOptions = options;
+
+            KeepAlive = keepAlive;
+
+            if (keepAlive)
+            {
+                RedisContext = new RedisContext(options);
+            }
+
             var config = new RedisConfigurationRoot();
 
             List<CacheItemType> cacheItems = null == types ? null : types.ToList();

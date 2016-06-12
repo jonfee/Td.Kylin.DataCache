@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Td.Kylin.Redis;
 
 namespace Td.Kylin.DataCache.RedisConfig
 {
@@ -10,10 +12,15 @@ namespace Td.Kylin.DataCache.RedisConfig
     /// </summary>
     public sealed class RedisConfigurationRoot
     {
+        /// <summary>
+        /// 缓存配置集合
+        /// </summary>
         private List<CacheConfig> _collections;
 
+        /// <summary>
+        /// 锁对象 
+        /// </summary>
         private readonly static object mylock = new object();
-
         /// <summary>
         /// 缓存配置项集合
         /// </summary>
