@@ -49,15 +49,7 @@ namespace Td.Kylin.DataCache.Provider
             #region 检测是否存在缓存，不存在则初始化更新
             if (CacheStartup.InitIfNull)
             {
-                List<T> temp = null;
-                try
-                {
-                    temp = GetCache();
-                }
-                catch
-                {
-                    temp = null;
-                }
+                List<T> temp = GetCache();
 
                 if (temp == null) Update();
             }
@@ -112,10 +104,10 @@ namespace Td.Kylin.DataCache.Provider
         {
             get
             {
-                IDatabase tempDB = _redisDB;
-
-                if (null == tempDB)
+                if (null == _redisDB)
                 {
+                    IDatabase tempDB = null;
+
                     if (null != CacheStartup.RedisContext)
                     {
                         tempDB = CacheStartup.RedisContext.GetDatabase(_config.RedisDbIndex);
@@ -129,9 +121,13 @@ namespace Td.Kylin.DataCache.Provider
                     {
                         _redisDB = tempDB;
                     }
+                    else
+                    {
+                        return tempDB;
+                    }
                 }
 
-                return tempDB;
+                return _redisDB ;
             }
         }
 
