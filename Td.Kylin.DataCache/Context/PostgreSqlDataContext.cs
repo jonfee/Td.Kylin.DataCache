@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.Entity;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Td.Kylin.DataCache.Context
 {
@@ -6,7 +6,7 @@ namespace Td.Kylin.DataCache.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
-            optionBuilder.UseNpgsql(CacheStartup.SqlConnctionString);
+            //optionBuilder.UseNpgsql(CacheStartup.SqlConnctionString);
         }
     }
 }

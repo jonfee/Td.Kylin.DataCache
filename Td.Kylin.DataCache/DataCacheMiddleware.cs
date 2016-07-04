@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Http;
+﻿using Microsoft.AspNetCore.Http;
 using StackExchange.Redis;
 using System;
 using System.Threading.Tasks;
-using Td.Kylin.DataCache.RedisConfig;
 using Td.Kylin.EnumLibrary;
-using Td.Kylin.Redis;
 
 namespace Td.Kylin.DataCache
 {
@@ -83,42 +80,6 @@ namespace Td.Kylin.DataCache
             _initIfNull = initIfNull;
         }
 
-        /// <summary>
-        /// 实例化
-        /// </summary>
-        /// <param name="next"></param>
-        /// <param name="keepAlive">是否长连接</param>
-        /// <param name="redisConnection">Redis 连接字符串</param>
-        /// <param name="sqlType">数据库类型</param>
-        /// <param name="sqlConnection">数据库连接字符串</param>
-        /// <param name="cacheItems">缓存类型</param>
-        /// <param name="initIfNull">缓存数据为空时是否初始化</param>
-        public DataCacheMiddleware(RequestDelegate next, bool keepAlive, string redisConnection, SqlProviderType sqlType, string sqlConnection,  CacheItemType[] cacheItems = null, bool initIfNull = false)
-        {
-            if (next == null)
-            {
-                throw new ArgumentNullException(nameof(next));
-            }
-
-            var tempOptions = ConfigurationOptions.Parse(redisConnection);
-
-            if (tempOptions == null)
-            {
-                throw new ArgumentNullException(nameof(redisConnection));
-            }
-            if (string.IsNullOrWhiteSpace(sqlConnection))
-            {
-                throw new ArgumentNullException(nameof(sqlConnection));
-            }
-            _sqlProviderType = sqlType;
-            _sqlconnectionString = sqlConnection;
-            _options = tempOptions;
-            _next = next;
-            _cacheItems = cacheItems;
-            _keepAlive = keepAlive;
-            _initIfNull = initIfNull;
-        }
-
         public Task Invoke(HttpContext context)
         {
             CacheStartup.SqlType = _sqlProviderType;
@@ -158,36 +119,6 @@ namespace Td.Kylin.DataCache
             _sqlProviderType = sqlType;
             _sqlconnectionString = sqlConnection;
             _options = redisOptions;
-            _cacheItems = cacheItems;
-            _keepAlive = keepAlive;
-            _initIfNull = initIfNull;
-        }
-
-        /// <summary>
-        /// 实例化（非Web程序中使用）
-        /// </summary>
-        /// <param name="next"></param>
-        /// <param name="keepAlive">是否长连接</param>
-        /// <param name="redisConnection">Redis 连接字符串</param>
-        /// <param name="sqlType">数据库类型</param>
-        /// <param name="sqlConnection">数据库连接字符串</param>
-        /// <param name="cacheItems">缓存类型</param>
-        /// <param name="initIfNull">缓存数据为空时是否初始化</param>
-        public DataCacheMiddleware(bool keepAlive, string redisConnection, SqlProviderType sqlType, string sqlConnection,  CacheItemType[] cacheItems = null, bool initIfNull = false)
-        {
-            var tempOptions = ConfigurationOptions.Parse(redisConnection);
-
-            if (tempOptions == null)
-            {
-                throw new ArgumentNullException(nameof(redisConnection));
-            }
-            if (string.IsNullOrWhiteSpace(sqlConnection))
-            {
-                throw new ArgumentNullException(nameof(sqlConnection));
-            }
-            _sqlProviderType = sqlType;
-            _sqlconnectionString = sqlConnection;
-            _options = tempOptions;
             _cacheItems = cacheItems;
             _keepAlive = keepAlive;
             _initIfNull = initIfNull;

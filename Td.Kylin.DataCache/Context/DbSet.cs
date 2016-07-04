@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.Entity;
+﻿using Microsoft.EntityFrameworkCore;
 using Td.Kylin.Entity;
 
 namespace Td.Kylin.DataCache.Context
