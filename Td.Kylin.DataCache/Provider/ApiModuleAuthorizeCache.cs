@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Td.Kylin.DataCache.CacheModel;
 namespace Td.Kylin.DataCache.Provider
 {
+    /// <summary>
+    /// API模块授权缓存
+    /// </summary>
     public sealed class ApiModuleAuthorizeCache : CacheItem<ApiModuleAuthorizeCacheModel>
     {
+        /// <summary>
+        /// 初始化一个<seealso cref="ApiModuleAuthorizeCache"/>实例
+        /// </summary>
         public ApiModuleAuthorizeCache() : base(CacheItemType.ApiModuleAuthorize) { }
 
         /// <summary>
@@ -22,6 +25,10 @@ namespace Td.Kylin.DataCache.Provider
             return Get(item.HashField);
         }
 
+        /// <summary>
+        /// 从数据库中读取数据
+        /// </summary>
+        /// <returns></returns>
         protected override List<ApiModuleAuthorizeCacheModel> ReadDataFromDB()
         {
             return ServicesProvider.Items.ModuleAuthorizeService.GetAll();

@@ -8,8 +8,15 @@ namespace Td.Kylin.DataCache.Provider
     /// </summary>
     public sealed class B2CProductCategoryTagCache : CacheItem<B2CProductCategoryTagCacheModel>
     {
+        /// <summary>
+        /// 初始化一个<seealso cref="B2CProductCategoryTagCache"/>实例 
+        /// </summary>
         public B2CProductCategoryTagCache() : base(CacheItemType.B2CProductCategoryTags) { }
 
+        /// <summary>
+        /// 从数据库中读取数据
+        /// </summary>
+        /// <returns></returns>
         protected override List<B2CProductCategoryTagCacheModel> ReadDataFromDB()
         {
             return ServicesProvider.Items.B2CProductCategoryTagService.GetAll();

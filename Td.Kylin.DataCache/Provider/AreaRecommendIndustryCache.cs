@@ -8,8 +8,15 @@ namespace Td.Kylin.DataCache.Provider
     /// </summary>
     public sealed class AreaRecommendIndustryCache : CacheItem<AreaRecommendIndustryCacheModel>
     {
+        /// <summary>
+        /// 初始化一个<seealso cref="AreaRecommendIndustryCache"/>实例
+        /// </summary>
         public AreaRecommendIndustryCache() : base(CacheItemType.AreaRecommendIndustry) { }
 
+        /// <summary>
+        /// 从数据库中读取数据
+        /// </summary>
+        /// <returns></returns>
         protected override List<AreaRecommendIndustryCacheModel> ReadDataFromDB()
         {
             return ServicesProvider.Items.AreaRecommendIndustryService.GetAll();

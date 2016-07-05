@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Td.Kylin.DataCache.CacheModel
+﻿namespace Td.Kylin.DataCache.CacheModel
 {
+    /// <summary>
+    /// 跑腿区域配置数据缓存模型
+    /// </summary>
     public class LegworkAreaConfigCacheModel : BaseCacheModel
     {
         /// <summary>

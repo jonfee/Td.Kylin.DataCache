@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Td.Kylin.DataCache.CacheModel;
 
 namespace Td.Kylin.DataCache.Provider
 {
+    /// <summary>
+    /// 跑腿区域配置缓存
+    /// </summary>
     public class LegworkAreaConfigCache : CacheItem<LegworkAreaConfigCacheModel>
     {
+        /// <summary>
+        /// 初始化一个<seealso cref="LegworkAreaConfigCache"/>实例
+        /// </summary>
         public LegworkAreaConfigCache() : base(CacheItemType.LegworkAreaConfig) { }
 
         /// <summary>
@@ -22,6 +25,10 @@ namespace Td.Kylin.DataCache.Provider
             return Get(item.HashField);
         }
 
+        /// <summary>
+        /// 从数据库读取数据
+        /// </summary>
+        /// <returns></returns>
         protected override List<LegworkAreaConfigCacheModel> ReadDataFromDB()
         {
             return ServicesProvider.Items.LegworkAreaConfigService.GetAll();

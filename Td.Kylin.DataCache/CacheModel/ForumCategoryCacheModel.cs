@@ -1,5 +1,8 @@
 ﻿namespace Td.Kylin.DataCache.CacheModel
 {
+    /// <summary>
+    /// 圈子分类数据缓存模型
+    /// </summary>
     public class ForumCategoryCacheModel:BaseCacheModel
     {
         /// <summary>

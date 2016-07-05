@@ -1,6 +1,9 @@
 ﻿namespace Td.Kylin.DataCache.CacheModel
 {
-    public class AreaForumCacheModel:BaseCacheModel
+    /// <summary>
+    /// 区域圈子数据缓存模型
+    /// </summary>
+    public class AreaForumCacheModel : BaseCacheModel
     {
         /// <summary>
         /// HashField（AreaForumID）

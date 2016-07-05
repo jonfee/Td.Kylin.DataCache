@@ -8,8 +8,15 @@ namespace Td.Kylin.DataCache.Provider
     /// </summary>
     public sealed class BusinessServiceCache : CacheItem<BusinessServiceCacheModel>
     {
+        /// <summary>
+        /// 初始化一个<seealso cref="BusinessServiceCache"/>实例
+        /// </summary>
         public BusinessServiceCache() : base(CacheItemType.BusinessServices) { }
-        
+
+        /// <summary>
+        /// 从数据库中读取数据
+        /// </summary>
+        /// <returns></returns>
         protected override List<BusinessServiceCacheModel> ReadDataFromDB()
         {
             return ServicesProvider.Items.BusinessService.GetEnabledAll();

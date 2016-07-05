@@ -8,6 +8,9 @@ namespace Td.Kylin.DataCache.Provider
     /// </summary>
     public sealed class AreaForMerchantCommissionCache : CacheItem<AreaForMerchantCommissionCacheModel>
     {
+        /// <summary>
+        /// 初始化一个<seealso cref="AreaForMerchantCommissionCache"/>实例
+        /// </summary>
         public AreaForMerchantCommissionCache() : base(CacheItemType.AreaForMerchantCommission) { }
 
         /// <summary>
@@ -24,6 +27,10 @@ namespace Td.Kylin.DataCache.Provider
             return Get(item.HashField);
         }
 
+        /// <summary>
+        /// 从数据库中读取数据
+        /// </summary>
+        /// <returns></returns>
         protected override List<AreaForMerchantCommissionCacheModel> ReadDataFromDB()
         {
             return ServicesProvider.Items.AreaForMerchantCommissionService.GetAll();

@@ -358,7 +358,7 @@ namespace Td.Kylin.DataCache
         /// <summary>
         /// 获取缓存项
         /// </summary>
-        /// <param name="level"></param>
+        /// <param name="itemType"><seealso cref="CacheItemType"/>枚举成员</param>
         /// <returns></returns>
         public static ICache GetCache(CacheItemType itemType)
         {

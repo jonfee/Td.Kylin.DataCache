@@ -8,8 +8,15 @@ namespace Td.Kylin.DataCache.Provider
     /// </summary>
     public sealed class SystemGolbalConfigCache : CacheItem<SystemGolbalConfigCacheModel>
     {
+        /// <summary>
+        /// 初始化一个<seealso cref="SystemGolbalConfigCache"/>实例
+        /// </summary>
         public SystemGolbalConfigCache() : base(CacheItemType.SystemGolbalConfig) { }
-        
+
+        /// <summary>
+        /// 从数据库读取数据
+        /// </summary>
+        /// <returns></returns>
         protected override List<SystemGolbalConfigCacheModel> ReadDataFromDB()
         {
             return ServicesProvider.Items.SystemGolbalConfigService.GetAll();

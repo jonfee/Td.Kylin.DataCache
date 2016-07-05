@@ -8,6 +8,9 @@ namespace Td.Kylin.DataCache.Provider
     /// </summary>
     public sealed class JobCategoryCache : CacheItem<JobCategoryCacheModel>
     {
+        /// <summary>
+        /// 初始化一个<seealso cref="JobCategoryCache"/>实例
+        /// </summary>
         public JobCategoryCache() : base(CacheItemType.JobCategory) { }
         
         /// <summary>
@@ -21,7 +24,11 @@ namespace Td.Kylin.DataCache.Provider
 
             return Get(item.HashField);
         }
-        
+
+        /// <summary>
+        /// 从数据库中读取数据
+        /// </summary>
+        /// <returns></returns>
         protected override List<JobCategoryCacheModel> ReadDataFromDB()
         {
             return ServicesProvider.Items.JobCategoryService.GetAll();

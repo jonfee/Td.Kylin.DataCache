@@ -8,8 +8,15 @@ namespace Td.Kylin.DataCache.Provider
     /// </summary>
     public sealed class OpenAreaCache : CacheItem<OpenAreaCacheModel>
     {
+        /// <summary>
+        /// 初始化一个<seealso cref="OpenAreaCache"/>实例
+        /// </summary>
         public OpenAreaCache() : base(CacheItemType.OpenArea) { }
         
+        /// <summary>
+        /// 从数据库读取数据
+        /// </summary>
+        /// <returns></returns>
         protected override List<OpenAreaCacheModel> ReadDataFromDB()
         {
             return ServicesProvider.Items.OpenAreaService.GetAll();

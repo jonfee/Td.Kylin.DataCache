@@ -1,5 +1,8 @@
 ﻿namespace Td.Kylin.DataCache.CacheModel
 {
+    /// <summary>
+    /// 用户经验值获取规则配置数据缓存模型
+    /// </summary>
     public class UserEmpiricalConfigCacheModel:BaseCacheModel
     {
         /// <summary>

@@ -1,5 +1,8 @@
 ﻿namespace Td.Kylin.DataCache.CacheModel
 {
+    /// <summary>
+    /// 跑腿全局配置数据缓存模型
+    /// </summary>
     public class LegworkGlobalConfigCacheModel : BaseCacheModel
     {
         /// <summary>

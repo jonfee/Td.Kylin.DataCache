@@ -8,8 +8,15 @@ namespace Td.Kylin.DataCache.Provider
     /// </summary>
     public sealed class ForumCircleCache : CacheItem<ForumCircleCacheModel>
     {
+        /// <summary>
+        /// 初始化一个<seealso cref="ForumCircleCache"/>实例
+        /// </summary>
         public ForumCircleCache() : base(CacheItemType.ForumCircle) { }
-        
+
+        /// <summary>
+        /// 从数据库中读取数据
+        /// </summary>
+        /// <returns></returns>
         protected override List<ForumCircleCacheModel> ReadDataFromDB()
         {
             return ServicesProvider.Items.ForumCircleService.GetEnabledAll();

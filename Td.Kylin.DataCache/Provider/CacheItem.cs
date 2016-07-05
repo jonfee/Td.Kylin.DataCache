@@ -40,6 +40,10 @@ namespace Td.Kylin.DataCache.Provider
             Init(config);
         }
 
+        /// <summary>
+        /// 实始化方法
+        /// </summary>
+        /// <param name="config"></param>
         void Init(CacheConfig config)
         {
             _config = config;
@@ -79,6 +83,9 @@ namespace Td.Kylin.DataCache.Provider
         }
 
 
+        /// <summary>
+        /// level
+        /// </summary>
         private CacheLevel _level;
         /// <summary>
         /// 缓存级别
@@ -95,6 +102,9 @@ namespace Td.Kylin.DataCache.Provider
             }
         }
 
+        /// <summary>
+        /// redis database
+        /// </summary>
         private IDatabase _redisDB;
 
         /// <summary>
@@ -299,6 +309,7 @@ namespace Td.Kylin.DataCache.Provider
         /// 获取指定字段集的数据项集合
         /// </summary>
         /// <param name="hashFields"></param>
+        /// <param name="removeNullOrEmpty">是否移除null或empty的数据对象</param>
         /// <returns></returns>
         public virtual List<T> Get(string[] hashFields, bool removeNullOrEmpty)
         {

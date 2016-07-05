@@ -1,5 +1,8 @@
 ﻿namespace Td.Kylin.DataCache.CacheModel
 {
+    /// <summary>
+    /// 跑腿物品类型数据缓存模型
+    /// </summary>
     public class LegworkGoodsCategoryCacheModel : BaseCacheModel
     {
         /// <summary>

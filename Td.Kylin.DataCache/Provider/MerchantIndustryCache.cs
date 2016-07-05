@@ -8,8 +8,15 @@ namespace Td.Kylin.DataCache.Provider
     /// </summary>
     public sealed class MerchantIndustryCache : CacheItem<MerchantIndustryCacheModel>
     {
+        /// <summary>
+        /// 初始化一个<seealso cref="MerchantIndustryCache"/>实例
+        /// </summary>
         public MerchantIndustryCache() : base(CacheItemType.MerchantIndustry) { }
 
+        /// <summary>
+        /// 从数据库中读取数据
+        /// </summary>
+        /// <returns></returns>
         protected override List<MerchantIndustryCacheModel> ReadDataFromDB()
         {
             return ServicesProvider.Items.MerchantIndustryService.GetEnabledAll();

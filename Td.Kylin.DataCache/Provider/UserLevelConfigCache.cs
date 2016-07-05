@@ -8,8 +8,15 @@ namespace Td.Kylin.DataCache.Provider
     /// </summary>
     public sealed class UserLevelConfigCache : CacheItem<UserLevelConfigCacheModel>
     {
+        /// <summary>
+        /// 初始化一个<seealso cref="UserLevelConfigCache"/>实例
+        /// </summary>
         public UserLevelConfigCache() : base(CacheItemType.UserLevelConfig) { }
-        
+
+        /// <summary>
+        /// 从数据库读取数据
+        /// </summary>
+        /// <returns></returns>
         protected override List<UserLevelConfigCacheModel> ReadDataFromDB()
         {
             return ServicesProvider.Items.UserLevelConfigService.GetEnabledAll();

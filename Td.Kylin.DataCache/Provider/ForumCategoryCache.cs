@@ -8,8 +8,15 @@ namespace Td.Kylin.DataCache.Provider
     /// </summary>
     public sealed class ForumCategoryCache : CacheItem<ForumCategoryCacheModel>
     {
+        /// <summary>
+        /// 初始化一个<seealso cref="ForumCategoryCache"/>实例
+        /// </summary>
         public ForumCategoryCache() : base(CacheItemType.ForumCategory) { }
-        
+
+        /// <summary>
+        /// 从数据库中读取数据
+        /// </summary>
+        /// <returns></returns>
         protected override List<ForumCategoryCacheModel> ReadDataFromDB()
         {
             return ServicesProvider.Items.ForumCategoryService.GetEnabledAll();

@@ -8,6 +8,9 @@ namespace Td.Kylin.DataCache.Provider
     /// </summary>
     public class LegworkGoodsCategoryCache : CacheItem<LegworkGoodsCategoryCacheModel>
     {
+        /// <summary>
+        /// 初始化一个<seealso cref="LegworkGoodsCategoryCache"/>实例
+        /// </summary>
         public LegworkGoodsCategoryCache() : base(CacheItemType.LegworkGoodsCategory) { }
 
         /// <summary>
@@ -22,6 +25,10 @@ namespace Td.Kylin.DataCache.Provider
             return Get(item.HashField);
         }
 
+        /// <summary>
+        /// 从数据库中读取数据
+        /// </summary>
+        /// <returns></returns>
         protected override List<LegworkGoodsCategoryCacheModel> ReadDataFromDB()
         {
             return ServicesProvider.Items.LegworkGoodsCategoryService.GetAll();

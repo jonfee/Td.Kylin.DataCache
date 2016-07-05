@@ -8,6 +8,9 @@ namespace Td.Kylin.DataCache.Provider
     /// </summary>
     public sealed class PlatformCommissionCache : CacheItem<PlatformCommissionCacheModel>
     {
+        /// <summary>
+        /// 初始化一个<seealso cref="PlatformCommissionCache"/>实例
+        /// </summary>
         public PlatformCommissionCache() : base(CacheItemType.PlatformCommission) { }
 
         /// <summary>
@@ -23,6 +26,10 @@ namespace Td.Kylin.DataCache.Provider
             return Get(item.HashField);
         }
 
+        /// <summary>
+        /// 从数据库读取数据
+        /// </summary>
+        /// <returns></returns>
         protected override List<PlatformCommissionCacheModel> ReadDataFromDB()
         {
             return ServicesProvider.Items.PlatformCommissionService.GetAll();

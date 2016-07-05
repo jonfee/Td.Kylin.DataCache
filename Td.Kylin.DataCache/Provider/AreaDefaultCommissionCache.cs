@@ -8,6 +8,9 @@ namespace Td.Kylin.DataCache.Provider
     /// </summary>
     public sealed class AreaDefaultCommissionCache : CacheItem<AreaDefaultCommissionCacheModel>
     {
+        /// <summary>
+        /// 初始化一个<seealso cref="AreaDefaultCommissionCache"/>实例
+        /// </summary>
         public AreaDefaultCommissionCache() : base(CacheItemType.AreaDefaultCommission) { }
 
         /// <summary>
@@ -23,6 +26,10 @@ namespace Td.Kylin.DataCache.Provider
             return Get(item.HashField);
         }
 
+        /// <summary>
+        /// 从数据库中读取数据
+        /// </summary>
+        /// <returns></returns>
         protected override List<AreaDefaultCommissionCacheModel> ReadDataFromDB()
         {
             return ServicesProvider.Items.AreaDefaultCommissionService.GetAll();

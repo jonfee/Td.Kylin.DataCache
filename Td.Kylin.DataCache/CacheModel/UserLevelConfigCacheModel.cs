@@ -1,5 +1,8 @@
 ﻿namespace Td.Kylin.DataCache.CacheModel
 {
+    /// <summary>
+    /// 用户等级规则数据缓存模型
+    /// </summary>
     public class UserLevelConfigCacheModel:BaseCacheModel
     {
         /// <summary>

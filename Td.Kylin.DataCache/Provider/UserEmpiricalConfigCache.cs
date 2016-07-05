@@ -8,8 +8,15 @@ namespace Td.Kylin.DataCache.Provider
     /// </summary>
     public sealed class UserEmpiricalConfigCache : CacheItem<UserEmpiricalConfigCacheModel>
     {
+        /// <summary>
+        /// 初始化一个<seealso cref="UserEmpiricalConfigCache"/>实例
+        /// </summary>
         public UserEmpiricalConfigCache() : base(CacheItemType.UserEmpiricalConfig) { }
-        
+
+        /// <summary>
+        /// 从数据库读取数据
+        /// </summary>
+        /// <returns></returns>
         protected override List<UserEmpiricalConfigCacheModel> ReadDataFromDB()
         {
             return ServicesProvider.Items.UserEmpiricalConfigService.GetAll();

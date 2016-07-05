@@ -1,5 +1,8 @@
 ﻿namespace Td.Kylin.DataCache.CacheModel
 {
+    /// <summary>
+    /// 系统全局配置数据缓存模型
+    /// </summary>
     public class SystemGolbalConfigCacheModel:BaseCacheModel
     {
         /// <summary>

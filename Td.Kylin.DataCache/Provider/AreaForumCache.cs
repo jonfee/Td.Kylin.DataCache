@@ -8,6 +8,9 @@ namespace Td.Kylin.DataCache.Provider
     /// </summary>
     public sealed class AreaForumCache : CacheItem<AreaForumCacheModel>
     {
+        /// <summary>
+        /// 初始化一个<seealso cref="AreaForumCache"/>实例
+        /// </summary>
         public AreaForumCache() : base(CacheItemType.AreaForum) { }
         
         /// <summary>
@@ -22,6 +25,10 @@ namespace Td.Kylin.DataCache.Provider
             return Get(item.HashField);
         }
 
+        /// <summary>
+        /// 从数据库中读取数据
+        /// </summary>
+        /// <returns></returns>
         protected override List<AreaForumCacheModel> ReadDataFromDB()
         {
             return ServicesProvider.Items.AreaForumService.GetEnabledAll();

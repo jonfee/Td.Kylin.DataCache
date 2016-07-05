@@ -1,5 +1,8 @@
 ﻿namespace Td.Kylin.DataCache.CacheModel
 {
+    /// <summary>
+    /// 精品汇自定义分类下标签数据缓存模型
+    /// </summary>
     public class B2CProductCategoryTagCacheModel:BaseCacheModel
     {
         /// <summary>

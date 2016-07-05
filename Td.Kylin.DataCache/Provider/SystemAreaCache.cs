@@ -8,8 +8,15 @@ namespace Td.Kylin.DataCache.Provider
     /// </summary>
     public sealed class SystemAreaCache : CacheItem<SystemAreaCacheModel>
     {
+        /// <summary>
+        /// 初始化一个<seealso cref="SystemAreaCache"/>实例
+        /// </summary>
         public SystemAreaCache() : base(CacheItemType.SystemArea) { }
-        
+
+        /// <summary>
+        /// 从数据库读取数据
+        /// </summary>
+        /// <returns></returns>
         protected override List<SystemAreaCacheModel> ReadDataFromDB()
         {
             return ServicesProvider.Items.SystemAreaService.GetAll();

@@ -8,6 +8,9 @@ namespace Td.Kylin.DataCache.Provider
     /// </summary>
     public class LegworkGlobalConfigCache : CacheItem<LegworkGlobalConfigCacheModel>
     {
+        /// <summary>
+        /// 初始化一个<seealso cref="LegworkGlobalConfigCache"/>实例
+        /// </summary>
         public LegworkGlobalConfigCache() : base(CacheItemType.LegworkGlobalConfig) { }
 
         /// <summary>
@@ -22,6 +25,10 @@ namespace Td.Kylin.DataCache.Provider
             return Get(item.HashField);
         }
 
+        /// <summary>
+        /// 从数据库中读取数据
+        /// </summary>
+        /// <returns></returns>
         protected override List<LegworkGlobalConfigCacheModel> ReadDataFromDB()
         {
             return ServicesProvider.Items.LegworkGlobalConfigService.GetAll();
