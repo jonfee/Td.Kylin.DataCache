@@ -1,5 +1,5 @@
 {
-  "version": "1.2.5.200",
+  "version": "1.2.5.300",
   "dependencies": {
     "Microsoft.AspNetCore.Mvc.Core": "1.0.0",
     "Microsoft.EntityFrameworkCore": "1.0.0",

@@ -118,7 +118,7 @@ namespace Td.Kylin.DataCache.Provider
                 //create a new RedisContext and database
                 if (null == _redisDB || !CacheStartup.RedisContext.IsConnected)
                 {
-                    if (null == CacheStartup.RedisContext)
+                    if (null == CacheStartup.RedisContext || CacheStartup.RedisContext.IsConnected == false)
                     {
                         CacheStartup.RedisContext = new RedisContext(CacheStartup.RedisOptions);
                     }
