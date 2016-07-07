@@ -32,7 +32,7 @@ namespace Td.Kylin.DataCache
         /// <summary>
         /// RedisContext
         /// </summary>
-        public static RedisContext RedisContext { get; private set; }
+        public static RedisContext RedisContext { get; set; }
 
         /// <summary>
         /// 数据库提供者类型

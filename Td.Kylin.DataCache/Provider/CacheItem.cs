@@ -118,16 +118,12 @@ namespace Td.Kylin.DataCache.Provider
                 //create a new RedisContext and database
                 if (null == _redisDB || !CacheStartup.RedisContext.IsConnected)
                 {
-                    IDatabase tempDB = null;
+                    if (null == CacheStartup.RedisContext)
+                    {
+                        CacheStartup.RedisContext = new RedisContext(CacheStartup.RedisOptions);
+                    }
 
-                    if (null != CacheStartup.RedisContext)
-                    {
-                        tempDB = CacheStartup.RedisContext.GetDatabase(_config.RedisDbIndex);
-                    }
-                    else
-                    {
-                        tempDB = new RedisContext(CacheStartup.RedisOptions).GetDatabase(_config.RedisDbIndex);
-                    }
+                    IDatabase tempDB = CacheStartup.RedisContext.GetDatabase(_config.RedisDbIndex);
 
                     if (CacheStartup.KeepAlive)
                     {
