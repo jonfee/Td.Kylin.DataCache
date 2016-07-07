@@ -1051,7 +1051,7 @@
           "lib/net452/Td.CoreLibrary.dll": {}
         }
       },
-      "Td.Kylin.Entity/1.1.6": {
+      "Td.Kylin.Entity/1.1.8": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.DataAnnotations": "1.0.0"
@@ -1075,7 +1075,7 @@
           "lib/net452/Td.Kylin.EnumLibrary.dll": {}
         }
       },
-      "Td.Kylin.Redis/1.2.3": {
+      "Td.Kylin.Redis/1.2.4": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.Core": "1.0.0",
@@ -2370,7 +2370,7 @@
           "lib/net452/Td.CoreLibrary.dll": {}
         }
       },
-      "Td.Kylin.Entity/1.1.6": {
+      "Td.Kylin.Entity/1.1.8": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.DataAnnotations": "1.0.0"
@@ -2394,7 +2394,7 @@
           "lib/net46/Td.Kylin.EnumLibrary.dll": {}
         }
       },
-      "Td.Kylin.Redis/1.2.3": {
+      "Td.Kylin.Redis/1.2.4": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.Core": "1.0.0",
@@ -4863,7 +4863,7 @@
           "lib/netstandard1.6/Td.CoreLibrary.dll": {}
         }
       },
-      "Td.Kylin.Entity/1.1.6": {
+      "Td.Kylin.Entity/1.1.8": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.DataAnnotations": "1.0.0"
@@ -4887,7 +4887,7 @@
           "lib/netstandard1.6/Td.Kylin.EnumLibrary.dll": {}
         }
       },
-      "Td.Kylin.Redis/1.2.3": {
+      "Td.Kylin.Redis/1.2.4": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.Core": "1.0.0",
@@ -9662,16 +9662,19 @@
         "lib/netstandard1.6/Td.CoreLibrary.xml"
       ]
     },
-    "Td.Kylin.Entity/1.1.6": {
-      "sha512": "FRQnh9038vw2pfR95dI4GtjoBMnQYRsPWJaJ/q18w9zz27P5cfr4rQOO6tKvZZr5wgyYmNqmbV7cL2QaFx1x7Q==",
+    "Td.Kylin.Entity/1.1.8": {
+      "sha512": "969IkdEvWZIcndyLxLrQ+4WkYX7CeOOeYn8CvzmwUIYS3Wo3xK4iLUl2m2qJpq1Wqz/7rzQLC9N8J3v5IQBPDQ==",
       "type": "package",
-      "path": "Td.Kylin.Entity/1.1.6",
+      "path": "Td.Kylin.Entity/1.1.8",
       "files": [
-        "Td.Kylin.Entity.1.1.6.nupkg.sha512",
+        "Td.Kylin.Entity.1.1.8.nupkg.sha512",
         "Td.Kylin.Entity.nuspec",
         "lib/net452/Td.Kylin.Entity.dll",
+        "lib/net452/Td.Kylin.Entity.xml",
         "lib/net46/Td.Kylin.Entity.dll",
-        "lib/netstandard1.6/Td.Kylin.Entity.dll"
+        "lib/net46/Td.Kylin.Entity.xml",
+        "lib/netstandard1.6/Td.Kylin.Entity.dll",
+        "lib/netstandard1.6/Td.Kylin.Entity.xml"
       ]
     },
     "Td.Kylin.EnumLibrary/1.2.1": {
@@ -9686,12 +9689,12 @@
         "lib/netstandard1.6/Td.Kylin.EnumLibrary.dll"
       ]
     },
-    "Td.Kylin.Redis/1.2.3": {
-      "sha512": "ff/HCmKydhpeku2wymR1cfqNLYsCg9lZXV3i1seXNr4epWCTAfJvkRQ/UYhkocn+0gT8RDGxiQu9YOgmCdgOTw==",
+    "Td.Kylin.Redis/1.2.4": {
+      "sha512": "VWN9ZxiqaqciiQENM0WbCenxn4hEX3jOz/K4vhmFj6gT30sClAn3poV76O/RbIvtxeB/jxxRf59t67Cqd+4p8Q==",
       "type": "package",
-      "path": "Td.Kylin.Redis/1.2.3",
+      "path": "Td.Kylin.Redis/1.2.4",
       "files": [
-        "Td.Kylin.Redis.1.2.3.nupkg.sha512",
+        "Td.Kylin.Redis.1.2.4.nupkg.sha512",
         "Td.Kylin.Redis.nuspec",
         "lib/net452/Td.Kylin.Redis.dll",
         "lib/net452/Td.Kylin.Redis.xml",
@@ -9709,9 +9712,9 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 1.0.0",
       "Newtonsoft.Json >= 9.0.1",
       "System.ComponentModel.Primitives >= 4.1.0",
-      "Td.Kylin.Entity >= 1.1.6",
+      "Td.Kylin.Entity >= 1.1.8",
       "Td.Kylin.EnumLibrary >= 1.2.1",
-      "Td.Kylin.Redis >= 1.2.3"
+      "Td.Kylin.Redis >= 1.2.4"
     ],
     ".NETFramework,Version=v4.5.2": [
       "System.Linq >= 4.0.0",

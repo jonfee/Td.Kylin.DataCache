@@ -114,7 +114,9 @@ namespace Td.Kylin.DataCache.Provider
         {
             get
             {
-                if (null == _redisDB)
+                //redis database is null or multiplexer not is connected
+                //create a new RedisContext and database
+                if (null == _redisDB || !CacheStartup.RedisContext.IsConnected)
                 {
                     IDatabase tempDB = null;
 
@@ -137,7 +139,7 @@ namespace Td.Kylin.DataCache.Provider
                     }
                 }
 
-                return _redisDB ;
+                return _redisDB;
             }
         }
 
@@ -214,8 +216,11 @@ namespace Td.Kylin.DataCache.Provider
         {
             if (null != RedisDB)
             {
-                //清除数据缓存
-                RedisDB.KeyDelete(CacheKey);
+                //如果RedisKey存在，则清除
+                if (RedisDB.KeyExists(CacheKey))
+                {
+                    RedisDB.KeyDelete(CacheKey);
+                }
 
                 if (data == null) data = ReadDataFromDB();
 
