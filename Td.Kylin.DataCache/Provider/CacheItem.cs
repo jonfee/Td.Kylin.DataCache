@@ -120,7 +120,7 @@ namespace Td.Kylin.DataCache.Provider
                 {
                     if (null == CacheStartup.RedisContext || CacheStartup.RedisContext.IsConnected == false)
                     {
-                        CacheStartup.RedisContext = new RedisContext(CacheStartup.RedisOptions);
+                        CacheStartup.RedisContext = new RedisContext(CacheStartup.RedisOptions, true);
                     }
 
                     IDatabase tempDB = CacheStartup.RedisContext.GetDatabase(_config.RedisDbIndex);

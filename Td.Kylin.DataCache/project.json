@@ -1,5 +1,5 @@
 {
-  "version": "1.2.5.300",
+  "version": "1.2.5.410",
   "dependencies": {
     "Microsoft.AspNetCore.Mvc.Core": "1.0.0",
     "Microsoft.EntityFrameworkCore": "1.0.0",
@@ -8,7 +8,7 @@
     "System.ComponentModel.Primitives": "4.1.0",
     "Td.Kylin.Entity": "1.1.8",
     "Td.Kylin.EnumLibrary": "1.2.1",
-    "Td.Kylin.Redis": "1.2.4"
+    "Td.Kylin.Redis": "1.2.8"
   },
   "frameworks": {
     "net452": {
