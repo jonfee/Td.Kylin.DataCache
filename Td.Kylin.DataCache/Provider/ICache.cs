@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Td.Kylin.DataCache.Provider
 {
@@ -25,7 +26,7 @@ namespace Td.Kylin.DataCache.Provider
         /// <summary>
         /// 更新缓存
         /// </summary>
-         void Update();
+         Task<bool> Update();
 
         /// <summary>
         /// 重置缓存级别

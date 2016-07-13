@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Td.Kylin.DataCache.CacheModel;
 using Td.Kylin.Redis;
 
@@ -82,7 +83,6 @@ namespace Td.Kylin.DataCache.Provider
             }
         }
 
-
         /// <summary>
         /// level
         /// </summary>
@@ -116,11 +116,11 @@ namespace Td.Kylin.DataCache.Provider
             {
                 //redis database is null or multiplexer not is connected
                 //create a new RedisContext and database
-                if (null == _redisDB || !CacheStartup.RedisContext.IsConnected)
+                if (null == _redisDB)
                 {
                     if (null == CacheStartup.RedisContext || CacheStartup.RedisContext.IsConnected == false)
                     {
-                        CacheStartup.RedisContext = new RedisContext(CacheStartup.RedisOptions, true);
+                        CacheStartup.RedisContext = new RedisContext(CacheStartup.RedisOptions);
                     }
 
                     IDatabase tempDB = CacheStartup.RedisContext.GetDatabase(_config.RedisDbIndex);
@@ -195,14 +195,7 @@ namespace Td.Kylin.DataCache.Provider
         {
             if (null == RedisDB) return null;
 
-            try
-            {
-                return RedisDB.HashGetAll<T>(CacheKey).Select(p => p.Value).ToList();
-            }
-            catch
-            {
-                return null;
-            }
+            return RedisDB.HashGetAll<T>(CacheKey).Select(p => p.Value).ToList();
         }
 
         /// <summary>
@@ -213,10 +206,7 @@ namespace Td.Kylin.DataCache.Provider
             if (null != RedisDB)
             {
                 //如果RedisKey存在，则清除
-                if (RedisDB.KeyExists(CacheKey))
-                {
-                    RedisDB.KeyDelete(CacheKey);
-                }
+                RedisDB.KeyDelete(CacheKey);
 
                 if (data == null) data = ReadDataFromDB();
 
@@ -225,7 +215,7 @@ namespace Td.Kylin.DataCache.Provider
 
                     var dic = data.ToDictionary(k => (RedisValue)k.HashField, v => v);
 
-                    RedisDB.HashSet(CacheKey, dic);
+                    RedisDB.HashSet(CacheKey, dic).Wait();
                 }
             }
         }
@@ -233,19 +223,24 @@ namespace Td.Kylin.DataCache.Provider
         /// <summary>
         /// 更新缓存（从数据库中读取缓存元数据，并记录最后更新缓存的时间）
         /// </summary>
-        public virtual void Update()
+        public virtual Task<bool> Update()
         {
-            var data = ReadDataFromDB();
+            return Task.Run(() =>
+            {
+                var data = ReadDataFromDB();
 
-            this._tempData = data;
+                this._tempData = data;
 
-            _updating = true;
+                _updating = true;
 
-            SetCache(data);
+                SetCache(data);
 
-            _updating = false;
+                _updating = false;
 
-            this._tempData = null;
+                this._tempData = null;
+
+                return true;
+            });
         }
 
         /// <summary>
@@ -258,33 +253,36 @@ namespace Td.Kylin.DataCache.Provider
         /// 更新缓存
         /// </summary>
         /// <param name="entity"></param>
-        public virtual void Update(T entity)
+        public virtual Task<bool> Update(T entity)
         {
-            if (null == entity || RedisDB == null) return;
+            if (null == entity || RedisDB == null) return default(Task<bool>);
 
-            RedisDB.HashSetAsync(CacheKey, entity.HashField, entity);
+            return RedisDB.HashSetAsync(CacheKey, entity.HashField, entity);
         }
 
         /// <summary>
         /// 添加缓存 
         /// </summary>
         /// <param name="entity"></param>
-        public virtual void Add(T entity)
+        public virtual Task<bool> Add(T entity)
         {
-            if (null == entity || RedisDB == null) return;
+            if (null == entity || RedisDB == null) return default(Task<bool>);
 
-            RedisDB.HashSetAsync(CacheKey, entity.HashField, entity);
+            return RedisDB.HashSetAsync(CacheKey, entity.HashField, entity);
         }
 
         /// <summary>
         /// 删除缓存
         /// </summary>
         /// <param name="entity"></param>
-        public virtual void Delete(T entity)
+        public virtual Task<bool> Delete(T entity)
         {
-            if (null == entity || RedisDB == null) return;
+            if (null == entity || RedisDB == null) return default(Task<bool>);
 
-            RedisDB.HashDelete(CacheKey, entity.HashField);
+            return Task.Run(() =>
+            {
+                return RedisDB.HashDelete(CacheKey, entity.HashField);
+            });
         }
 
         /// <summary>

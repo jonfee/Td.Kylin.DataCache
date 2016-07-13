@@ -58,7 +58,7 @@ namespace Td.Kylin.DataCache
 
             if (keepAlive)
             {
-                RedisContext = new RedisContext(options, true);
+                RedisContext = new RedisContext(options);
             }
 
             var config = new RedisConfigurationRoot();
