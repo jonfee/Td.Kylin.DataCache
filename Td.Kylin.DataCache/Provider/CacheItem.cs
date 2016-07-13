@@ -116,9 +116,9 @@ namespace Td.Kylin.DataCache.Provider
             {
                 //redis database is null or multiplexer not is connected
                 //create a new RedisContext and database
-                if (null == _redisDB)
+                if (null == _redisDB || !_redisDB.Multiplexer.IsConnected)
                 {
-                    if (null == CacheStartup.RedisContext || CacheStartup.RedisContext.IsConnected == false)
+                    if (null == CacheStartup.RedisContext || !CacheStartup.RedisContext.IsConnected)
                     {
                         CacheStartup.RedisContext = new RedisContext(CacheStartup.RedisOptions);
                     }
@@ -195,7 +195,14 @@ namespace Td.Kylin.DataCache.Provider
         {
             if (null == RedisDB) return null;
 
-            return RedisDB.HashGetAll<T>(CacheKey).Select(p => p.Value).ToList();
+            var dic = RedisDB.HashGetAll<T>(CacheKey);
+
+            if (null != dic)
+            {
+                return dic.Select(p => p.Value).ToList();
+            }
+
+            return null;
         }
 
         /// <summary>
