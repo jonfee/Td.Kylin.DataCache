@@ -581,13 +581,16 @@
           "lib/net45/Remotion.Linq.dll": {}
         }
       },
-      "StackExchange.Redis/1.1.604.200": {
+      "StackExchange.Redis/1.1.605": {
         "type": "package",
+        "frameworkAssemblies": [
+          "System.IO.Compression"
+        ],
         "compile": {
-          "lib/net452/StackExchange.Redis.dll": {}
+          "lib/net45/StackExchange.Redis.dll": {}
         },
         "runtime": {
-          "lib/net452/StackExchange.Redis.dll": {}
+          "lib/net45/StackExchange.Redis.dll": {}
         }
       },
       "System.Buffers/4.0.0": {
@@ -1051,7 +1054,7 @@
           "lib/net452/Td.CoreLibrary.dll": {}
         }
       },
-      "Td.Kylin.Entity/1.1.8": {
+      "Td.Kylin.Entity/1.1.9": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.DataAnnotations": "1.0.0"
@@ -1075,13 +1078,13 @@
           "lib/net452/Td.Kylin.EnumLibrary.dll": {}
         }
       },
-      "Td.Kylin.Redis/1.2.10.1": {
+      "Td.Kylin.Redis/1.2.12": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.Core": "1.0.0",
           "NETStandard.Library": "1.6.0",
           "Newtonsoft.Json": "9.0.1",
-          "StackExchange.Redis": "1.1.604.200"
+          "StackExchange.Redis": "1.1.605"
         },
         "compile": {
           "lib/net452/Td.Kylin.Redis.dll": {}
@@ -1696,8 +1699,11 @@
           "lib/net45/Remotion.Linq.dll": {}
         }
       },
-      "StackExchange.Redis/1.1.604.200": {
+      "StackExchange.Redis/1.1.605": {
         "type": "package",
+        "frameworkAssemblies": [
+          "System.IO.Compression"
+        ],
         "compile": {
           "lib/net46/StackExchange.Redis.dll": {}
         },
@@ -2370,7 +2376,7 @@
           "lib/net452/Td.CoreLibrary.dll": {}
         }
       },
-      "Td.Kylin.Entity/1.1.8": {
+      "Td.Kylin.Entity/1.1.9": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.DataAnnotations": "1.0.0"
@@ -2394,13 +2400,13 @@
           "lib/net46/Td.Kylin.EnumLibrary.dll": {}
         }
       },
-      "Td.Kylin.Redis/1.2.10.1": {
+      "Td.Kylin.Redis/1.2.12": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.Core": "1.0.0",
           "NETStandard.Library": "1.6.0",
           "Newtonsoft.Json": "9.0.1",
-          "StackExchange.Redis": "1.1.604.200"
+          "StackExchange.Redis": "1.1.605"
         },
         "compile": {
           "lib/net46/Td.Kylin.Redis.dll": {}
@@ -3015,13 +3021,16 @@
           "lib/net45/Remotion.Linq.dll": {}
         }
       },
-      "StackExchange.Redis/1.1.604.200": {
+      "StackExchange.Redis/1.1.605": {
         "type": "package",
+        "frameworkAssemblies": [
+          "System.IO.Compression"
+        ],
         "compile": {
-          "lib/net46/StackExchange.Redis.dll": {}
+          "lib/net461/StackExchange.Redis.dll": {}
         },
         "runtime": {
-          "lib/net46/StackExchange.Redis.dll": {}
+          "lib/net461/StackExchange.Redis.dll": {}
         }
       },
       "System.AppContext/4.1.0": {
@@ -3689,7 +3698,7 @@
           "lib/net452/Td.CoreLibrary.dll": {}
         }
       },
-      "Td.Kylin.Entity/1.1.8": {
+      "Td.Kylin.Entity/1.1.9": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.DataAnnotations": "1.0.0"
@@ -3713,19 +3722,19 @@
           "lib/net46/Td.Kylin.EnumLibrary.dll": {}
         }
       },
-      "Td.Kylin.Redis/1.2.10.1": {
+      "Td.Kylin.Redis/1.2.12": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.Core": "1.0.0",
           "NETStandard.Library": "1.6.0",
           "Newtonsoft.Json": "9.0.1",
-          "StackExchange.Redis": "1.1.604.200"
+          "StackExchange.Redis": "1.1.605"
         },
         "compile": {
-          "lib/net46/Td.Kylin.Redis.dll": {}
+          "lib/net461/Td.Kylin.Redis.dll": {}
         },
         "runtime": {
-          "lib/net46/Td.Kylin.Redis.dll": {}
+          "lib/net461/Td.Kylin.Redis.dll": {}
         }
       }
     },
@@ -4532,7 +4541,7 @@
           }
         }
       },
-      "StackExchange.Redis/1.1.604.200": {
+      "StackExchange.Redis/1.1.605": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.11",
@@ -6182,7 +6191,7 @@
           "lib/netstandard1.6/Td.CoreLibrary.dll": {}
         }
       },
-      "Td.Kylin.Entity/1.1.8": {
+      "Td.Kylin.Entity/1.1.9": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.DataAnnotations": "1.0.0"
@@ -6206,13 +6215,13 @@
           "lib/netstandard1.6/Td.Kylin.EnumLibrary.dll": {}
         }
       },
-      "Td.Kylin.Redis/1.2.10.1": {
+      "Td.Kylin.Redis/1.2.12": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.Core": "1.0.0",
           "NETStandard.Library": "1.6.0",
           "Newtonsoft.Json": "9.0.1",
-          "StackExchange.Redis": "1.1.604.200"
+          "StackExchange.Redis": "1.1.605"
         },
         "compile": {
           "lib/netstandard1.6/Td.Kylin.Redis.dll": {}
@@ -6895,19 +6904,22 @@
         "runtimes/win7-x86/native/sni.dll"
       ]
     },
-    "StackExchange.Redis/1.1.604.200": {
-      "sha512": "Mvzot26ILOKfOlLJZSTH4DTwOvmHIbnshJVnjv/xyG0n2hFYhfkvcWlBmXKSr1enGy60j/fm6sUyKIf5EdO1/A==",
+    "StackExchange.Redis/1.1.605": {
+      "sha512": "0tWpRS8em+tJrimCLRdgXrbKl5leCQ03k/nb0rWFT86TJ5YhaRDTE+ogrGQozPw/RtRkaNicx5oIBLdPHXA6gA==",
       "type": "package",
-      "path": "StackExchange.Redis/1.1.604.200",
+      "path": "StackExchange.Redis/1.1.605",
       "files": [
-        "StackExchange.Redis.1.1.604.200.nupkg.sha512",
+        "StackExchange.Redis.1.1.605.nupkg.sha512",
         "StackExchange.Redis.nuspec",
-        "lib/net452/StackExchange.Redis.dll",
-        "lib/net452/StackExchange.Redis.xml",
+        "lib/net40/StackExchange.Redis.dll",
+        "lib/net40/StackExchange.Redis.xml",
+        "lib/net45/StackExchange.Redis.dll",
+        "lib/net45/StackExchange.Redis.xml",
         "lib/net46/StackExchange.Redis.dll",
         "lib/net46/StackExchange.Redis.xml",
+        "lib/net461/StackExchange.Redis.dll",
+        "lib/net461/StackExchange.Redis.xml",
         "lib/netstandard1.6/StackExchange.Redis.dll",
-        "lib/netstandard1.6/StackExchange.Redis.pdb",
         "lib/netstandard1.6/StackExchange.Redis.xml"
       ]
     },
@@ -10981,12 +10993,12 @@
         "lib/netstandard1.6/Td.CoreLibrary.xml"
       ]
     },
-    "Td.Kylin.Entity/1.1.8": {
-      "sha512": "969IkdEvWZIcndyLxLrQ+4WkYX7CeOOeYn8CvzmwUIYS3Wo3xK4iLUl2m2qJpq1Wqz/7rzQLC9N8J3v5IQBPDQ==",
+    "Td.Kylin.Entity/1.1.9": {
+      "sha512": "EVgpMNnKRNOy0DdKe0T+WrFYxbC6blSdlwUfmQKZYhsHO6w6VkSUKWrZ8SZ1ArN7WCnFMqVzooxXNvj6MzYKow==",
       "type": "package",
-      "path": "Td.Kylin.Entity/1.1.8",
+      "path": "Td.Kylin.Entity/1.1.9",
       "files": [
-        "Td.Kylin.Entity.1.1.8.nupkg.sha512",
+        "Td.Kylin.Entity.1.1.9.nupkg.sha512",
         "Td.Kylin.Entity.nuspec",
         "lib/net452/Td.Kylin.Entity.dll",
         "lib/net452/Td.Kylin.Entity.xml",
@@ -11008,17 +11020,19 @@
         "lib/netstandard1.6/Td.Kylin.EnumLibrary.dll"
       ]
     },
-    "Td.Kylin.Redis/1.2.10.1": {
-      "sha512": "dfSsw3wF1IkauvJApkSCXf0wMi3UB1e74LR6GSK83Yj6o/Oz6p50F1Y0pD+8kTvn4mSnZcGw/kO4AHr19ZkqUw==",
+    "Td.Kylin.Redis/1.2.12": {
+      "sha512": "3g6zJp6JMKiBOSQaUzwr4ilT26p7FwvQWZKS4BaJhOnf3sWL52PhxLSztXi34L/wdN5+3fthJA0qjA+O/mwkUw==",
       "type": "package",
-      "path": "Td.Kylin.Redis/1.2.10.1",
+      "path": "Td.Kylin.Redis/1.2.12",
       "files": [
-        "Td.Kylin.Redis.1.2.10.1.nupkg.sha512",
+        "Td.Kylin.Redis.1.2.12.nupkg.sha512",
         "Td.Kylin.Redis.nuspec",
         "lib/net452/Td.Kylin.Redis.dll",
         "lib/net452/Td.Kylin.Redis.xml",
         "lib/net46/Td.Kylin.Redis.dll",
         "lib/net46/Td.Kylin.Redis.xml",
+        "lib/net461/Td.Kylin.Redis.dll",
+        "lib/net461/Td.Kylin.Redis.xml",
         "lib/netstandard1.6/Td.Kylin.Redis.dll",
         "lib/netstandard1.6/Td.Kylin.Redis.xml"
       ]
@@ -11031,9 +11045,9 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 1.0.0",
       "Newtonsoft.Json >= 9.0.1",
       "System.ComponentModel.Primitives >= 4.1.0",
-      "Td.Kylin.Entity >= 1.1.8",
+      "Td.Kylin.Entity >= 1.1.9",
       "Td.Kylin.EnumLibrary >= 1.2.1",
-      "Td.Kylin.Redis >= 1.2.10.1"
+      "Td.Kylin.Redis >= 1.2.12"
     ],
     ".NETFramework,Version=v4.5.2": [
       "System.Linq >= 4.0.0",
