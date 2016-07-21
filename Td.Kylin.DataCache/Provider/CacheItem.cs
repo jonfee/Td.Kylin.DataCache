@@ -103,39 +103,13 @@ namespace Td.Kylin.DataCache.Provider
         }
 
         /// <summary>
-        /// redis database
-        /// </summary>
-        private IDatabase _redisDB;
-
-        /// <summary>
         /// 当前缓存操作的Redis数据库
         /// </summary>
         public IDatabase RedisDB
         {
             get
             {
-                //redis database is null or multiplexer not is connected
-                //create a new RedisContext and database
-                if (null == _redisDB || !_redisDB.Multiplexer.IsConnected)
-                {
-                    if (null == CacheStartup.RedisContext || !CacheStartup.RedisContext.IsConnected)
-                    {
-                        CacheStartup.RedisContext = new RedisContext(CacheStartup.RedisOptions);
-                    }
-
-                    IDatabase tempDB = CacheStartup.RedisContext.GetDatabase(_config.RedisDbIndex);
-
-                    if (CacheStartup.KeepAlive)
-                    {
-                        _redisDB = tempDB;
-                    }
-                    else
-                    {
-                        return tempDB;
-                    }
-                }
-
-                return _redisDB;
+                return CacheRedisContext.Redis.GetDatabase(_config.RedisDbIndex);
             }
         }
 

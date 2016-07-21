@@ -12,10 +12,6 @@ namespace Td.Kylin.DataCache
     /// </summary>
     public class CacheInjectionConfig
     {
-        /// <summary>
-        /// 是否长连接
-        /// </summary>
-        public bool KeepAlive { get; set; }
 
         private ConfigurationOptions _options;
 

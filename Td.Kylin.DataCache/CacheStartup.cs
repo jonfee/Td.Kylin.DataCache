@@ -28,12 +28,7 @@ namespace Td.Kylin.DataCache
         /// 缓存数据为null时是否初始化
         /// </summary>
         public static bool InitIfNull { get; set; }
-
-        /// <summary>
-        /// RedisContext
-        /// </summary>
-        public static RedisContext RedisContext { get; set; }
-
+        
         /// <summary>
         /// 数据库提供者类型
         /// </summary>
@@ -50,16 +45,9 @@ namespace Td.Kylin.DataCache
         /// 创建并初始化Redis缓存配置
         /// </summary>
         /// <returns></returns>
-        public static void InitRedisConfigration(ConfigurationOptions options, bool keepAlive, IEnumerable<CacheItemType> types)
+        public static void InitRedisConfigration(ConfigurationOptions options, IEnumerable<CacheItemType> types)
         {
             RedisOptions = options;
-
-            KeepAlive = keepAlive;
-
-            if (keepAlive)
-            {
-                RedisContext = new RedisContext(options);
-            }
 
             var config = new RedisConfigurationRoot();
 
