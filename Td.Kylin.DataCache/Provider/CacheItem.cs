@@ -25,7 +25,7 @@ namespace Td.Kylin.DataCache.Provider
         /// <param name="itemType"></param>
         protected CacheItem(CacheItemType itemType)
         {
-            var config = CacheStartup.RedisConfiguration[itemType];
+            var config = Startup.RedisConfiguration[itemType];
 
             Init(config);
         }
@@ -36,7 +36,7 @@ namespace Td.Kylin.DataCache.Provider
         /// <param name="cacheKey"></param>
         protected CacheItem(string cacheKey)
         {
-            var config = CacheStartup.RedisConfiguration[cacheKey];
+            var config = Startup.RedisConfiguration[cacheKey];
 
             Init(config);
         }
@@ -52,7 +52,7 @@ namespace Td.Kylin.DataCache.Provider
             _level = _config != null ? _config.Level : CacheLevel.Permanent;
 
             #region 检测是否存在缓存，不存在则初始化更新
-            if (CacheStartup.InitIfNull)
+            if (Startup.InitIfNull)
             {
                 List<T> temp = GetCache();
 

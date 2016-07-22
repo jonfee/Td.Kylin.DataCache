@@ -38,7 +38,7 @@ namespace Td.Kylin.DataCache
         /// </summary>
         private ServicesProvider()
         {
-            switch (CacheStartup.SqlType)
+            switch (Startup.SqlType)
             {
                 case SqlProviderType.NpgSQL:
                     InitServices<PostgreSqlDataContext>();

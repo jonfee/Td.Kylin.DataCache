@@ -1,15 +1,11 @@
 ﻿using StackExchange.Redis;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Td.Kylin.DataCache
 {
     /// <summary>
     /// 缓存Redis上下文对象
     /// </summary>
-    public class CacheRedisContext
+    public static class CacheRedisContext
     {
         /// <summary>
         /// 锁对象
@@ -25,18 +21,26 @@ namespace Td.Kylin.DataCache
         {
             get
             {
-                if (_redis == null)
+                //长连接
+                if (Startup.KeepAlive)
                 {
-                    lock (_redis)
+                    if (_redis == null)
                     {
-                        if (_redis == null)
+                        lock (_locker)
                         {
-                            _redis = ConnectionMultiplexer.Connect(CacheStartup.RedisOptions);
+                            if (_redis == null)
+                            {
+                                _redis = ConnectionMultiplexer.Connect(Startup.RedisOptions);
+                            }
                         }
                     }
-                }
 
-                return _redis;
+                    return _redis;
+                }                
+                else//非长连接
+                {
+                    return ConnectionMultiplexer.Connect(Startup.RedisOptions);
+                }
             }
         }
     }

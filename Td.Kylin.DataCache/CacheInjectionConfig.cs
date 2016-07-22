@@ -41,6 +41,11 @@ namespace Td.Kylin.DataCache
         public string RedisConnectionString { get; set; }
 
         /// <summary>
+        /// 是否保持长连接
+        /// </summary>
+        public bool KeepAlive { get; set; }
+
+        /// <summary>
         /// 需要缓存的数据类型集合
         /// </summary>
         public CacheItemType[] CacheItems { get; set; }

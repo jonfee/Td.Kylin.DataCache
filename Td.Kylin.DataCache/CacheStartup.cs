@@ -3,52 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using Td.Kylin.DataCache.RedisConfig;
 using Td.Kylin.EnumLibrary;
-using Td.Kylin.Redis;
 
 namespace Td.Kylin.DataCache
 {
-    internal sealed class CacheStartup
+    internal sealed class Startup
     {
-        /// <summary>
-        /// Redis连接信息
-        /// </summary>
-        public static ConfigurationOptions RedisOptions { get; private set; }
+        public static void Start(ConfigurationOptions options, bool keepAlive, bool initIfNull, SqlProviderType sqlType, string sqlConnection, IEnumerable<CacheItemType> types)
+        {
+            RedisOptions = options;
+            KeepAlive = keepAlive;
+            InitIfNull = initIfNull;
+            SqlType = sqlType;
+            SqlConnctionString = sqlConnection;
 
-        /// <summary>
-        /// 是否为长连接
-        /// </summary>
-        public static bool KeepAlive { get; private set; }
-
-        /// <summary>
-        /// Redis缓存配置
-        /// </summary>
-        public static RedisConfigurationRoot RedisConfiguration { get; private set; }
-
-        /// <summary>
-        /// 缓存数据为null时是否初始化
-        /// </summary>
-        public static bool InitIfNull { get; set; }
-        
-        /// <summary>
-        /// 数据库提供者类型
-        /// </summary>
-        public static SqlProviderType SqlType { get; set; }
-
-        /// <summary>
-        /// 数据库连接字符串
-        /// </summary>
-        public static string SqlConnctionString { get; set; }
-
-        #region 初始化Redis配置
+            //注入缓存对象
+            InjectCacheItems(types);
+        }
 
         /// <summary>
         /// 创建并初始化Redis缓存配置
         /// </summary>
         /// <returns></returns>
-        public static void InitRedisConfigration(ConfigurationOptions options, IEnumerable<CacheItemType> types)
+        public static void InjectCacheItems(IEnumerable<CacheItemType> types)
         {
-            RedisOptions = options;
-
             var config = new RedisConfigurationRoot();
 
             List<CacheItemType> cacheItems = null == types ? null : types.ToList();
@@ -179,6 +156,34 @@ namespace Td.Kylin.DataCache
             RedisConfiguration = config;
         }
 
-        #endregion
+        /// <summary>
+        /// Redis连接信息
+        /// </summary>
+        public static ConfigurationOptions RedisOptions { get; private set; }
+
+        /// <summary>
+        /// 是否为长连接
+        /// </summary>
+        public static bool KeepAlive { get; private set; }
+
+        /// <summary>
+        /// Redis缓存配置
+        /// </summary>
+        public static RedisConfigurationRoot RedisConfiguration { get; private set; }
+
+        /// <summary>
+        /// 缓存数据为null时是否初始化
+        /// </summary>
+        public static bool InitIfNull { get; private set; }
+
+        /// <summary>
+        /// 数据库提供者类型
+        /// </summary>
+        public static SqlProviderType SqlType { get; private set; }
+
+        /// <summary>
+        /// 数据库连接字符串
+        /// </summary>
+        public static string SqlConnctionString { get; private set; }
     }
 }

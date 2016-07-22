@@ -31,7 +31,7 @@ namespace Td.Kylin.DataCache
             {
                 htCache = Hashtable.Synchronized(new Hashtable());
 
-                var configCollections = CacheStartup.RedisConfiguration.Collections;
+                var configCollections = Startup.RedisConfiguration.Collections;
 
                 foreach (var config in configCollections)
                 {
@@ -214,7 +214,7 @@ namespace Td.Kylin.DataCache
         /// <returns></returns>
         private static T GetCacheObject<T>(CacheItemType itemType) where T : ICache
         {
-            CacheConfig config = CacheStartup.RedisConfiguration[itemType];
+            CacheConfig config = Startup.RedisConfiguration[itemType];
 
             string cacheKey = config?.RedisKey;
 

@@ -6,7 +6,7 @@ namespace Td.Kylin.DataCache.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
-            optionBuilder.UseSqlServer(CacheStartup.SqlConnctionString);
+            optionBuilder.UseSqlServer(Startup.SqlConnctionString);
         }
     }
 }
