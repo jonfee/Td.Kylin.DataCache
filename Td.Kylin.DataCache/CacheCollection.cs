@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Td.Kylin.DataCache.Provider;
 
 namespace Td.Kylin.DataCache
@@ -440,17 +441,22 @@ namespace Td.Kylin.DataCache
         /// 更新指定级别的缓存
         /// </summary>
         /// <param name="level"></param>
-        public static void Update(CacheLevel level)
+        public static Task<bool> Update(CacheLevel level)
         {
-            var list = GetCacheList(level);
-
-            if (null != list)
+            return new Task<bool>(() =>
             {
-                foreach (var cache in list)
+                var list = GetCacheList(level);
+
+                if (null != list)
                 {
-                    cache.Update();
+                    foreach (var cache in list)
+                    {
+                        cache.Update();
+                    }
                 }
-            }
+
+                return true;
+            });
         }
 
         /// <summary>

@@ -56,7 +56,7 @@ namespace Td.Kylin.DataCache.Provider
             {
                 List<T> temp = GetCache();
 
-                if (temp == null) Update();
+                if (temp == null) Update().Wait();
             }
             #endregion
         }
@@ -193,10 +193,9 @@ namespace Td.Kylin.DataCache.Provider
 
                 if (null != data && data.Count > 0)
                 {
-
                     var dic = data.ToDictionary(k => (RedisValue)k.HashField, v => v);
 
-                    RedisDB.HashSet(CacheKey, dic).Wait();
+                    RedisDB.HashSet(CacheKey, dic);
                 }
             }
         }
