@@ -648,19 +648,6 @@
           "lib/net45/_._": {}
         }
       },
-      "System.ComponentModel.Primitives/4.1.0": {
-        "type": "package",
-        "frameworkAssemblies": [
-          "System",
-          "mscorlib"
-        ],
-        "compile": {
-          "ref/net45/System.ComponentModel.Primitives.dll": {}
-        },
-        "runtime": {
-          "lib/net45/System.ComponentModel.Primitives.dll": {}
-        }
-      },
       "System.Diagnostics.Contracts/4.0.1": {
         "type": "package",
         "compile": {
@@ -1776,19 +1763,6 @@
         },
         "runtime": {
           "lib/net45/_._": {}
-        }
-      },
-      "System.ComponentModel.Primitives/4.1.0": {
-        "type": "package",
-        "frameworkAssemblies": [
-          "System",
-          "mscorlib"
-        ],
-        "compile": {
-          "ref/net45/System.ComponentModel.Primitives.dll": {}
-        },
-        "runtime": {
-          "lib/net45/System.ComponentModel.Primitives.dll": {}
         }
       },
       "System.Console/4.0.0": {
@@ -3098,19 +3072,6 @@
         },
         "runtime": {
           "lib/net45/_._": {}
-        }
-      },
-      "System.ComponentModel.Primitives/4.1.0": {
-        "type": "package",
-        "frameworkAssemblies": [
-          "System",
-          "mscorlib"
-        ],
-        "compile": {
-          "ref/net45/System.ComponentModel.Primitives.dll": {}
-        },
-        "runtime": {
-          "lib/net45/System.ComponentModel.Primitives.dll": {}
         }
       },
       "System.Console/4.0.0": {
@@ -11043,49 +11004,16 @@
       "Microsoft.AspNetCore.Mvc.Core >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 1.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 1.0.0",
+      "NETStandard.Library >= 1.6.0",
       "Newtonsoft.Json >= 9.0.1",
-      "System.ComponentModel.Primitives >= 4.1.0",
       "Td.Kylin.Entity >= 1.1.9",
       "Td.Kylin.EnumLibrary >= 1.2.1",
       "Td.Kylin.Redis >= 1.2.12"
     ],
-    ".NETFramework,Version=v4.5.2": [
-      "System.Linq >= 4.0.0",
-      "System.Linq.Expressions >= 4.0.0",
-      "System.Runtime >= 4.0.10",
-      "System.Runtime.Caching >= 4.0.0",
-      "System.Xml >= 4.0.0",
-      "System.Xml.ReaderWriter >= 4.0.0"
-    ],
-    ".NETFramework,Version=v4.6": [
-      "System.IO >= 4.0.10",
-      "System.Linq >= 4.0.0",
-      "System.Linq.Expressions >= 4.0.10",
-      "System.Runtime >= 4.0.20",
-      "System.Runtime.Caching >= 4.0.0",
-      "System.Runtime.Extensions >= 4.0.10",
-      "System.Security >= 4.0.0",
-      "System.Text.RegularExpressions >= 4.0.10",
-      "System.Threading >= 4.0.10",
-      "System.Xml >= 4.0.0",
-      "System.Xml.ReaderWriter >= 4.0.10"
-    ],
-    ".NETFramework,Version=v4.6.1": [
-      "System.IO >= 4.0.10",
-      "System.Linq >= 4.0.0",
-      "System.Linq.Expressions >= 4.0.10",
-      "System.Runtime >= 4.0.20",
-      "System.Runtime.Caching >= 4.0.0",
-      "System.Runtime.Extensions >= 4.0.10",
-      "System.Security >= 4.0.0",
-      "System.Text.RegularExpressions >= 4.0.10",
-      "System.Threading >= 4.0.10",
-      "System.Xml >= 4.0.0",
-      "System.Xml.ReaderWriter >= 4.0.10"
-    ],
-    ".NETStandard,Version=v1.6": [
-      "NETStandard.Library >= 1.6.0"
-    ]
+    ".NETFramework,Version=v4.5.2": [],
+    ".NETFramework,Version=v4.6": [],
+    ".NETFramework,Version=v4.6.1": [],
+    ".NETStandard,Version=v1.6": []
   },
   "tools": {},
   "projectFileToolGroups": {}
