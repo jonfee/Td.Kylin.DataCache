@@ -116,5 +116,10 @@ namespace Td.Kylin.DataCache.Context
         /// 生活服务系统分类
         /// </summary>
         public DbSet<Service_SystemCategory> Service_SystemCategory { get { return Set<Service_SystemCategory>(); } }
+
+        /// <summary>
+        /// 商家自定义分类
+        /// </summary>
+        public DbSet<MerchGoods_Category> MerchGoods_Category { get { return Set<MerchGoods_Category>(); } }
     }
 }

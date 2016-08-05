@@ -37,6 +37,11 @@ namespace Td.Kylin.DataCache
         [Description("商家商品系统分类")]
         MerchantProductSystemCategory,
         /// <summary>
+        /// 商家自定义分类
+        /// </summary>
+        [Description("商家自定义分类")]
+        MerchantCustomCategory,
+        /// <summary>
         /// 生活服务系统分类
         /// </summary>
         [Description("生活服务系统分类")]

@@ -176,6 +176,13 @@ namespace Td.Kylin.DataCache.Context
                 entity.HasKey(p => p.CategoryID);
             });
 
+            //商家自定义分类
+            modelBuilder.Entity<MerchGoods_Category>(entity =>
+            {
+                entity.Property(p => p.CategoryID).ValueGeneratedNever();
+                entity.HasKey(p => p.CategoryID);
+            });
+
             #region 跑腿业务
 
             // 全局配置

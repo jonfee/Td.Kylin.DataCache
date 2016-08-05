@@ -201,6 +201,10 @@ namespace Td.Kylin.DataCache
                 case CacheItemType.LifeServiceSystemCategory:
                     cacheItem = new LifeServiceSystemCategoryCache();
                     break;
+                //商家自定义分类
+                case CacheItemType.MerchantCustomCategory:
+                    cacheItem = new MerchantCustomCategoryCache();
+                    break;
             }
 
             return cacheItem;
@@ -346,6 +350,16 @@ namespace Td.Kylin.DataCache
         /// 跑腿业务物品类型缓存
         /// </summary>
         public static LegworkGoodsCategoryCache LegworkGoodsCategoryCache { get { return GetCacheObject<LegworkGoodsCategoryCache>(CacheItemType.LegworkGoodsCategory); } }
+
+        /// <summary>
+        /// 生活服务分类缓存
+        /// </summary>
+        public static LifeServiceSystemCategoryCache LifeServiceSystemCategoryCache { get { return GetCacheObject<LifeServiceSystemCategoryCache>(CacheItemType.LifeServiceSystemCategory); } }
+
+        /// <summary>
+        /// 商家自定义分类缓存
+        /// </summary>
+        public static MerchantCustomCategoryCache MerchantCustomCategoryCache { get { return GetCacheObject<MerchantCustomCategoryCache>(CacheItemType.MerchantCustomCategory); } }
 
         #endregion
 

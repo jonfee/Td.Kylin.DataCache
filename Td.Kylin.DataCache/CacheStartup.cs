@@ -166,6 +166,11 @@ namespace Td.Kylin.DataCache
                 //生活服务分类
                 config.Add(CacheItemType.LifeServiceSystemCategory, 0, RedisSaveType.HashSet, CacheLevel.Permanent);
             }
+            if (isAll || cacheItems.Contains(CacheItemType.MerchantCustomCategory))
+            {
+                //商家自定义分类
+                config.Add(CacheItemType.MerchantCustomCategory, 0, RedisSaveType.HashSet, CacheLevel.Middel);
+            }
 
             RedisConfiguration = config;
         }
