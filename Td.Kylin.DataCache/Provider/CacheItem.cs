@@ -115,7 +115,7 @@ namespace Td.Kylin.DataCache.Provider
         {
             get
             {
-                return CacheRedisContext.Redis.GetDatabase(_config.RedisDbIndex);
+                return CacheRedisContext.Redis?.GetDatabase(_config.RedisDbIndex);
             }
         }
 
@@ -220,10 +220,10 @@ namespace Td.Kylin.DataCache.Provider
         /// <param name="entity"></param>
         public virtual Task<bool> Delete(T entity)
         {
-            if (null == entity || RedisDB == null) return default(Task<bool>);
-
             return Task.Run(() =>
             {
+                if (null == entity || RedisDB == null) return false;
+
                 return RedisDB.HashDelete(CacheKey, entity.HashField);
             });
         }

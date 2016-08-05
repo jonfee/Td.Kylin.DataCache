@@ -239,7 +239,7 @@ namespace Td.Kylin.DataCache
 
         /// <summary>
         /// 开通区域缓存
-        /// </summary>
+        /// </summary> 
         public static OpenAreaCache OpenAreaCache { get { return GetCacheObject<OpenAreaCache>(CacheItemType.OpenArea); } }
 
         /// <summary>
