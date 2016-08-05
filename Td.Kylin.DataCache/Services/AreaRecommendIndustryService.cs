@@ -9,8 +9,7 @@ namespace Td.Kylin.DataCache.Services
     /// <summary>
     /// 区域行业推荐数据服务
     /// </summary>
-    /// <typeparam name="DbContext"></typeparam>
-    internal sealed class AreaRecommendIndustryService<DbContext> : IAreaRecommendIndustryService where DbContext : DataContext, new()
+    internal sealed class AreaRecommendIndustryService : IAreaRecommendIndustryService
     {
         /// <summary>
         /// 获取所有区域推荐行业集合
@@ -18,7 +17,7 @@ namespace Td.Kylin.DataCache.Services
         /// <returns></returns>
         public List<AreaRecommendIndustryCacheModel> GetAll()
         {
-            using (var db = new DbContext())
+            using (var db = new DataContext())
             {
                 var query = from p in db.Area_RecommendIndustry
                             join i in db.Merchant_Industry

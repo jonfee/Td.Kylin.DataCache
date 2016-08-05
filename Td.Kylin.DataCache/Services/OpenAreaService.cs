@@ -9,8 +9,7 @@ namespace Td.Kylin.DataCache.Services
     /// <summary>
     /// 开通区域数据服务
     /// </summary>
-    /// <typeparam name="DbContext"></typeparam>
-    internal sealed class OpenAreaService<DbContext> : IOpenAreaService where DbContext : DataContext, new()
+    internal sealed class OpenAreaService : IOpenAreaService
     {
         /// <summary>
         /// 获取所有开通区域
@@ -18,7 +17,7 @@ namespace Td.Kylin.DataCache.Services
         /// <returns></returns>
         public List<OpenAreaCacheModel> GetAll()
         {
-            using (var db = new DbContext())
+            using (var db = new DataContext())
             {
                 var query = from p in db.Area_Open
                             select new OpenAreaCacheModel

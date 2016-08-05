@@ -9,12 +9,11 @@ namespace Td.Kylin.DataCache.Services
     /// <summary>
     /// 区域圈子数据服务
     /// </summary>
-    /// <typeparam name="DbContext"></typeparam>
-    internal sealed class AreaForumService<DbContext> : IAreaForumService where DbContext : DataContext, new()
+    internal sealed class AreaForumService : IAreaForumService
     {
         public List<AreaForumCacheModel> GetEnabledAll()
         {
-            using (var db = new DbContext())
+            using (var db = new DataContext())
             {
                 var quer = from p in db.Circle_AreaForum
                            where p.IsDelete == false && p.Disabled == false

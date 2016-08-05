@@ -9,12 +9,11 @@ namespace Td.Kylin.DataCache.Services
     /// <summary>
     /// 精品汇商品分类标签数据服务
     /// </summary>
-    /// <typeparam name="DbContext"></typeparam>
-    internal sealed class B2CProductCategoryTagService<DbContext> : IB2CProductCategoryTagService where DbContext : DataContext, new()
+    internal sealed class B2CProductCategoryTagService : IB2CProductCategoryTagService
     {
         public List<B2CProductCategoryTagCacheModel> GetAll()
         {
-            using (var db = new DbContext())
+            using (var db = new DataContext())
             {
                 var query = from p in db.Mall_CategoryTag
                             select new B2CProductCategoryTagCacheModel

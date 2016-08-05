@@ -11,9 +11,11 @@ namespace Td.Kylin.DataCache.Provider
     /// <summary>
     /// 缓存抽象类
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T"><seealso cref="BaseCacheModel"/></typeparam>
     public abstract class CacheItem<T> : ICache where T : BaseCacheModel, new()
     {
+        private readonly object locker = new object();
+
         /// <summary>
         /// Redis缓存配置信息
         /// </summary>
@@ -51,12 +53,16 @@ namespace Td.Kylin.DataCache.Provider
 
             _level = _config != null ? _config.Level : CacheLevel.Permanent;
 
-            #region 检测是否存在缓存，不存在则初始化更新
-            if (Startup.InitIfNull)
-            {
-                List<T> temp = GetCache();
+            //二级缓存
+            _secondLevelCacheData = GetCache();
+            _secondLevelCacheLastUpdateTime = DateTime.Now;
 
-                if (temp == null) Update().Wait();
+            #region 检测是否存在缓存，不存在则初始化更新
+            if (_secondLevelCacheData == null && Startup.InitIfNull)
+            {
+                Update().Wait();
+
+                _secondLevelCacheData = GetCache();
             }
             #endregion
         }
@@ -114,55 +120,15 @@ namespace Td.Kylin.DataCache.Provider
         }
 
         /// <summary>
-        /// 更新锁
-        /// </summary>
-        private readonly static object _updateLock = new object();
-
-        /// <summary>
-        /// 是否正在更新
-        /// </summary>
-        private volatile bool _updating;
-
-        /// <summary>
-        /// 一般在更新时使用
-        /// </summary>
-        private List<T> _tempData;
-
-        /// <summary>
         /// 获取缓存数据
         /// </summary>
         public List<T> Value()
         {
-            List<T> _data = null;
-
-            try
-            {
-                //如果正在更新，则使用更新前的临时数据
-                if (_updating)
-                {
-                    _data = this._tempData;
-                }
-                else
-                {
-                    //从缓存中读取
-                    _data = GetCache();
-                }
-
-                if (null == _data)
-                {
-                    _data = ReadDataFromDB();
-                }
-            }
-            catch
-            {
-                //TODO 异常时处理
-            }
-
-            return _data;
+            return GetSecondLevelCacheData();
         }
 
         /// <summary>
-        /// 获取缓存
+        /// 获取缓存数据
         /// </summary>
         /// <returns></returns>
         protected virtual List<T> GetCache()
@@ -184,7 +150,9 @@ namespace Td.Kylin.DataCache.Provider
         /// </summary>
         protected virtual void SetCache(List<T> data)
         {
-            if (null != RedisDB)
+            if (null == RedisDB) return;
+
+            lock (locker)
             {
                 //如果RedisKey存在，则清除
                 RedisDB.KeyDelete(CacheKey);
@@ -207,17 +175,12 @@ namespace Td.Kylin.DataCache.Provider
         {
             return Task.Run(() =>
             {
-                var data = ReadDataFromDB();
+                //更新缓存源（Redis数据）
+                SetCache(null);
 
-                this._tempData = data;
-
-                _updating = true;
-
-                SetCache(data);
-
-                _updating = false;
-
-                this._tempData = null;
+                //清空二级缓存信息以达到重新缓存的目的
+                _secondLevelCacheData = null;
+                _secondLevelCacheLastUpdateTime = DateTime.Now.AddYears(-10);
 
                 return true;
             });
@@ -269,19 +232,26 @@ namespace Td.Kylin.DataCache.Provider
         /// 获取指定字段的数据项
         /// </summary>
         /// <param name="hashField"></param>
+        /// <param name="allScope">是否查找所有缓存域</param>
         /// <returns></returns>
-        public virtual T Get(string hashField)
+        public virtual T Get(string hashField, bool allScope = true)
         {
-            if (null == RedisDB) return default(T);
+            T item = default(T);
 
-            try
+            if (null != _secondLevelCacheData)
             {
-                return RedisDB.HashGet<T>(CacheKey, hashField);
+                item = _secondLevelCacheData.Where(p => p.HashField.Equals(hashField, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
             }
-            catch
+
+            if (null == item && allScope)
             {
-                return default(T);
+                if (null != RedisDB)
+                {
+                    item = RedisDB.HashGet<T>(CacheKey, hashField);
+                }
             }
+
+            return item;
         }
 
         /// <summary>
@@ -289,23 +259,30 @@ namespace Td.Kylin.DataCache.Provider
         /// </summary>
         /// <param name="hashFields"></param>
         /// <param name="removeNullOrEmpty">是否移除null或empty的数据对象</param>
+        /// <param name="allScope">是否查找所有缓存域</param>
         /// <returns></returns>
-        public virtual List<T> Get(string[] hashFields, bool removeNullOrEmpty)
+        public virtual List<T> Get(string[] hashFields, bool removeNullOrEmpty, bool allScope = true)
         {
-            if (null == RedisDB) return null;
-
             if (null == hashFields || hashFields.Length < 1) return null;
 
-            try
-            {
-                var fields = hashFields.Select(p => (RedisValue)p).ToArray();
+            List<T> list = null;
 
-                return RedisDB.HashGet<T>(CacheKey, fields, removeNullOrEmpty);
-            }
-            catch
+            if (null != _secondLevelCacheData)
             {
-                return null;
+                list = _secondLevelCacheData.Where(p => hashFields.Contains(p.HashField)).ToList();
             }
+
+            if ((list == null || list.Count < 1) && allScope)
+            {
+                if (null != RedisDB)
+                {
+                    var fields = hashFields.Select(p => (RedisValue)p).ToArray();
+
+                    list = RedisDB.HashGet<T>(CacheKey, fields, removeNullOrEmpty);
+                }
+            }
+
+            return list;
         }
 
         /// <summary>
@@ -318,10 +295,10 @@ namespace Td.Kylin.DataCache.Provider
         }
 
         /// <summary>
-        /// 获取缓存数据
+        /// 获取缓存数据（缓存源）
         /// </summary>
         /// <returns></returns>
-        public List<object> GetCacheData()
+        List<object> ICache.GetCacheData()
         {
             if (null == RedisDB) return null;
 
@@ -338,5 +315,53 @@ namespace Td.Kylin.DataCache.Provider
 
             return data;
         }
+
+        /// <summary>
+        /// 获取二级缓存数据
+        /// </summary>
+        /// <returns></returns>
+        List<object> ICache.GetLevel2CacheData()
+        {
+            var data = GetSecondLevelCacheData();
+
+            List<object> list = new List<object>();
+
+            if (null != data)
+            {
+                foreach(var item in data)
+                {
+                    list.Add(Newtonsoft.Json.JsonConvert.SerializeObject(item));
+                }
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// 二级缓存最后更新时间
+        /// </summary>
+        private DateTime _secondLevelCacheLastUpdateTime;
+
+        /// <summary>
+        /// 二级缓存数据
+        /// </summary>
+        private List<T> _secondLevelCacheData;
+        /// <summary>
+        /// 获取二级缓存数据
+        /// </summary>
+        private List<T> GetSecondLevelCacheData()
+        {
+            //二级缓存数据为null 且 超出了缓存时间，则重新缓存
+            if (_secondLevelCacheLastUpdateTime.AddSeconds(Startup.Level2CacheSeconds) <= DateTime.Now)
+            {
+                _secondLevelCacheData = GetCache();
+
+                _secondLevelCacheLastUpdateTime = DateTime.Now;
+            }
+
+            return _secondLevelCacheData ?? new List<T>();
+        }
+
+
     }
 }

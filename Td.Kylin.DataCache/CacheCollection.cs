@@ -121,10 +121,6 @@ namespace Td.Kylin.DataCache
                 case CacheItemType.AreaRecommendIndustry:
                     cacheItem = new AreaRecommendIndustryCache();
                     break;
-                //上门预约业务缓存
-                case CacheItemType.BusinessServices:
-                    cacheItem = new BusinessServiceCache();
-                    break;
                 //B2C商品分类
                 case CacheItemType.B2CProductCategory:
                     cacheItem = new B2CProductCategoryCache();
@@ -201,6 +197,10 @@ namespace Td.Kylin.DataCache
                 case CacheItemType.LegworkGoodsCategory:
                     cacheItem = new LegworkGoodsCategoryCache();
                     break;
+                //生活服务分类
+                case CacheItemType.LifeServiceSystemCategory:
+                    cacheItem = new LifeServiceSystemCategoryCache();
+                    break;
             }
 
             return cacheItem;
@@ -251,11 +251,6 @@ namespace Td.Kylin.DataCache
         /// 区域行业推荐缓存
         /// </summary>
         public static AreaRecommendIndustryCache AreaRecommendIndustryCache { get { return GetCacheObject<AreaRecommendIndustryCache>(CacheItemType.AreaRecommendIndustry); } }
-
-        /// <summary>
-        /// 上门预约服务缓存
-        /// </summary>
-        public static BusinessServiceCache BusinessServiceCache { get { return GetCacheObject<BusinessServiceCache>(CacheItemType.BusinessServices); } }
 
         /// <summary>
         /// 商家商品系统分类缓存

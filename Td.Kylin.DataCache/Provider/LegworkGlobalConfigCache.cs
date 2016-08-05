@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Td.Kylin.DataCache.CacheModel;
+using Td.Kylin.DataCache.Services;
 
 namespace Td.Kylin.DataCache.Provider
 {
@@ -31,7 +32,7 @@ namespace Td.Kylin.DataCache.Provider
         /// <returns></returns>
         protected override List<LegworkGlobalConfigCacheModel> ReadDataFromDB()
         {
-            return ServicesProvider.Items.LegworkGlobalConfigService.GetAll();
+            return new LegworkGlobalConfigService().GetAll();
         }
     }
 }

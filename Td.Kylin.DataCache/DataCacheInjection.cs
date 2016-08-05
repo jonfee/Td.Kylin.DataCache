@@ -26,7 +26,7 @@ namespace Td.Kylin.DataCache
             {
                 throw new ArgumentNullException(nameof(config));
             }
-            return builder.Use(next => new DataCacheMiddleware(next, config.Options, config.KeepAlive, config.SqlType, config.SqlConnectionString, config.CacheItems, config.InitIfNull).Invoke);
+            return builder.Use(next => new DataCacheMiddleware(next, config.Options, config.KeepAlive, config.SqlType, config.SqlConnectionString, config.CacheItems, config.InitIfNull, config.Level2CacheSeconds).Invoke);
         }
 
         /// <summary>
@@ -39,14 +39,15 @@ namespace Td.Kylin.DataCache
         /// <param name="sqlConnection">数据库连接字符串</param>
         /// <param name="cacheItems">缓存类型</param>
         /// <param name="initIfNull">缓存数据为空时是否初始化</param>
+        /// <param name="level2CacheSeconds">二级缓存的时间（单位：秒）</param>
         /// <returns></returns>
-        public static IApplicationBuilder UseDataCache(this IApplicationBuilder builder, ConfigurationOptions options, bool keepAlive, SqlProviderType sqlType, string sqlConnection, CacheItemType[] cacheItems = null, bool initIfNull = false)
+        public static IApplicationBuilder UseDataCache(this IApplicationBuilder builder, ConfigurationOptions options, bool keepAlive, SqlProviderType sqlType, string sqlConnection, CacheItemType[] cacheItems = null, bool initIfNull = false, int level2CacheSeconds = 0)
         {
             if (builder == null)
             {
                 throw new ArgumentNullException(nameof(builder));
             }
-            return builder.Use(next => new DataCacheMiddleware(next, options, keepAlive, sqlType, sqlConnection, cacheItems: cacheItems, initIfNull: initIfNull).Invoke);
+            return builder.Use(next => new DataCacheMiddleware(next, options, keepAlive, sqlType, sqlConnection, cacheItems: cacheItems, initIfNull: initIfNull, level2CacheSeconds: level2CacheSeconds).Invoke);
         }
 
         /// <summary>
@@ -59,12 +60,13 @@ namespace Td.Kylin.DataCache
         /// <param name="sqlConnection">数据库连接字符串</param>
         /// <param name="cacheItems">缓存类型</param>
         /// <param name="initIfNull">缓存数据为空时是否初始化</param>
+        /// <param name="level2CacheSeconds">二级缓存的时间（单位：秒）</param>
         /// <returns></returns>
-        public static IApplicationBuilder UseDataCache(this IApplicationBuilder builder, string redisConnectionString, bool keepAlive, SqlProviderType sqlType, string sqlConnection, CacheItemType[] cacheItems = null, bool initIfNull = false)
+        public static IApplicationBuilder UseDataCache(this IApplicationBuilder builder, string redisConnectionString, bool keepAlive, SqlProviderType sqlType, string sqlConnection, CacheItemType[] cacheItems = null, bool initIfNull = false, int level2CacheSeconds = 0)
         {
             var options = ConfigurationOptions.Parse(redisConnectionString);
 
-            return builder.UseDataCache(options, keepAlive, sqlType, sqlConnection, cacheItems, initIfNull);
+            return builder.UseDataCache(options, keepAlive, sqlType, sqlConnection, cacheItems, initIfNull, level2CacheSeconds);
         }
 
         /// <summary>
@@ -79,7 +81,7 @@ namespace Td.Kylin.DataCache
                 throw new ArgumentNullException(nameof(config));
             }
 
-            new DataCacheMiddleware(config.Options, config.KeepAlive, config.SqlType, config.SqlConnectionString, config.CacheItems, config.InitIfNull).Invoke();
+            new DataCacheMiddleware(config.Options, config.KeepAlive, config.SqlType, config.SqlConnectionString, config.CacheItems, config.InitIfNull, config.Level2CacheSeconds).Invoke();
         }
 
         /// <summary>
@@ -91,10 +93,11 @@ namespace Td.Kylin.DataCache
         /// <param name="sqlConnection">数据库连接字符串</param>
         /// <param name="cacheItems">缓存类型</param>
         /// <param name="initIfNull">缓存数据为空时是否初始化</param>
+        /// <param name="level2CacheSeconds">二级缓存的时间（单位：秒）</param>
         /// <returns></returns>
-        public static void UseDataCache(ConfigurationOptions options, bool keepAlive, SqlProviderType sqlType, string sqlConnection, CacheItemType[] cacheItems = null, bool initIfNull = false)
+        public static void UseDataCache(ConfigurationOptions options, bool keepAlive, SqlProviderType sqlType, string sqlConnection, CacheItemType[] cacheItems = null, bool initIfNull = false, int level2CacheSeconds = 30)
         {
-            new DataCacheMiddleware(options, keepAlive, sqlType, sqlConnection, cacheItems, initIfNull).Invoke();
+            new DataCacheMiddleware(options, keepAlive, sqlType, sqlConnection, cacheItems, initIfNull, level2CacheSeconds).Invoke();
         }
 
         /// <summary>
@@ -106,12 +109,13 @@ namespace Td.Kylin.DataCache
         /// <param name="sqlConnection">数据库连接字符串</param>
         /// <param name="cacheItems">缓存类型</param>
         /// <param name="initIfNull">缓存数据为空时是否初始化</param>
+        /// <param name="level2CacheSeconds">二级缓存的时间（单位：秒）</param>
         /// <returns></returns>
-        public static void UseDataCache(string redisConnectionString, bool keepAlive, SqlProviderType sqlType, string sqlConnection, CacheItemType[] cacheItems = null, bool initIfNull = false)
+        public static void UseDataCache(string redisConnectionString, bool keepAlive, SqlProviderType sqlType, string sqlConnection, CacheItemType[] cacheItems = null, bool initIfNull = false, int level2CacheSeconds = 30)
         {
             var options = ConfigurationOptions.Parse(redisConnectionString);
 
-            UseDataCache(options, keepAlive, sqlType, sqlConnection, cacheItems, initIfNull);
+            UseDataCache(options, keepAlive, sqlType, sqlConnection, cacheItems, initIfNull, level2CacheSeconds);
         }
     }
 }

@@ -1,17 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Td.Kylin.Entity;
 
 namespace Td.Kylin.DataCache.Context
 {
-    internal abstract partial class DataContext : DbContext
+    internal sealed partial class DataContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
-            optionBuilder.UseSqlServer(Startup.SqlConnctionString);
+            switch (Startup.SqlType)
+            {
+                case EnumLibrary.SqlProviderType.SqlServer: optionBuilder.UseSqlServer(Startup.SqlConnctionString);break;
+                case EnumLibrary.SqlProviderType.NpgSQL:break;
+            }
+            
         }
 
         #region OnModelCreating
@@ -166,6 +167,13 @@ namespace Td.Kylin.DataCache.Context
             modelBuilder.Entity<Commission_OperatorFromWorker>(entity =>
             {
                 entity.HasKey(p => new { p.AreaID, p.UserID, p.CommissionItem });
+            });
+
+            //生活服务分类
+            modelBuilder.Entity<Service_SystemCategory>(entity =>
+            {
+                entity.Property(p => p.CategoryID).ValueGeneratedNever();
+                entity.HasKey(p => p.CategoryID);
             });
 
             #region 跑腿业务

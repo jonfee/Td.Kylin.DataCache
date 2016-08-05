@@ -64,5 +64,10 @@ namespace Td.Kylin.DataCache
         /// 缓存数据来源数据库连接字符串
         /// </summary>
         public string SqlConnectionString { get; set; }
+
+        /// <summary>
+        /// 二级缓存的时间（单位：秒）
+        /// </summary>
+        public int Level2CacheSeconds { get; set; }
     }
 }

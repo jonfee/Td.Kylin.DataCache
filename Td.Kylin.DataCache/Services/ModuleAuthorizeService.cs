@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Td.Kylin.DataCache.CacheModel;
 using Td.Kylin.DataCache.Context;
 using Td.Kylin.DataCache.IServices;
 
 namespace Td.Kylin.DataCache.Services
 {
-    internal sealed class ModuleAuthorizeService<DbContext> : IModuleAuthorizeService where DbContext : DataContext, new()
+    /// <summary>
+    /// 模块服务授权数据服务
+    /// </summary>
+    internal sealed class ModuleAuthorizeService : IModuleAuthorizeService
     {
         public List<ApiModuleAuthorizeCacheModel> GetAll()
         {
-            using (var db = new DbContext())
+            using (var db = new DataContext())
             {
                 var query = from p in db.System_ModuleAuthorize
                             select new ApiModuleAuthorizeCacheModel

@@ -9,12 +9,11 @@ namespace Td.Kylin.DataCache.Services
     /// <summary>
     /// 区域数据服务
     /// </summary>
-    /// <typeparam name="DbContext"></typeparam>
-    internal sealed class SystemAreaService<DbContext> : ISystemAreaService where DbContext : DataContext, new()
+    internal sealed class SystemAreaService : ISystemAreaService
     {
         public List<SystemAreaCacheModel> GetAll()
         {
-            using (var db = new DbContext())
+            using (var db = new DataContext())
             {
                 var query = from p in db.System_Area
                             select new SystemAreaCacheModel

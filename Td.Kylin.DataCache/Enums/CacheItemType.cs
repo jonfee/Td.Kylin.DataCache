@@ -32,15 +32,15 @@ namespace Td.Kylin.DataCache
         [Description("区域行业推荐")]
         AreaRecommendIndustry,
         /// <summary>
-        /// 上门预约业务
-        /// </summary>
-        [Description("上门预约业务")]
-        BusinessServices,
-        /// <summary>
         /// 商家商品系统分类
         /// </summary>
         [Description("商家商品系统分类")]
         MerchantProductSystemCategory,
+        /// <summary>
+        /// 生活服务系统分类
+        /// </summary>
+        [Description("生活服务系统分类")]
+        LifeServiceSystemCategory,
         /// <summary>
         /// B2C区域商品分类
         /// </summary>
@@ -77,9 +77,9 @@ namespace Td.Kylin.DataCache
         [Description("社区圈子分类")]
         ForumCategory,
         /// <summary>
-        /// 圈子
+        /// 系统圈子
         /// </summary>
-        [Description("圈子")]
+        [Description("系统圈子")]
         ForumCircle,
         /// <summary>
         /// 区域圈子

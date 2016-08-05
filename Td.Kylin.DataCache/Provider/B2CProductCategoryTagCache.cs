@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Td.Kylin.DataCache.CacheModel;
+using Td.Kylin.DataCache.Services;
 
 namespace Td.Kylin.DataCache.Provider
 {
@@ -19,7 +20,7 @@ namespace Td.Kylin.DataCache.Provider
         /// <returns></returns>
         protected override List<B2CProductCategoryTagCacheModel> ReadDataFromDB()
         {
-            return ServicesProvider.Items.B2CProductCategoryTagService.GetAll();
+            return new B2CProductCategoryTagService().GetAll();
         }
 
         /// <summary>

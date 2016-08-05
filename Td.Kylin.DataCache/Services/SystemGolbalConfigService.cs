@@ -9,12 +9,11 @@ namespace Td.Kylin.DataCache.Services
     /// <summary>
     /// 系统全局配置数据服务
     /// </summary>
-    /// <typeparam name="DbContext"></typeparam>
-    internal sealed class SystemGolbalConfigService<DbContext> : ISystemGolbalConfigService where DbContext : DataContext, new()
+    internal sealed class SystemGolbalConfigService : ISystemGolbalConfigService
     {
         public List<SystemGolbalConfigCacheModel> GetAll()
         {
-            using (var db = new DbContext())
+            using (var db = new DataContext())
             {
                 var query = from p in db.System_GlobalResources
                             select new SystemGolbalConfigCacheModel

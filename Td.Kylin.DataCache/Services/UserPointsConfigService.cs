@@ -9,12 +9,11 @@ namespace Td.Kylin.DataCache.Services
     /// <summary>
     /// 用户积分规则配置数据服务
     /// </summary>
-    /// <typeparam name="DbContext"></typeparam>
-    internal sealed class UserPointsConfigService<DbContext> : IUserPointsConfigService where DbContext : DataContext, new()
+    internal sealed class UserPointsConfigService : IUserPointsConfigService
     {
         public List<UserPointsConfigCacheModel> GetAll()
         {
-            using (var db = new DbContext())
+            using (var db = new DataContext())
             {
                 var query = from p in db.System_PointsConfig
                             select new UserPointsConfigCacheModel

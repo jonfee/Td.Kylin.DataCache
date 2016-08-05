@@ -9,8 +9,7 @@ namespace Td.Kylin.DataCache.Services
     /// <summary>
     /// 用户等级规则配置数据服务
     /// </summary>
-    /// <typeparam name="DbContext"></typeparam>
-    internal sealed class UserLevelConfigService<DbContext> : IUserLevelConfigService where DbContext : DataContext, new()
+    internal sealed class UserLevelConfigService : IUserLevelConfigService
     {
         /// <summary>
         /// 获取所有有效的用户等级配置
@@ -18,7 +17,7 @@ namespace Td.Kylin.DataCache.Services
         /// <returns></returns>
         public List<UserLevelConfigCacheModel> GetEnabledAll()
         {
-            using (var db = new DbContext())
+            using (var db = new DataContext())
             {
                 var query = from p in db.System_Level
                             where p.Enable == true

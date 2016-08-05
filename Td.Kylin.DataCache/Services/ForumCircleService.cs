@@ -9,12 +9,11 @@ namespace Td.Kylin.DataCache.Services
     /// <summary>
     /// 系统圈子数据服务
     /// </summary>
-    /// <typeparam name="DbContext"></typeparam>
-    internal sealed class ForumCircleService<DbContext> : IForumCircleService where DbContext : DataContext, new()
+    internal sealed class ForumCircleService : IForumCircleService
     {
         public List<ForumCircleCacheModel> GetEnabledAll()
         {
-            using (var db = new DbContext())
+            using (var db = new DataContext())
             {
                 var query = from p in db.Circle_Forum
                             where p.IsDelete == false && p.Disabled == false

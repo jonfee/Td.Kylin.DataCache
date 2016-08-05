@@ -9,12 +9,11 @@ namespace Td.Kylin.DataCache.Services
     /// <summary>
     /// 区域针对个人工作人员抽成配置服务
     /// </summary>
-    /// <typeparam name="DbContext"></typeparam>
-    internal sealed class AreaForPersonalWorkerCommissionService<DbContext> : IAreaForPersonalWorkerCommissionService where DbContext : DataContext, new()
+    internal sealed class AreaForPersonalWorkerCommissionService : IAreaForPersonalWorkerCommissionService
     {
         public List<AreaForPersonalWorkerCommissionCacheModel> GetAll()
         {
-            using (var db = new DbContext())
+            using (var db = new DataContext())
             {
                 var query = from p in db.Commission_OperatorFromWorker
                             select new AreaForPersonalWorkerCommissionCacheModel

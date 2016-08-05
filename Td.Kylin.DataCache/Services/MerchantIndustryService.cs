@@ -9,8 +9,7 @@ namespace Td.Kylin.DataCache.Services
     /// <summary>
     /// 商家行业数据服务
     /// </summary>
-    /// <typeparam name="DbContext"></typeparam>
-    internal sealed class MerchantIndustryService<DbContext> : IMerchantIndustryService where DbContext : DataContext, new()
+    internal sealed class MerchantIndustryService : IMerchantIndustryService
     {
         /// <summary>
         /// 获取所有有效的商家行业集合
@@ -18,7 +17,7 @@ namespace Td.Kylin.DataCache.Services
         /// <returns></returns>
         public List<MerchantIndustryCacheModel> GetEnabledAll()
         {
-            using (var db = new DbContext())
+            using (var db = new DataContext())
             {
                 var query = from p in db.Merchant_Industry
                             where p.Disabled == false

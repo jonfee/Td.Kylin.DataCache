@@ -9,8 +9,7 @@ namespace Td.Kylin.DataCache.Services
     /// <summary>
     /// 平台针对区域抽成服务
     /// </summary>
-    /// <typeparam name="DbContext"></typeparam>
-    internal sealed class PlatformCommissionService<DbContext> : IPlatformCommissionService where DbContext : DataContext, new()
+    internal sealed class PlatformCommissionService : IPlatformCommissionService
     {
         /// <summary>
         /// 获取所有配置
@@ -18,7 +17,7 @@ namespace Td.Kylin.DataCache.Services
         /// <returns></returns>
         public List<PlatformCommissionCacheModel> GetAll()
         {
-            using (var db = new DbContext())
+            using (var db = new DataContext())
             {
                 var query = from p in db.Area_PlatformCommission
                             select new PlatformCommissionCacheModel

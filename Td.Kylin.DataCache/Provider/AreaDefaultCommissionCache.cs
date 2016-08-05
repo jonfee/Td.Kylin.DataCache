@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Td.Kylin.DataCache.CacheModel;
+using Td.Kylin.DataCache.Services;
 
 namespace Td.Kylin.DataCache.Provider
 {
@@ -32,7 +33,7 @@ namespace Td.Kylin.DataCache.Provider
         /// <returns></returns>
         protected override List<AreaDefaultCommissionCacheModel> ReadDataFromDB()
         {
-            return ServicesProvider.Items.AreaDefaultCommissionService.GetAll();
+            return new AreaDefaultCommissionService().GetAll();
         }
     }
 }

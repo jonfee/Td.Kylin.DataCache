@@ -8,13 +8,27 @@ namespace Td.Kylin.DataCache
 {
     internal sealed class Startup
     {
-        public static void Start(ConfigurationOptions options, bool keepAlive, bool initIfNull, SqlProviderType sqlType, string sqlConnection, IEnumerable<CacheItemType> types)
+        /// <summary>
+        /// 初始化加载
+        /// </summary>
+        /// <param name="options">缓存Redis配置信息</param>
+        /// <param name="keepAlive">是否长连接</param>
+        /// <param name="initIfNull">缓存为null时是否初始化</param>
+        /// <param name="sqlType">缓存的源数据库类型</param>
+        /// <param name="sqlConnection">缓存的源数据库连接</param>
+        /// <param name="types">需要缓存的对象类型集合</param>
+        /// <param name="level2CacheSeconds">二级缓存的时间（单位：秒）</param>
+        public static void Start(ConfigurationOptions options, bool keepAlive, bool initIfNull, SqlProviderType sqlType, string sqlConnection, IEnumerable<CacheItemType> types, int level2CacheSeconds)
         {
+            //未设置二级缓存时间时，默认二级缓存时间10秒
+            if (level2CacheSeconds <= 0) level2CacheSeconds = 10;
+
             RedisOptions = options;
             KeepAlive = keepAlive;
             InitIfNull = initIfNull;
             SqlType = sqlType;
             SqlConnctionString = sqlConnection;
+            Level2CacheSeconds = level2CacheSeconds;
 
             //注入缓存对象
             InjectCacheItems(types);
@@ -40,7 +54,7 @@ namespace Td.Kylin.DataCache
             if (isAll || cacheItems.Contains(CacheItemType.OpenArea))
             {
                 //开通区域
-                config.Add(CacheItemType.OpenArea, 0, RedisSaveType.HashSet, CacheLevel.Hight);
+                config.Add(CacheItemType.OpenArea, 0, RedisSaveType.HashSet, CacheLevel.Permanent);
             }
             if (isAll || cacheItems.Contains(CacheItemType.AreaForum))
             {
@@ -62,55 +76,50 @@ namespace Td.Kylin.DataCache
                 //B2C商品分类下标签
                 config.Add(CacheItemType.B2CProductCategoryTags, 0, RedisSaveType.HashSet, CacheLevel.Hight);
             }
-            if (isAll || cacheItems.Contains(CacheItemType.BusinessServices))
-            {
-                //上门预约服务业务
-                config.Add(CacheItemType.BusinessServices, 0, RedisSaveType.HashSet, CacheLevel.Hight);
-            }
             if (isAll || cacheItems.Contains(CacheItemType.ForumCategory))
             {
                 //圈子分类
-                config.Add(CacheItemType.ForumCategory, 0, RedisSaveType.HashSet, CacheLevel.Hight);
+                config.Add(CacheItemType.ForumCategory, 0, RedisSaveType.HashSet, CacheLevel.Permanent);
             }
             if (isAll || cacheItems.Contains(CacheItemType.ForumCircle))
             {
                 //系统圈子
-                config.Add(CacheItemType.ForumCircle, 0, RedisSaveType.HashSet, CacheLevel.Hight);
+                config.Add(CacheItemType.ForumCircle, 0, RedisSaveType.HashSet, CacheLevel.Permanent);
             }
             if (isAll || cacheItems.Contains(CacheItemType.MerchantIndustry))
             {
                 //商家行业
-                config.Add(CacheItemType.MerchantIndustry, 0, RedisSaveType.HashSet, CacheLevel.Hight);
+                config.Add(CacheItemType.MerchantIndustry, 0, RedisSaveType.HashSet, CacheLevel.Permanent);
             }
             if (isAll || cacheItems.Contains(CacheItemType.MerchantProductSystemCategory))
             {
                 //商家商品系统分类
-                config.Add(CacheItemType.MerchantProductSystemCategory, 0, RedisSaveType.HashSet, CacheLevel.Hight);
+                config.Add(CacheItemType.MerchantProductSystemCategory, 0, RedisSaveType.HashSet, CacheLevel.Permanent);
             }
             if (isAll || cacheItems.Contains(CacheItemType.SystemGolbalConfig))
             {
                 //全局配置
-                config.Add(CacheItemType.SystemGolbalConfig, 0, RedisSaveType.HashSet, CacheLevel.Hight);
+                config.Add(CacheItemType.SystemGolbalConfig, 0, RedisSaveType.HashSet, CacheLevel.Permanent);
             }
             if (isAll || cacheItems.Contains(CacheItemType.UserEmpiricalConfig))
             {
                 //用户经验值规则配置
-                config.Add(CacheItemType.UserEmpiricalConfig, 0, RedisSaveType.HashSet, CacheLevel.Hight);
+                config.Add(CacheItemType.UserEmpiricalConfig, 0, RedisSaveType.HashSet, CacheLevel.Permanent);
             }
             if (isAll || cacheItems.Contains(CacheItemType.UserLevelConfig))
             {
                 //用户等级规则配置
-                config.Add(CacheItemType.UserLevelConfig, 0, RedisSaveType.HashSet, CacheLevel.Hight);
+                config.Add(CacheItemType.UserLevelConfig, 0, RedisSaveType.HashSet, CacheLevel.Permanent);
             }
             if (isAll || cacheItems.Contains(CacheItemType.UserPointsConfig))
             {
                 //用户积分规则配置
-                config.Add(CacheItemType.UserPointsConfig, 0, RedisSaveType.HashSet, CacheLevel.Hight);
+                config.Add(CacheItemType.UserPointsConfig, 0, RedisSaveType.HashSet, CacheLevel.Permanent);
             }
             if (isAll || cacheItems.Contains(CacheItemType.JobCategory))
             {
                 //职位类别
-                config.Add(CacheItemType.JobCategory, 0, RedisSaveType.HashSet, CacheLevel.Hight);
+                config.Add(CacheItemType.JobCategory, 0, RedisSaveType.HashSet, CacheLevel.Permanent);
             }
             if (isAll || cacheItems.Contains(CacheItemType.PlatformCommission))
             {
@@ -152,6 +161,11 @@ namespace Td.Kylin.DataCache
                 //跑腿业务物品类型
                 config.Add(CacheItemType.LegworkGoodsCategory, 0, RedisSaveType.HashSet, CacheLevel.Permanent);
             }
+            if (isAll || cacheItems.Contains(CacheItemType.LifeServiceSystemCategory))
+            {
+                //生活服务分类
+                config.Add(CacheItemType.LifeServiceSystemCategory, 0, RedisSaveType.HashSet, CacheLevel.Permanent);
+            }
 
             RedisConfiguration = config;
         }
@@ -185,5 +199,10 @@ namespace Td.Kylin.DataCache
         /// 数据库连接字符串
         /// </summary>
         public static string SqlConnctionString { get; private set; }
+
+        /// <summary>
+        /// 二级缓存时间（秒）
+        /// </summary>
+        public static int Level2CacheSeconds { get; private set; }
     }
 }

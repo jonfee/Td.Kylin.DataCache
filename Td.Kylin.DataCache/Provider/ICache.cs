@@ -35,8 +35,14 @@ namespace Td.Kylin.DataCache.Provider
         void ResetLevel(CacheLevel level);
 
         /// <summary>
-        /// 获取缓存原数据
+        /// 获取缓存源数据
         /// </summary>
         List<object> GetCacheData();
+
+        /// <summary>
+        /// 获取二级缓存数据
+        /// </summary>
+        /// <returns></returns>
+        List<object> GetLevel2CacheData();
     }
 }

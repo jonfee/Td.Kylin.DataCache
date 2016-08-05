@@ -9,12 +9,11 @@ namespace Td.Kylin.DataCache.Services
     /// <summary>
     /// 精品汇商品分类数据服务
     /// </summary>
-    /// <typeparam name="DbContext"></typeparam>
-    internal sealed class B2CProductCategoryService<DbContext> : IB2CProductCategoryService where DbContext : DataContext, new()
+    internal sealed class B2CProductCategoryService : IB2CProductCategoryService
     {
         public List<B2CProductCategoryCacheModel> GetEnabledAll()
         {
-            using (var db = new DbContext())
+            using (var db = new DataContext())
             {
                 var query = from p in db.Mall_Category
                             where p.IsDelete == false && p.Disabled == false

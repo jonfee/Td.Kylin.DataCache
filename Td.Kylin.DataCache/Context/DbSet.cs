@@ -111,5 +111,10 @@ namespace Td.Kylin.DataCache.Context
         }
 
         #endregion
+
+        /// <summary>
+        /// 生活服务系统分类
+        /// </summary>
+        public DbSet<Service_SystemCategory> Service_SystemCategory { get { return Set<Service_SystemCategory>(); } }
     }
 }

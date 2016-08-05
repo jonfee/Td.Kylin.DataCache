@@ -9,12 +9,11 @@ namespace Td.Kylin.DataCache.Services
     /// <summary>
     /// 职位类别数据服务
     /// </summary>
-    /// <typeparam name="DbContext"></typeparam>
-    internal sealed class JobCategoryService<DbContext> : IJobCategoryService where DbContext : DataContext, new()
+    internal sealed class JobCategoryService : IJobCategoryService
     {
         public List<JobCategoryCacheModel> GetAll()
         {
-            using (var db = new DbContext())
+            using (var db = new DataContext())
             {
                 var query = from p in db.Job_Category
                             select new JobCategoryCacheModel

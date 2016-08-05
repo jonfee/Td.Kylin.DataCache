@@ -9,12 +9,11 @@ namespace Td.Kylin.DataCache.Services
     /// <summary>
     /// 用户经验值规则配置数据服务
     /// </summary>
-    /// <typeparam name="DbContext"></typeparam>
-    internal sealed class UserEmpiricalConfigService<DbContext> : IUserEmpiricalConfigService where DbContext : DataContext, new()
+    internal sealed class UserEmpiricalConfigService : IUserEmpiricalConfigService
     {
         public List<UserEmpiricalConfigCacheModel> GetAll()
         {
-            using (var db = new DbContext())
+            using (var db = new DataContext())
             {
                 var query = from p in db.System_EmpiricalConfig
                             select new UserEmpiricalConfigCacheModel

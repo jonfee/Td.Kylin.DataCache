@@ -8,11 +8,14 @@ using Td.Kylin.DataCache.IServices;
 
 namespace Td.Kylin.DataCache.Services
 {
-    internal class LegworkGoodsCategoryService<DbContext> : ILegworkGoodsCategoryService where DbContext : DataContext, new()
+    /// <summary>
+    /// 跑腿物品类型数据服务
+    /// </summary>
+    internal class LegworkGoodsCategoryService : ILegworkGoodsCategoryService
     {
         public List<LegworkGoodsCategoryCacheModel> GetAll()
         {
-            using (var db = new DbContext())
+            using (var db = new DataContext())
             {
                 return (from p in db.Legwork_GoodsCategory
                         where p.IsDelete == false

@@ -8,11 +8,14 @@ using Td.Kylin.DataCache.IServices;
 
 namespace Td.Kylin.DataCache.Services
 {
-    internal sealed class LegworkGlobalConfigService<DbContext> : ILegworkGlobalConfigService where DbContext : DataContext, new()
+    /// <summary>
+    /// 跑腿全局配置服务
+    /// </summary>
+    internal sealed class LegworkGlobalConfigService : ILegworkGlobalConfigService
     {
         public List<LegworkGlobalConfigCacheModel> GetAll()
         {
-            using (var db = new DbContext())
+            using (var db = new DataContext())
             {
                 return (from p in db.Legwork_GlobalConfig
                         select new LegworkGlobalConfigCacheModel

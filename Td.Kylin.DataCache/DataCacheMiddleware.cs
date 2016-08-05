@@ -45,6 +45,11 @@ namespace Td.Kylin.DataCache
         /// </summary>
         private readonly bool _initIfNull;
 
+        /// <summary>
+        /// 二级缓存的时间（单位：秒）
+        /// </summary>
+        private readonly int _level2CacheSeconds;
+
         #region RequestDelegate
         /// <summary>
         /// 实例化
@@ -56,7 +61,8 @@ namespace Td.Kylin.DataCache
         /// <param name="sqlConnection">数据库连接字符串</param>
         /// <param name="cacheItems">缓存类型</param>
         /// <param name="initIfNull">缓存数据为空时是否初始化</param>
-        public DataCacheMiddleware(RequestDelegate next, ConfigurationOptions redisOptions, bool keepAlive, SqlProviderType sqlType, string sqlConnection, CacheItemType[] cacheItems = null, bool initIfNull = false)
+        /// <param name="level2CacheSeconds">二级缓存的时间（单位：秒）</param>
+        public DataCacheMiddleware(RequestDelegate next, ConfigurationOptions redisOptions, bool keepAlive, SqlProviderType sqlType, string sqlConnection, CacheItemType[] cacheItems = null, bool initIfNull = false, int level2CacheSeconds = 30)
         {
             if (next == null)
             {
@@ -78,11 +84,12 @@ namespace Td.Kylin.DataCache
             _next = next;
             _cacheItems = cacheItems;
             _initIfNull = initIfNull;
+            _level2CacheSeconds = level2CacheSeconds;
         }
 
         public Task Invoke(HttpContext context)
         {
-            Startup.Start(_options, _keepAlive, _initIfNull, _sqlProviderType, _sqlconnectionString, _cacheItems);
+            Startup.Start(_options, _keepAlive, _initIfNull, _sqlProviderType, _sqlconnectionString, _cacheItems, _level2CacheSeconds);
 
             return _next(context);
         }
@@ -100,7 +107,8 @@ namespace Td.Kylin.DataCache
         /// <param name="sqlConnection">数据库连接字符串</param>
         /// <param name="cacheItems">缓存类型</param>
         /// <param name="initIfNull">缓存数据为空时是否初始化</param>
-        public DataCacheMiddleware(ConfigurationOptions redisOptions, bool keepAlive, SqlProviderType sqlType, string sqlConnection, CacheItemType[] cacheItems = null, bool initIfNull = false)
+        /// <param name="level2CacheSeconds">二级缓存的时间（单位：秒）</param>
+        public DataCacheMiddleware(ConfigurationOptions redisOptions, bool keepAlive, SqlProviderType sqlType, string sqlConnection, CacheItemType[] cacheItems = null, bool initIfNull = false, int level2CacheSeconds = 30)
         {
             if (redisOptions == null)
             {
@@ -116,11 +124,12 @@ namespace Td.Kylin.DataCache
             _keepAlive = keepAlive;
             _cacheItems = cacheItems;
             _initIfNull = initIfNull;
+            _level2CacheSeconds = level2CacheSeconds;
         }
 
         public void Invoke()
         {
-            Startup.Start(_options, _keepAlive, _initIfNull, _sqlProviderType, _sqlconnectionString, _cacheItems);
+            Startup.Start(_options, _keepAlive, _initIfNull, _sqlProviderType, _sqlconnectionString, _cacheItems, _level2CacheSeconds);
         }
 
         #endregion

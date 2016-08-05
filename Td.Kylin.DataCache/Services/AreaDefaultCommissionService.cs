@@ -9,12 +9,11 @@ namespace Td.Kylin.DataCache.Services
     /// <summary>
     /// 区域默认抽成数据服务
     /// </summary>
-    /// <typeparam name="DbContext"></typeparam>
-    internal sealed class AreaDefaultCommissionService<DbContext> : IAreaDefaultCommissionService where DbContext : DataContext, new()
+    internal sealed class AreaDefaultCommissionService : IAreaDefaultCommissionService
     {
         public List<AreaDefaultCommissionCacheModel> GetAll()
         {
-            using (var db = new DbContext())
+            using (var db = new DataContext())
             {
                 var query = from p in db.Commission_OperatorDefault
                             select new AreaDefaultCommissionCacheModel

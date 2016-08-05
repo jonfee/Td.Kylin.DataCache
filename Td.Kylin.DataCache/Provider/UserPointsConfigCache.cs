@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Td.Kylin.DataCache.CacheModel;
+using Td.Kylin.DataCache.Services;
 
 namespace Td.Kylin.DataCache.Provider
 {
@@ -19,7 +20,7 @@ namespace Td.Kylin.DataCache.Provider
         /// <returns></returns>
         protected override List<UserPointsConfigCacheModel> ReadDataFromDB()
         {
-            return ServicesProvider.Items.UserPointsConfigService.GetAll();
+            return new UserPointsConfigService().GetAll();
         }
         
         /// <summary>
