@@ -22,18 +22,19 @@ namespace Td.Kylin.DataCache.Provider
         {
             return new SystemGolbalConfigService().GetAll();
         }
-        
+
         /// <summary>
         /// 获取缓存
         /// </summary>
         /// <param name="resourceType">资源类型</param>
         /// <param name="resourceKey">资源类型子项</param>
+        /// <param name="allScope">是否查找所有缓存域</param>
         /// <returns></returns>
-        public SystemGolbalConfigCacheModel Get(int resourceType,int resourceKey)
+        public SystemGolbalConfigCacheModel Get(int resourceType, int resourceKey, bool allScope = true)
         {
-            var item = new SystemGolbalConfigCacheModel { ResourceType = resourceType,ResourceKey= resourceKey };
+            var item = new SystemGolbalConfigCacheModel { ResourceType = resourceType, ResourceKey = resourceKey };
 
-            return Get(item.HashField);
+            return Get(item.HashField, allScope);
         }
     }
 }

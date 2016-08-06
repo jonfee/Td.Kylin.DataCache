@@ -22,17 +22,18 @@ namespace Td.Kylin.DataCache.Provider
         {
             return new UserLevelConfigService().GetEnabledAll();
         }
-        
+
         /// <summary>
         /// 获取缓存
         /// </summary>
         /// <param name="levelID">等级ID</param>
+        /// <param name="allScope">是否查找所有缓存域</param>
         /// <returns></returns>
-        public UserLevelConfigCacheModel Get(long levelID)
+        public UserLevelConfigCacheModel Get(long levelID, bool allScope = true)
         {
             var item = new UserLevelConfigCacheModel { LevelID = levelID };
 
-            return Get(item.HashField);
+            return Get(item.HashField, allScope);
         }
     }
 }

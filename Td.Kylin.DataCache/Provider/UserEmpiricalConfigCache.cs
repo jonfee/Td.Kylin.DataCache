@@ -22,17 +22,18 @@ namespace Td.Kylin.DataCache.Provider
         {
             return new UserEmpiricalConfigService().GetAll();
         }
-        
+
         /// <summary>
         /// 获取缓存
         /// </summary>
         /// <param name="activityType">用户业务活动类型</param>
+        /// <param name="allScope">是否查找所有缓存域</param>
         /// <returns></returns>
-        public UserEmpiricalConfigCacheModel Get(int activityType)
+        public UserEmpiricalConfigCacheModel Get(int activityType, bool allScope = true)
         {
             var item = new UserEmpiricalConfigCacheModel { ActivityType = activityType };
 
-            return Get(item.HashField);
+            return Get(item.HashField, allScope);
         }
     }
 }

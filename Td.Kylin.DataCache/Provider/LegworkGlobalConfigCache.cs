@@ -18,12 +18,13 @@ namespace Td.Kylin.DataCache.Provider
         /// 获取缓存
         /// </summary>
         /// <param name="globalConfigID">配置ID</param>
+        /// <param name="allScope">是否查找所有缓存域</param>
         /// <returns></returns>
-        public LegworkGlobalConfigCacheModel Get(long globalConfigID)
+        public LegworkGlobalConfigCacheModel Get(long globalConfigID, bool allScope = true)
         {
             var item = new LegworkGlobalConfigCacheModel { GlobalConfigID = globalConfigID };
 
-            return Get(item.HashField);
+            return Get(item.HashField, allScope);
         }
 
         /// <summary>

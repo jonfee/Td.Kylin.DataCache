@@ -19,12 +19,13 @@ namespace Td.Kylin.DataCache.Provider
         /// </summary>
         /// <param name="areaID">区域ID</param>
         /// <param name="commissionItem">抽成项（枚举：AreaDefaultCommissionOption，如：商家商品订单抽成|商家上门预约订单抽成）</param>
+        /// <param name="allScope">是否查找所有缓存域</param>
         /// <returns></returns>
-        public AreaDefaultCommissionCacheModel Get(int areaID,int commissionItem)
+        public AreaDefaultCommissionCacheModel Get(int areaID, int commissionItem, bool allScope = true)
         {
             var item = new AreaDefaultCommissionCacheModel { AreaID = areaID, CommissionItem = commissionItem };
 
-            return Get(item.HashField);
+            return Get(item.HashField, allScope);
         }
 
         /// <summary>

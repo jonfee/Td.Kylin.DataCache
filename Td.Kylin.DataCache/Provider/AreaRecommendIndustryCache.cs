@@ -22,18 +22,19 @@ namespace Td.Kylin.DataCache.Provider
         {
             return new AreaRecommendIndustryService().GetAll();
         }
-        
+
         /// <summary>
         /// 获取缓存
         /// </summary>
         /// <param name="areaID">区域ID</param>
         /// <param name="industryID">行业ID</param>
+        /// <param name="allScope">是否查找所有缓存域</param>
         /// <returns></returns>
-        public AreaRecommendIndustryCacheModel Get(int areaID, long industryID)
+        public AreaRecommendIndustryCacheModel Get(int areaID, long industryID, bool allScope = true)
         {
             var item = new AreaRecommendIndustryCacheModel { AreaID = areaID, IndustryID = industryID };
 
-            return Get(item.HashField);
+            return Get(item.HashField,allScope);
         }
     }
 }

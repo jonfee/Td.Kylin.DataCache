@@ -21,12 +21,13 @@ namespace Td.Kylin.DataCache.Provider
         /// 获取缓存
         /// </summary>
         /// <param name="categoryID">分类ID</param>
+        /// <param name="allScope">是否查找所有缓存域</param>
         /// <returns></returns>
-        public LifeServiceSystemCategoryCacheModel Get(long categoryID)
+        public LifeServiceSystemCategoryCacheModel Get(long categoryID, bool allScope = true)
         {
             var item = new LifeServiceSystemCategoryCacheModel { CategoryID = categoryID };
 
-            return Get(item.HashField);
+            return Get(item.HashField,allScope);
         }
         /// <summary>
         /// 从数据库中读取数据

@@ -13,7 +13,7 @@ namespace Td.Kylin.DataCache.Provider
         /// 初始化一个<seealso cref="OpenAreaCache"/>实例
         /// </summary>
         public OpenAreaCache() : base(CacheItemType.OpenArea) { }
-        
+
         /// <summary>
         /// 从数据库读取数据
         /// </summary>
@@ -22,17 +22,18 @@ namespace Td.Kylin.DataCache.Provider
         {
             return new OpenAreaService().GetAll();
         }
-        
+
         /// <summary>
         /// 获取缓存
         /// </summary>
         /// <param name="areaID">区域ID</param>
+        /// <param name="allScope">是否查找所有缓存域</param>
         /// <returns></returns>
-        public OpenAreaCacheModel Get(int areaID)
+        public OpenAreaCacheModel Get(int areaID, bool allScope = true)
         {
             var item = new OpenAreaCacheModel { AreaID = areaID };
 
-            return Get(item.HashField);
+            return Get(item.HashField, allScope);
         }
     }
 }

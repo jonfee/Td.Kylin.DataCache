@@ -27,12 +27,13 @@ namespace Td.Kylin.DataCache.Provider
         /// 获取缓存
         /// </summary>
         /// <param name="tagID">标签ID</param>
+        /// <param name="allScope">是否查找所有缓存域</param>
         /// <returns></returns>
-        public B2CProductCategoryTagCacheModel Get(long tagID)
+        public B2CProductCategoryTagCacheModel Get(long tagID, bool allScope = true)
         {
             var item = new B2CProductCategoryTagCacheModel { TagID = tagID };
 
-            return Get(item.HashField);
+            return Get(item.HashField,allScope);
         }
     }
 }

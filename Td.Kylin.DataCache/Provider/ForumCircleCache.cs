@@ -22,17 +22,18 @@ namespace Td.Kylin.DataCache.Provider
         {
             return new ForumCircleService().GetEnabledAll();
         }
-        
+
         /// <summary>
         /// 获取缓存
         /// </summary>
         /// <param name="forumID">圈子ID</param>
+        /// <param name="allScope">是否查找所有缓存域</param>
         /// <returns></returns>
-        public ForumCircleCacheModel Get(long forumID)
+        public ForumCircleCacheModel Get(long forumID, bool allScope = true)
         {
             var item = new ForumCircleCacheModel { ForumID = forumID };
 
-            return Get(item.HashField);
+            return Get(item.HashField,allScope);
         }
     }
 }

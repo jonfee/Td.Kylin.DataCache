@@ -22,17 +22,18 @@ namespace Td.Kylin.DataCache.Provider
         {
             return new MerchantProductSystemCategoryService().GetEnabledAll();
         }
-        
+
         /// <summary>
         /// 获取缓存
         /// </summary>
         /// <param name="categoryID">商品分类ID</param>
+        /// <param name="allScope">是否查找所有缓存域</param>
         /// <returns></returns>
-        public MerchantProductSystemCategoryCacheModel Get(long categoryID)
+        public MerchantProductSystemCategoryCacheModel Get(long categoryID, bool allScope = true)
         {
             var item = new MerchantProductSystemCategoryCacheModel { CategoryID = categoryID };
 
-            return Get(item.HashField);
+            return Get(item.HashField, allScope);
         }
     }
 }
