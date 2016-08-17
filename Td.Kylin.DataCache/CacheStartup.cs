@@ -1,4 +1,5 @@
 ﻿using StackExchange.Redis;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Td.Kylin.DataCache.RedisConfig;
@@ -11,7 +12,7 @@ namespace Td.Kylin.DataCache
         /// <summary>
         /// 初始化加载
         /// </summary>
-        /// <param name="options">缓存Redis配置信息</param>
+        /// <param name="options"><seealso cref="ConfigurationOptions"/>缓存Redis配置信息</param>
         /// <param name="keepAlive">是否长连接</param>
         /// <param name="initIfNull">缓存为null时是否初始化</param>
         /// <param name="sqlType">缓存的源数据库类型</param>
@@ -32,6 +33,20 @@ namespace Td.Kylin.DataCache
 
             //注入缓存对象
             InjectCacheItems(types);
+        }
+
+        /// <summary>
+        /// 初始化加载
+        /// </summary>
+        /// <param name="options"><seealso cref="DataCacheServerOptions"/>数据缓存服务参数</param>
+        public static void Start(DataCacheServerOptions options)
+        {
+            if (options == null)
+            {
+                throw new InvalidOperationException("options value is null.");
+            }
+
+            Start(options.RedisOptions, options.KeepAlive, options.InitIfNull, options.SqlType, options.SqlConnection, options.CacheItems, options.Level2CacheSeconds);
         }
 
         /// <summary>

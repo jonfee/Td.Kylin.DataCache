@@ -1,24 +1,19 @@
 ﻿using StackExchange.Redis;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Td.Kylin.EnumLibrary;
 
 namespace Td.Kylin.DataCache
 {
     /// <summary>
-    /// 数据缓存(Redis)注入配置类
+    /// 数据缓存服务参数
     /// </summary>
-    public class CacheInjectionConfig
+    public class DataCacheServerOptions
     {
-
         private ConfigurationOptions _options;
 
         /// <summary>
         /// Redis-ConfigurationOptions
         /// </summary>
-        public ConfigurationOptions Options
+        public ConfigurationOptions RedisOptions
         {
             get
             {
@@ -43,31 +38,31 @@ namespace Td.Kylin.DataCache
         /// <summary>
         /// 是否保持长连接
         /// </summary>
-        public bool KeepAlive { get; set; }
+        public bool KeepAlive { get; set; } = true;
 
         /// <summary>
-        /// 需要缓存的数据类型集合
+        /// 数据库类型
         /// </summary>
-        public CacheItemType[] CacheItems { get; set; }
+        public SqlProviderType SqlType { get; set; } = SqlProviderType.SqlServer;
 
         /// <summary>
-        /// 缓存对象为null时是否实始化
+        /// 数据库连接字符串
         /// </summary>
-        public bool InitIfNull { get; set; }
+        public string SqlConnection { get; set; }
 
         /// <summary>
-        /// 缓存数据来源数据库类型
+        /// 缓存项类型
         /// </summary>
-        public SqlProviderType SqlType { get; set; }
+        public CacheItemType[] CacheItems { get; set; } = null;
 
         /// <summary>
-        /// 缓存数据来源数据库连接字符串
+        /// 缓存值为null时是否初始化
         /// </summary>
-        public string SqlConnectionString { get; set; }
+        public bool InitIfNull { get; set; } = false;
 
         /// <summary>
-        /// 二级缓存的时间（单位：秒）
+        /// 二级缓存缓存时间（单位：秒）
         /// </summary>
-        public int Level2CacheSeconds { get; set; }
+        public int Level2CacheSeconds { get; set; } = 10;
     }
 }
