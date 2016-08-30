@@ -451,7 +451,7 @@ namespace Td.Kylin.DataCache
         /// 更新指定级别的缓存
         /// </summary>
         /// <param name="level"></param>
-        public static async void Update(CacheLevel level)
+        public static void Update(CacheLevel level)
         {
             var list = GetCacheList(level);
 
@@ -459,7 +459,7 @@ namespace Td.Kylin.DataCache
             {
                 foreach (var cache in list)
                 {
-                    await cache.Update();
+                   cache.Update();
                 }
             }
         }
