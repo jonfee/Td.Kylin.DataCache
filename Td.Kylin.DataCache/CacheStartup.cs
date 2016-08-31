@@ -57,9 +57,9 @@ namespace Td.Kylin.DataCache
         {
             var config = new RedisConfigurationRoot();
 
-            List<CacheItemType> cacheItems = null == types ? null : types.ToList();
+            List<CacheItemType> cacheItems = types?.ToList();
 
-            bool isAll = cacheItems == null || cacheItems.Count() < 1;
+            bool isAll = cacheItems == null || cacheItems.Any();
 
             if (isAll || cacheItems.Contains(CacheItemType.SystemArea))
             {

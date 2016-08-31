@@ -42,6 +42,8 @@ namespace Td.Kylin.DataCache
             try
             {
                 Startup.Start(Options);
+
+                CacheCollection.Reset();
             }
             catch
             {

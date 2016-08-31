@@ -33,9 +33,9 @@ namespace Td.Kylin.DataCache
             {
                 _htCache = Hashtable.Synchronized(new Hashtable());
 
-                var configCollections =  Startup.RedisConfiguration?.Collections;
+                var configCollections = Startup.RedisConfiguration?.Collections;
 
-                if (configCollections==null) return;
+                if (configCollections == null) return;
 
                 foreach (var config in configCollections)
                 {
@@ -461,7 +461,7 @@ namespace Td.Kylin.DataCache
             {
                 foreach (var cache in list)
                 {
-                   cache.Update();
+                    cache.Update();
                 }
             }
         }
