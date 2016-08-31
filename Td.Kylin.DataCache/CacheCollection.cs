@@ -15,9 +15,9 @@ namespace Td.Kylin.DataCache
         /// <summary>
         /// 缓存项实例集合
         /// </summary>
-        private volatile static Hashtable htCache = null;
+        private volatile static Hashtable _htCache = null;
 
-        private readonly static object mylock = new object();
+        private readonly static object Mylock = new object();
 
         static CacheCollection()
         {
@@ -29,11 +29,13 @@ namespace Td.Kylin.DataCache
         /// </summary>
         public static void Reset()
         {
-            lock (mylock)
+            lock (Mylock)
             {
-                htCache = Hashtable.Synchronized(new Hashtable());
+                _htCache = Hashtable.Synchronized(new Hashtable());
 
-                var configCollections = Startup.RedisConfiguration.Collections;
+                var configCollections =  Startup.RedisConfiguration?.Collections;
+
+                if (configCollections==null) return;
 
                 foreach (var config in configCollections)
                 {
@@ -43,13 +45,13 @@ namespace Td.Kylin.DataCache
 
                         if (null != cacheItem)
                         {
-                            if (htCache.ContainsKey(config.RedisKey))
+                            if (_htCache.ContainsKey(config.RedisKey))
                             {
-                                htCache[config.RedisKey] = cacheItem;
+                                _htCache[config.RedisKey] = cacheItem;
                             }
                             else
                             {
-                                htCache.Add(config.RedisKey, cacheItem);
+                                _htCache.Add(config.RedisKey, cacheItem);
                             }
                         }
                     }
@@ -64,7 +66,7 @@ namespace Td.Kylin.DataCache
         {
             get
             {
-                return null != htCache ? htCache.Count : 0;
+                return null != _htCache ? _htCache.Count : 0;
             }
         }
 
@@ -75,7 +77,7 @@ namespace Td.Kylin.DataCache
         {
             get
             {
-                var arr = new ArrayList(htCache.Keys);
+                var arr = new ArrayList(_htCache.Keys);
 
                 List<string> keys = new List<string>();
 
@@ -226,7 +228,7 @@ namespace Td.Kylin.DataCache
 
             if (!string.IsNullOrWhiteSpace(cacheKey) && Keys.Contains(cacheKey))
             {
-                object cache = htCache[cacheKey];
+                object cache = _htCache[cacheKey];
 
                 if (cache is T)
                 {
@@ -377,7 +379,7 @@ namespace Td.Kylin.DataCache
 
             try
             {
-                var vals = htCache.Values;
+                var vals = _htCache.Values;
 
                 if (null != vals)
                 {
@@ -409,7 +411,7 @@ namespace Td.Kylin.DataCache
         {
             try
             {
-                var vals = htCache.Values;
+                var vals = _htCache.Values;
 
                 List<ICache> list = null;
 

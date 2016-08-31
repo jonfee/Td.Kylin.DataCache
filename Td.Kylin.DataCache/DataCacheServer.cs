@@ -20,12 +20,11 @@ namespace Td.Kylin.DataCache
         /// <param name="options"></param>
         public DataCacheServer(DataCacheServerOptions options)
         {
-            if (options == null)
-            {
-                throw new ArgumentNullException(nameof(options));
-            }
+            if (options == null) throw new ArgumentNullException(nameof(options));
 
-            Options = options ?? new DataCacheServerOptions();
+            if (options.Level2CacheSeconds < 0) options.Level2CacheSeconds = 0;
+
+            Options = options;
         }
 
         /// <summary>
@@ -39,7 +38,7 @@ namespace Td.Kylin.DataCache
         public void Start()
         {
             ValidateOptions();
-            
+
             try
             {
                 Startup.Start(Options);
