@@ -157,7 +157,14 @@ namespace Td.Kylin.DataCache.Provider
                 //如果RedisKey存在，则清除
                 RedisDB.KeyDelete(CacheKey);
 
-                if (data == null) data = ReadDataFromDB();
+                try
+                {
+                    if (data == null && !string.IsNullOrWhiteSpace(Startup.SqlConnctionString)) data = ReadDataFromDB();
+                }
+                catch
+                {
+                    data = null;
+                }
 
                 if (null != data && data.Count > 0)
                 {
@@ -328,7 +335,7 @@ namespace Td.Kylin.DataCache.Provider
 
             if (null != data)
             {
-                foreach(var item in data)
+                foreach (var item in data)
                 {
                     list.Add(Newtonsoft.Json.JsonConvert.SerializeObject(item));
                 }

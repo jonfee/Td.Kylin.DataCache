@@ -42,11 +42,13 @@ namespace Td.Kylin.DataCache
 
         /// <summary>
         /// 数据库类型
+        /// <remarks>如果不需求对缓存进行维护时，不需要此参数</remarks>
         /// </summary>
         public SqlProviderType SqlType { get; set; } = SqlProviderType.SqlServer;
 
         /// <summary>
         /// 数据库连接字符串
+        /// <remarks>如果不需求对缓存进行维护时，不需要此参数</remarks>
         /// </summary>
         public string SqlConnection { get; set; }
 

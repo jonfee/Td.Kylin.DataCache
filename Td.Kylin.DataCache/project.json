@@ -1,5 +1,5 @@
 {
-  "version": "2.3.3",
+  "version": "2.4.2",
   "dependencies": {
     "NETStandard.Library": "1.6.0",
     "Microsoft.AspNetCore.Mvc.Core": "1.0.0",
